@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "hello",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath":"pages/index/index",
+      "text": "首页",
+      "iconPath":"pages/icons/Home.png",
+      "selectedIconPath":"pages/icons/Home.png"
+    },{
+      "pagePath": "pages/logs/logs",
+      "text": "个人"
+    }
+  ],
+  "color": "#00000"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+
+}
