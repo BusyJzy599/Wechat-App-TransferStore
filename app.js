@@ -33,7 +33,20 @@ App({
       }
     })
   },
+  //应用程序显示时
+  onShow:function(options){
+    console.log(options)
+  },
+  //影藏到后台
+  onHide:function(){
+
+  },
+  //出错时,只能补货到运行阶段的异常
+  onError(msg){
+
+  },
   globalData: {
     userInfo: null
   }
+
 })

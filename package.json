@@ -1,0 +1,23 @@
+{
+  "name": "TransferTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BusyJzy599/-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BusyJzy599/-/issues"
+  },
+  "homepage": "https://github.com/BusyJzy599/-#readme",
+  "dependencies": {
+    "vant-weapp": "^0.5.28"
+  }
+}

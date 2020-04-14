@@ -7,7 +7,11 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    student:[
+      {id:1,name:'季喆熠'},
+      {id:2,name:'文文'}
+    ]
   },
   //事件处理函数
   bindViewTap: function() {
@@ -17,6 +21,7 @@ Page({
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
+      //设置data内数据
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
@@ -43,6 +48,18 @@ Page({
       })
     }
   },
+  //页面加载完成后触发
+  onReady:function(){
+    wx.setNavigationBarTitle({
+      title: 'hello',
+    })
+
+  },
+  //页面卸载
+  onUnload:function(){
+    //用于保存页面状态(保存未完成的数据)
+    
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfov
@@ -50,5 +67,12 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  tabHandle:function(e){
+    console.log(e)
+    console.log(e.id)
+  },
+  inputChange(e){
+    console.log(e.detail.value)
   }
 })

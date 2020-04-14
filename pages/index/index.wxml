@@ -5,9 +5,26 @@
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">我爱你{{userInfo.nickName}}</text>
+      <input bli value="{{1+1}}"/>
+      <text>{{index.addTest(motto)}}</text>
+      <view wx:for="{{student}}" wx:for-item="n" wx:for-index="i" wx:key="id">
+        <text>{{i}}</text>
+        <text>{{n.name}}</text>
+      </view>
+      <button bindtap="tabHandle" data-id="1" id="123">click</button>
     </block>
   </view>
   <view class="usermotto">
     <text class="user-motto">我{{motto}}</text>
   </view>
+ 
 </view>
+<!--微信js代码，视图层逻辑 -->
+<wxs module="index">
+module.exports={
+  addTest:function(input){
+    return input+'-test'
+  }
+
+}
+</wxs>

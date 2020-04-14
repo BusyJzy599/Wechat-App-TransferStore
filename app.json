@@ -5,9 +5,11 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "hello",
-    "navigationBarTextStyle": "black"
+    "backgroundColor": "#f5f6f9",
+    "navigationBarBackgroundColor": "#2b3b49",
+    "navigationBarTitleText": "中转仓",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh":true
   },
   "tabBar": {
     "list": [{
@@ -20,9 +22,11 @@
       "text": "个人"
     }
   ],
-  "color": "#00000"
+  "color": "#c0c0c0",
+  "selectedColor": "#000",
+  "backgroundColor": "#f0f0f0",
+  "borderStyle": "black"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
-
 }
