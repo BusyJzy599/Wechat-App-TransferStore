@@ -1,4 +1,7 @@
 /**index.wxss**/
+.main{
+  height: 100%;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -34,8 +37,4 @@ input{
 .u-img-slide {
   width: 100%;
   height: inherit;
-  will-change: transform;
-}
-.searchView{
-  margin-top: 400rpx;
 }

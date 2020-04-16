@@ -1,33 +1,40 @@
 <!--index.wxml-->
-<view>
-<!--搜索-->
-<view class="searchView">
-<van-search
-  value="{{ value }}"
-  shape="round"
-  background="#FFEC8B"
-  placeholder="搜索"
-/>
-<!--轮播-->
-<swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
-  <block wx:for="{{bnrUrl}}" wx:for-index="index">
-    <swiper-item>
-      <image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
-    </swiper-item>
-  </block>
-</swiper>
-</view>
+<view class="main">
+	<!--搜索-->
+	<view class="searchView">
+		<van-search value="{{ value }}" shape="round" background="#FFEC8B" placeholder="搜索" />
+		<!--轮播-->
+		<swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
+			<block wx:for="{{bnrUrl}}" wx:for-index="index">
+				<swiper-item>
+					<image src='{{item.url}}' class='u-img-slide' mode='aspectFill'></image>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	<!--主界面-->
+	<view>
+		<van-row>
+			<van-col span="2"><text decode="{{true}}">&nbsp;</text></van-col>
+			<van-col span="20">
+				<!--信息-->
+				<text icon="shop">您的订单</text>
+				<view class="test">
+					<van-panel class="test" title="标题" desc="描述信息" status="状态" use-footer-slot>
+						<view>内容</view>
+						<view slot="footer">
+							<van-button size="small">按钮</van-button>
+							<van-button size="small" type="danger">按钮</van-button>
+						</view>
+					</van-panel>
+				</view>
 
-  <view class="container">
-  <van-tabbar active="{{ active }}"
-    active-color="#FFEC8B"
-    inactive-color="#CDCDC1"
-    bind:change="onChange">
-    <van-tabbar-item icon="wap-home">首页</van-tabbar-item>
-    <van-tabbar-item icon="shop">商家服务</van-tabbar-item>
-    <van-tabbar-item icon="chat">消息</van-tabbar-item>
-    <van-tabbar-item icon="manager" dot>我的</van-tabbar-item>
-  </van-tabbar>
+			</van-col>
+		</van-row>
+
+	</view>
+	<!--
+<view class="container">
     <view class="userinfo">
       <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
       <block wx:else>
@@ -47,15 +54,23 @@
       <van-button type="primary">按钮</van-button>
     </view>
   </view>
-</view>
+  -->
 
+</view>
+<!--tabbar-->
+<van-tabbar active="{{ active }}" active-color="#FFEC8B" inactive-color="#CDCDC1" bind:change="onChange">
+	<van-tabbar-item icon="wap-home">首页</van-tabbar-item>
+	<van-tabbar-item icon="shop">商家服务</van-tabbar-item>
+	<van-tabbar-item icon="chat">消息</van-tabbar-item>
+	<van-tabbar-item icon="manager" dot>我的</van-tabbar-item>
+</van-tabbar>
 
 <!--微信js代码，视图层逻辑 -->
 <wxs module="index">
-module.exports={
-  addTest:function(input){
-    return input+'-test'
-  }
+	module.exports = {
+		addTest: function(input) {
+			return input + '-test'
+		}
 
-}
+	}
 </wxs>

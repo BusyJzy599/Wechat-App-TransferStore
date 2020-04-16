@@ -12,6 +12,7 @@ Page({
       {id:1,name:'季喆熠'},
       {id:2,name:'文文'}
     ],
+    activeNames: ['1'],
     "bnrUrl": [{
       "url": "../img/beijing.jpg"
     }, {
@@ -24,6 +25,16 @@ Page({
   },
   onChange(event) {
     this.setData({ active: event.detail });
+    if(event.detail==1){
+      wx.navigateTo({
+        url: '../seller/seller',
+      })
+    }
+  },
+  onChange1(event) {
+    this.setData({
+      activeNames: event.detail
+    });
   },
   //事件处理函数
   bindViewTap: function() {
@@ -63,7 +74,7 @@ Page({
   //页面加载完成后触发
   onReady:function(){
     wx.setNavigationBarTitle({
-      title: 'hello',
+      title: 'Welcome ',
     })
 
   },
