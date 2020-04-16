@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/BusyJzy599/-#readme",
   "dependencies": {
-    "vant-weapp": "^0.5.28"
+    "@vant/weapp": "^1.2.1"
   }
 }

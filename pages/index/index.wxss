@@ -23,3 +23,19 @@
 input{
   border: 1px solid #ccc;
 }
+
+.u-wrp-bnr {
+  width: 100%;
+  height: 200rpx;
+  display: block;
+  position: relative;
+  background: #f0f0f0;
+}
+.u-img-slide {
+  width: 100%;
+  height: inherit;
+  will-change: transform;
+}
+.searchView{
+  margin-top: 400rpx;
+}

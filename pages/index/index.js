@@ -11,7 +11,19 @@ Page({
     student:[
       {id:1,name:'季喆熠'},
       {id:2,name:'文文'}
-    ]
+    ],
+    "bnrUrl": [{
+      "url": "../img/beijing.jpg"
+    }, {
+      "url": "../img/beijing.jpg"
+    }, {
+      "url":  "../img/beijing.jpg"
+    }, {
+      "url":  "../img/beijing.jpg"
+    }]
+  },
+  onChange(event) {
+    this.setData({ active: event.detail });
   },
   //事件处理函数
   bindViewTap: function() {

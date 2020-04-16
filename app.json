@@ -6,27 +6,17 @@
   "window": {
     "backgroundTextStyle": "light",
     "backgroundColor": "#f5f6f9",
-    "navigationBarBackgroundColor": "#2b3b49",
+    "navigationStyle": "custom",
     "navigationBarTitleText": "中转仓",
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "enablePullDownRefresh":true
   },
-  "tabBar": {
-    "list": [{
-      "pagePath":"pages/index/index",
-      "text": "首页",
-      "iconPath":"pages/icons/Home.png",
-      "selectedIconPath":"pages/icons/Home.png"
-    },{
-      "pagePath": "pages/logs/logs",
-      "text": "个人"
-    }
-  ],
-  "color": "#c0c0c0",
-  "selectedColor": "#000",
-  "backgroundColor": "#f0f0f0",
-  "borderStyle": "black"
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-search": "@vant/weapp/search/index"
+  }
 }
