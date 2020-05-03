@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    activeTab: 'index',
+    panels: [
+      { name: 'index', icon: 'wap-home', label: '首页' },
+      { name: 'seller', icon: 'shop',  label: '商家服务' },
+      { name: 'chat', icon: 'chat', label: '消息' },
+      { name: 'my', icon: 'manager', dot:'true',label: '我的' },
+    ]
+  },
+  onTabChange(event) {
+    this.setData({
+      activeTab: event.detail
+    })
   },
 
   /**

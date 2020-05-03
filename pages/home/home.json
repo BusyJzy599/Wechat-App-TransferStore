@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "index-tabbar": "/components/tabbar/index-tabbar",
+    "index": "../index/index",
+    "seller": "../seller/seller",
+    "chat": "../chat/chat",
+    "my":"../logs/logs"
+  }
 }

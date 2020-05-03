@@ -1,2 +1,9 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<view class="container">
+  <index wx:if="{{activeTab == 'index'}}">首页</index>
+  <seller wx:if="{{activeTab == 'seller'}}">商家服务</seller>
+  <chat wx:if="{{activeTab == 'chat'}}">消息</chat>
+  <my wx:if="{{activeTab == 'my'}}">我的</my>
+  <index-tabbar active="{{activeTab}}" panels="{{panels}}" bind:changeTab="onTabChange"></index-tabbar>
+</view>
+

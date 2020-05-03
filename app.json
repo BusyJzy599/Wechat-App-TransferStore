@@ -1,8 +1,6 @@
 {
   "pages": [
-    "pages/seller/seller",
-    "pages/chat/chat",
-    "pages/user/user",
+    "pages/home/home",
     "pages/logs/logs"
   ],
   "window": {
