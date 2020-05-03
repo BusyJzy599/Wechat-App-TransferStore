@@ -6,6 +6,7 @@ Component({
   data: {
     motto: 'Hello World',
     userInfo: {},
+    activeNames: ['1'],
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     student:[
@@ -23,11 +24,13 @@ Component({
       "url":  "../img/beijing.jpg"
     }]
   },
-
-  onChange1(event) {
-    this.setData({
-      activeNames: event.detail
-    });
+  methods: {
+    onCollapse(event){
+      this.setData({
+        activeNames: event.detail
+      });
+    },
+    
   },
   //事件处理函数
   bindViewTap: function() {

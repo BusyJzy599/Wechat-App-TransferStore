@@ -3,14 +3,11 @@
 	<van-tabbar active="{{ active }}" active-color="#FFEC8B" inactive-color="#CDCDC1" bind:change="onChange">
 	<van-tabbar-item
 				wx:for="{{panels}}"
-				wx:for-index="index"
 				wx:for-item="item"
-				wx:key="{{index}}"
 				name="{{item.name}}"
 				icon="{{item.icon}}"
 				dot="{{item.dot}}">
 				{{item.label}}
 			</van-tabbar-item>
-		
 	</van-tabbar>
 </cover-view>

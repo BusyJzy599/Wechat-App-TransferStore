@@ -6,6 +6,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "backgroundColor": "#f5f6f9",
+    "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#FFEC8B",
     "navigationBarTitleText": "中转仓",
     "navigationBarTextStyle": "black",
@@ -25,6 +26,10 @@
     "van-collapse-item": "@vant/weapp/collapse-item/index",
     "van-swipe-cell": "@vant/weapp/swipe-cell/index",
     "van-divider": "@vant/weapp/divider/index",
-    "van-panel": "@vant/weapp/panel/index"
+    "van-panel": "@vant/weapp/panel/index",
+    "van-grid": "@vant/weapp/grid/index",
+  "van-grid-item": "@vant/weapp/grid-item/index",
+  "van-cell": "@vant/weapp/cell/index",
+  "van-cell-group": "@vant/weapp/cell-group/index"
   }
 }

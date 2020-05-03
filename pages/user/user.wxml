@@ -1,2 +1,35 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<scroll-view scroll-y="true" style="height:100%" bindscrolltoupper="upper" bindscrolltolower="lower">
+	<view class="top">
+		<cover-view class="user-top">
+			<cover-image>
+      </cover-image>
+      123S
+		</cover-view>
+		<image src="/pages/img/top.jpg" mode="heightFix"></image>
+	</view>
+	<view class="main">
+   <van-button round type="info">圆形按钮</van-button>
+		<!--个人选项-->
+		<view class="user-set">
+			<van-cell is-link link-type="navigateTo" url="">
+				<view slot="title">
+					<view class="van-cell-text">我的地址簿</view>
+				</view>
+				<van-icon slot="icon" name="location-o" color="#FFD700" size="20px" class="custom-icon" />
+			</van-cell>
+			<van-cell is-link link-type="navigateTo" url="">
+				<view slot="title">
+					<view class="van-cell-text">bug反馈</view>
+				</view>
+				<van-icon slot="icon" name="service-o" color="#FFD700" size="20px" class="custom-icon" />
+			</van-cell>
+			<van-cell is-link link-type="navigateTo" url="">
+				<view slot="title">
+					<view class="van-cell-text">设置</view>
+				</view>
+				<van-icon slot="icon" name="setting-o" color="#FFD700" size="20px" class="custom-icon" />
+			</van-cell>
+		</view>
+	</view>
+</scroll-view>

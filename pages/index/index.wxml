@@ -1,9 +1,22 @@
 <!--index.wxml-->
-<view class="main">
-	<!--搜索-->
-	<view class="searchView">
-		<van-search value="{{ value }}" shape="round" background="#FFEC8B" placeholder="搜索" />
-		<!--轮播-->
+<scroll-view scroll-y="true" style="height:100%" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+	<view class="top">
+		<cover-view class="cover-top">
+			hello!{{userInfo.nickName}}
+		</cover-view>
+		<image src="/pages/img/top.jpg" mode="heightFix"></image>
+	</view>
+	<view class="main">
+		<!--搜索-->
+		<view class="searchView">
+			<van-search value="{{ value }}" shape="round" background="#FFEC8B" placeholder="搜索" />
+		</view>
+		<!--功能按钮-->
+		<van-grid column-num="4">
+			<van-grid-item icon="photo-o" text="文字" wx:for="{{ 4 }}" />
+		</van-grid>
+
+		<!--轮播
 		<swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
 			<block wx:for="{{bnrUrl}}" wx:for-index="index">
 				<swiper-item>
@@ -11,29 +24,30 @@
 				</swiper-item>
 			</block>
 		</swiper>
-	</view>
-	<!--主界面-->
-	<view>
-		<van-row>
-			<van-col span="2"><text decode="{{true}}">&nbsp;</text></van-col>
-			<van-col span="20">
-				<!--信息-->
-				<text icon="shop">您的订单</text>
-				<view class="test">
-					<van-panel class="test" title="标题" desc="描述信息" status="状态" use-footer-slot>
-						<view>内容</view>
-						<view slot="footer">
-							<van-button size="small">按钮</van-button>
-							<van-button size="small" type="danger">按钮</van-button>
-						</view>
-					</van-panel>
-				</view>
+-->
+		<!--主界面-->
+		<view>
+			<van-row>
+				<van-col span="24">
+					<van-divider contentPosition="center" textColor="black" fontSize="20">与您相关</van-divider>
+					<!--信息-->
+					<van-collapse value="{{ activeNames }}" bind:change="onCollapse">
+						<van-collapse-item title="派送中" name="1">
+							<van-skeleton title avatar row="3" loading="{{ loading }}">
+							<title>111</title>
+							<view>1234564444444444444444444444444444444444444444444444444444444</view>
+							</van-skeleton>
+						</van-collapse-item>
+						<van-collapse-item title="您的订单" name="2">
+						
+						</van-collapse-item>
+					</van-collapse>
 
-			</van-col>
-		</van-row>
+				</van-col>
+			</van-row>
 
-	</view>
-	<!--
+		</view>
+		<!--
 <view class="container">
     <view class="userinfo">
       <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
@@ -56,7 +70,9 @@
   </view>
   -->
 
-</view>
+	</view>
+</scroll-view>
+
 
 <!--微信js代码，视图层逻辑 -->
 <wxs module="index">

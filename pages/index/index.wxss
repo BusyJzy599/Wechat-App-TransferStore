@@ -1,6 +1,23 @@
 /**index.wxss**/
 .main{
   height: 100%;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+.top{
+  height: 300rpx;
+}
+.func-grid{
+  border-style: solid;
+  box-shadow:0px 2px 4px 2px #DDDDDD;
+  border-width: 0rpx;
+  border-radius: 20rpx;
+}
+.cover-top{
+  position: absolute;
+  top: 6%;
+  left: 4%;
+  font-size: 28rpx;
 }
 .userinfo {
   display: flex;
@@ -38,3 +55,5 @@ input{
   width: 100%;
   height: inherit;
 }
+
+

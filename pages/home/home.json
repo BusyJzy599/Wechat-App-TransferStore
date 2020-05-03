@@ -4,6 +4,6 @@
     "index": "../index/index",
     "seller": "../seller/seller",
     "chat": "../chat/chat",
-    "my":"../logs/logs"
+    "my":"../user/user"
   }
 }
