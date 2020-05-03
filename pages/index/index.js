@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 
-Page({
+Component({
   data: {
     motto: 'Hello World',
     userInfo: {},
@@ -23,14 +23,7 @@ Page({
       "url":  "../img/beijing.jpg"
     }]
   },
-  onChange(event) {
-    this.setData({ active: event.detail });
-    if(event.detail==1){
-      wx.navigateTo({
-        url: '../seller/seller',
-      })
-    }
-  },
+
   onChange1(event) {
     this.setData({
       activeNames: event.detail

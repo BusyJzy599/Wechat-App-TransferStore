@@ -1,5 +1,5 @@
-// pages/seller/seller.js
-Component({
+// pages/home/home.js
+Page({
 
   /**
    * 页面的初始数据
@@ -62,6 +62,5 @@ Component({
    */
   onShareAppMessage: function () {
 
-  },
-  
+  }
 })
