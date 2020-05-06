@@ -31,7 +31,7 @@
 					</view>
 					<view class="move">
 						<view class="bg-grey">已读</view>
-						<view class="bg-red">删除</view>
+						<view class="bg-red" bindtap="deleteInfo">删除</view>
 					</view>
 				</view>
 			</view>

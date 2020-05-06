@@ -1,6 +1,9 @@
 /* pages/user/user.wxss */
 @import "/components/main.wxss";
 @import "/components/icon.wxss";
+page{
+  height: 100%;
+}
 .top{
   height: 300rpx;
 }
@@ -15,3 +18,8 @@
   padding-left: 20rpx;
   padding-right: 20rpx;
 }
+.divLine{
+  background: #E0E3DA;
+  width: 100%;
+  height: 2rpx;
+ }

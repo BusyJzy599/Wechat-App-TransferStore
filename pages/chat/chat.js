@@ -1,5 +1,5 @@
 // pages/chat/chat.js
-var app = getApp();
+const app = getApp();
 Component({
 
  /**
@@ -13,60 +13,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-    ColorList: app.globalData.ColorList,
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
-    iconList: [{
-      icon: 'cardboardfill',
-      color: 'red',
-      badge: 120,
-      name: 'VR'
-    }, {
-      icon: 'recordfill',
-      color: 'orange',
-      badge: 1,
-      name: '录像'
-    }, {
-      icon: 'picfill',
-      color: 'yellow',
-      badge: 0,
-      name: '图像'
-    }, {
-      icon: 'noticefill',
-      color: 'olive',
-      badge: 22,
-      name: '通知'
-    }, {
-      icon: 'upstagefill',
-      color: 'cyan',
-      badge: 0,
-      name: '排行榜'
-    }, {
-      icon: 'clothesfill',
-      color: 'blue',
-      badge: 0,
-      name: '皮肤'
-    }, {
-      icon: 'discoverfill',
-      color: 'purple',
-      badge: 0,
-      name: '发现'
-    }, {
-      icon: 'questionfill',
-      color: 'mauve',
-      badge: 0,
-      name: '帮助'
-    }, {
-      icon: 'commandfill',
-      color: 'purple',
-      badge: 0,
-      name: '问答'
-    }, {
-      icon: 'brandfill',
-      color: 'mauve',
-      badge: 0,
-      name: '版权'
-    }],
     gridCol:3,
     skin: false
   },
@@ -75,51 +21,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    showModal(e) {
-      this.setData({
-        modalName: e.currentTarget.dataset.target
-      })
-    },
-    hideModal(e) {
-      this.setData({
-        modalName: null
-      })
-    },
-    gridchange: function (e) {
-      this.setData({
-        gridCol: e.detail.value
-      });
-    },
-    gridswitch: function (e) {
-      this.setData({
-        gridBorder: e.detail.value
-      });
-    },
-    menuBorder: function (e) {
-      this.setData({
-        menuBorder: e.detail.value
-      });
-    },
-    menuArrow: function (e) {
-      this.setData({
-        menuArrow: e.detail.value
-      });
-    },
-    menuCard: function (e) {
-      this.setData({
-        menuCard: e.detail.value
-      });
-    },
-    switchSex: function (e) {
-      this.setData({
-        skin: e.detail.value
-      });
-    },
-  
     // ListTouch触摸开始
     ListTouchStart(e) {
       this.setData({
         ListTouchStart: e.touches[0].pageX
+      })
+      wx.navigateTo({
+        url: '/pages/logs/logs',
       })
     },
   
@@ -134,7 +42,8 @@ Component({
     ListTouchEnd(e) {
       if (this.data.ListTouchDirection =='left'){
         this.setData({
-          modalName: e.currentTarget.dataset.target
+          modalName: e.currentTarget.dataset.target,
+          selectInfo:e.currentTarget.dataset.target
         })
       } else {
         this.setData({
@@ -145,6 +54,10 @@ Component({
         ListTouchDirection: null
       })
     },
+    //删除消息
+    deleteInfo(e){
+      console.log(this.data.selectInfo)
+    }
    
   }
 

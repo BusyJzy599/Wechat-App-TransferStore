@@ -60,7 +60,7 @@
 	margin-right: 30rpx;
 }
 .chat-main{
-  margin-top: -150rpx;
+  margin-top: 15%;
 }
 .padding-xl{
   padding: 5rpx;

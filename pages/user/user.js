@@ -1,66 +1,94 @@
 // pages/user/user.js
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+  
+  },
 
   /**
-   * 页面的初始数据
+   * 组件的初始数据
    */
   data: {
-
+    starValue: 5,
+    imgList: [],
+    modalName: null,
+    textareaValue:''
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 组件的方法列表
    */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  methods: {
+    showModal(e) {
+      this.setData({
+        modalName: e.currentTarget.dataset.target
+      })
+    },
+    hideModal(e) {
+      this.setData({
+        modalName: null
+      })
+    },
+    setStars(e){
+      this.hideModal(e);//待测试
+      Toast.success({
+        message: '评分成功',
+        selector: '#van-toast',
+        context:this
+      });
+      console.log(this.data.starValue)
+    },
+    openStars(event) {
+      this.setData({
+        starValue: event.detail
+      });
+    },
+    ChooseImage() {
+      wx.chooseImage({
+        count: 4, //默认9
+        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album'], //从相册选择
+        success: (res) => {
+          if (this.data.imgList.length != 0) {
+            this.setData({
+              imgList: this.data.imgList.concat(res.tempFilePaths)
+            })
+          } else {
+            this.setData({
+              imgList: res.tempFilePaths
+            })
+          }
+        }
+      });
+    },
+    ViewImage(e) {
+      wx.previewImage({
+        urls: this.data.imgList,
+        current: e.currentTarget.dataset.url
+      });
+    },
+    DelImg(e) {
+      wx.showModal({
+        content: '确定要删除？',
+        cancelText: '再看看',
+        confirmText: '再见',
+        success: res => {
+          if (res.confirm) {
+            this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              imgList: this.data.imgList
+            })
+          }
+        }
+      })
+    },
+    textareaInput(e) {
+      this.setData({
+        textareaValue: e.detail.value
+      })
+    },
   }
 })

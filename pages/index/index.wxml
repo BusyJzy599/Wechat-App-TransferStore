@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<scroll-view scroll-y style="height:100vh">
+<scroll-view scroll-y>
 	<view class="top">
 		<view class="cover-top">
 			hello!{{userInfo.nickName}}
@@ -81,7 +81,7 @@
 							<view class="cu-list menu">
 								<view class="cu-item arrow">
 									<view class="content">
-										<navigator class="content" hover-class="none" url="../home/home" open-type="navigate">
+										<navigator class="content" hover-class="none" url="../user/user" open-type="navigate">
 											<text class="cuIcon-forwardfill text-blue"></text>
 											<text class="text-grey">查看所有</text>
 										</navigator>
@@ -99,29 +99,17 @@
 			</van-row>
 
 		</view>
-		<!--
-<view class="container">
-    <view class="userinfo">
-      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">我爱你{{userInfo.nickName}}</text>
-        <input bli value="{{1+1}}"/>
-        <text>{{index.addTest(motto)}}</text>
-        <view wx:for="{{student}}" wx:for-item="n" wx:for-index="i" wx:key="id">
-          <text>{{i}}</text>
-          <text>{{n.name}}</text>
-        </view>
-        <button bindtap="tabHandle" data-id="1" id="123">click</button>
-      </block>
-    </view>
-    <view class="usermotto">
-      <text class="user-motto">我{{motto}}</text>
-      <van-button type="primary">按钮</van-button>
-    </view>
-  </view>
-  -->
-
+		<!---------------------------------------->
+		<view class="container">
+			<view class="userinfo">
+				<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+				<block wx:else>
+					<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+					<text class="userinfo-nickname">我爱你{{userInfo.nickName}}</text>
+				</block>
+			</view>
+		<!---------------------------------------->`
+		</view>
 	</view>
 </scroll-view>
 

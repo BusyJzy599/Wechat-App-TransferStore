@@ -1,1 +1,18 @@
 /* pages/home/home.wxss */
+page{
+  height: 100%;
+}
+.main-home{
+  height: 100vh;
+}
+.tabbar-index--van-tabbar {
+  display: flex;
+  width: 100%;
+  padding-top: 18rpx;
+  height: var(--tabbar-height,80px);
+  background-color: #fff;
+  background-color: var(--tabbar-background-color,#fff);
+}
+.tabbar-index--van-tabbar--safe {
+  padding-top: 20rpx;
+}
