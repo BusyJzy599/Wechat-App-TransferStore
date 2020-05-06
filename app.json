@@ -1,7 +1,10 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/user/notify/notify",
+    "pages/user/address/address",
+    "pages/user/set/settings"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -10,7 +13,7 @@
     "navigationBarBackgroundColor": "#FFEC8B",
     "navigationBarTitleText": "中转仓",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh":true
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
@@ -28,15 +31,15 @@
     "van-divider": "@vant/weapp/divider/index",
     "van-panel": "@vant/weapp/panel/index",
     "van-grid": "@vant/weapp/grid/index",
-  "van-grid-item": "@vant/weapp/grid-item/index",
-  "van-cell": "@vant/weapp/cell/index",
-  "van-cell-group": "@vant/weapp/cell-group/index",
-  "van-rate": "@vant/weapp/rate/index",
-  "van-toast": "@vant/weapp/toast/index",
-  "index-tabbar": "/components/tabbar/index-tabbar",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-rate": "@vant/weapp/rate/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "index-tabbar": "/components/tabbar/index-tabbar",
     "index": "/pages/index/index",
     "seller": "/pages/seller/seller",
     "chat": "/pages/chat/chat",
-    "my":"/pages/user/user"
+    "my": "/pages/user/user"
   }
 }

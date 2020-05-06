@@ -1,0 +1,8 @@
+<!--pages/personal/notify/notify.wxml-->
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}" style="height:10%">
+	<view slot="backText">返回</view>
+	<view slot="content">具体消息</view>
+</cu-custom>
+	<view class="solid-bottom text-xxl padding">
+	<text>这是{{chooseId}}</text>
+	</view>

@@ -1,10 +1,9 @@
 <!--index.wxml-->
 <scroll-view scroll-y>
 	<view class="top">
-		<view class="cover-top">
-			hello!{{userInfo.nickName}}
-		</view>
-		<image src="/pages/img/top.jpg" mode="heightFix"></image>
+		<image src="/pages/img/top.jpg" mode="heightFix"/>
+		<text  wx:if="{{!hasUserInfo && canIUse}}" class="cover-top">未登录</text>
+		<text  wx:else class="cover-top">您好,{{userInfo.nickName}}</text>
 	</view>
 	<view class="main">
 		<!--搜索-->
@@ -104,7 +103,7 @@
 			<view class="userinfo">
 				<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
 				<block wx:else>
-					<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+					<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
 					<text class="userinfo-nickname">我爱你{{userInfo.nickName}}</text>
 				</block>
 			</view>

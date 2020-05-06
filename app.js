@@ -34,19 +34,26 @@ App({
     })
   },
   //应用程序显示时
-  onShow:function(options){
+  onShow: function (options) {
     console.log(options)
   },
   //影藏到后台
-  onHide:function(){
+  onHide: function () {
 
   },
   //出错时,只能补货到运行阶段的异常
-  onError(msg){
+  onError(msg) {
 
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    userMore: [
+      [
+        { id:1,name: '001', comment: '测试1', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', time: '22:20', counts: 1, readed: false, },
+        { id:2,name: '002', comment: '测试2', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg', time: '22:20', counts: 2, readed: false, },
+        { id:3,name: '003', comment: '测试3', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg', time: '22:20', counts: 3, readed: false, }
+      ],
+    ]
   },
 
 

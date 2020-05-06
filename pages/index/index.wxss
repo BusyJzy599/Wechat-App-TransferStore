@@ -44,9 +44,11 @@
 }
 .cover-top{
   position: absolute;
-  top: 6%;
+  top: 4%;
   left: 4%;
-  font-size: 28rpx;
+	font-size: 28rpx;
+	font: bold;
+	font-family: NSimSun;
 }
 .userinfo {
   display: flex;

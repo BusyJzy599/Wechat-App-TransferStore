@@ -18,19 +18,18 @@
 				</view>
 			</view>
 			<view class="cu-list menu-avatar">
-				<view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{4}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-					<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
+				<view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" style="background:{{index==selectInfor?itemColor:'white'}}" wx:for="{{comments}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-id="{{item.id}}">
+					<view class="cu-avatar round lg" style="background-image:url({{item.avatar}});"></view>
 					<view class="content">
-						<view class="text-grey">文晓港</view>
-						<view class="text-gray text-sm">
-							<text class="cuIcon-infofill text-red"></text> 消息未送达</view>
+						<view class="text-grey">{{item.name}}</view>
+						<view class="text-gray text-sm">{{item.comment}}</view>
 					</view>
 					<view class="action">
-						<view class="text-grey text-xs">22:20</view>
-						<view class="cu-tag round bg-grey sm">5</view>
+						<view class="text-grey text-xs">{{item.time}}</view>
+						<view wx:if="{{!item.readed}}" class="cu-tag round bg-grey sm">{{item.counts}}</view>
 					</view>
 					<view class="move">
-						<view class="bg-grey">已读</view>
+						<view class="bg-grey" bindtap="readedInfo">已读</view>
 						<view class="bg-red" bindtap="deleteInfo">删除</view>
 					</view>
 				</view>

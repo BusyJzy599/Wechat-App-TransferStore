@@ -3,8 +3,12 @@
 const app = getApp()
 
 Component({
+  properties:{
+    userInfo:Object,
+    hasUserInfo:Boolean,
+    canIUse:Boolean
+  },
   data: {
- 
     cardCur: 0,
     swiperList: [{
       id: 0,
@@ -12,8 +16,8 @@ Component({
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
     }, {
       id: 1,
-        type: 'image',
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
     }, {
       id: 2,
       type: 'image',
@@ -37,8 +41,19 @@ Component({
     }],
     activeNames: ['1'],
   },
+  //类似于加载函数
+  attached() {
+    
+  },
   methods: {
-    onCollapse(event){
+    getUserInfo: function (e) {
+      app.globalData.userInfo = e.detail.userInfov
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
+    },
+    onCollapse(event) {
       this.setData({
         activeNames: event.detail
       });
@@ -109,6 +124,6 @@ Component({
       }
     },
   },
-  
+
 
 })
