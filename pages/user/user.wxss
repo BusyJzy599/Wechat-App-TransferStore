@@ -1,6 +1,8 @@
 /* pages/user/user.wxss */
+@import "/components/main.wxss";
+@import "/components/icon.wxss";
 .top{
-  height: 410rpx;
+  height: 300rpx;
 }
 .user-top{
   position: absolute;

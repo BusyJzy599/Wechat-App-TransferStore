@@ -1,35 +1,64 @@
 <!--pages/user/user.wxml-->
 <scroll-view scroll-y="true" style="height:100%" bindscrolltoupper="upper" bindscrolltolower="lower">
 	<view class="top">
-		<cover-view class="user-top">
-			<cover-image>
-      </cover-image>
-      123S
-		</cover-view>
+		<view class="user-top">
+		</view>
 		<image src="/pages/img/top.jpg" mode="heightFix"></image>
 	</view>
 	<view class="main">
-   <van-button round type="info">圆形按钮</van-button>
 		<!--个人选项-->
 		<view class="user-set">
-			<van-cell is-link link-type="navigateTo" url="">
-				<view slot="title">
-					<view class="van-cell-text">我的地址簿</view>
-				</view>
-				<van-icon slot="icon" name="location-o" color="#FFD700" size="20px" class="custom-icon" />
-			</van-cell>
-			<van-cell is-link link-type="navigateTo" url="">
-				<view slot="title">
-					<view class="van-cell-text">bug反馈</view>
-				</view>
-				<van-icon slot="icon" name="service-o" color="#FFD700" size="20px" class="custom-icon" />
-			</van-cell>
-			<van-cell is-link link-type="navigateTo" url="">
-				<view slot="title">
-					<view class="van-cell-text">设置</view>
-				</view>
-				<van-icon slot="icon" name="setting-o" color="#FFD700" size="20px" class="custom-icon" />
-			</van-cell>
+			<view class="cu-list menu sm-bordercard-menu margin-top">
+  
+    <view class="cu-item arrow">
+      <view class="content">
+        <text class="text-grey">图片 + 标题</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="contact">
+        <text class="cuIcon-btn text-olive"></text>
+        <text class="text-grey">Open-type 按钮</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+        <text class="cuIcon-discoverfill text-orange"></text>
+        <text class="text-grey">Navigator 跳转</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <view class="content">
+        <text class="cuIcon-tagfill text-red"></text>
+        <text class="text-grey">标签</text>
+      </view>
+      <view class="action">
+        <view class="cu-tag round bg-orange light">音乐</view>
+        <view class="cu-tag round bg-olive light">电影</view>
+        <view class="cu-tag round bg-blue light">旅行</view>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <view class="content">
+        <text class="cuIcon-warn text-green"></text>
+        <text class="text-grey">文本</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm">小目标还没有实现！</text>
+      </view>
+    </view>
+    <view class="cu-item">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class="cuIcon-clothesfill text-blue margin-right-xs"></text> 多行Item</view>
+        <view class="text-gray text-sm">
+          <text class="cuIcon-infofill margin-right-xs"></text> 小目标还没有实现！</view>
+      </view>
+      <view class="action">
+        <switch class="switch-sex sm" bindchange="switchSex"></switch>
+      </view>
+    </view>
+  </view>
 		</view>
 	</view>
 </scroll-view>
