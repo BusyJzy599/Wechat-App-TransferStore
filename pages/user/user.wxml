@@ -6,12 +6,12 @@
 	<van-row>
 		<van-col span="">
 			<view class="cu-avatar xl round margin-left" style="background-image:url({{userInfo.avatarUrl}}">
-				<view class="cu-tag badge {{userInfo.gender==0?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
+				<view class="cu-tag badge {{userInfo.gender==1?'cuIcon-male bg-blue':'cuIcon-female bg-pink'}}"></view>
 			</view>
 		</van-col>
 		<van-col span="8">
 			<view class="solid-bottom text-xxl padding">
-				<text  wx:if="{{!hasUserInfo && canIUse}}">未登录</text>
+				<text wx:if="{{!hasUserInfo && canIUse}}">未登录</text>
 				<text wx:else>{{userInfo.nickName}}</text>
 			</view>
 		</van-col>
@@ -116,5 +116,6 @@
 		</view>
 	</view>
 	<!--评分提示-->
-	<van-toast id="van-toast" />
+	<van-toast id="grade" />
+	<van-toast id="callback" />
 </scroll-view>

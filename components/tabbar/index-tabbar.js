@@ -1,4 +1,5 @@
 // components/tabbar/index-tabbar.js
+const app=getApp()
 Component({
   /**
    * 组件的属性列表
@@ -28,6 +29,8 @@ Component({
     //路由页面
     onChange(event) {
       this.triggerEvent('changeTab', event.detail)
+      console.log("tabbar插件内")
+      console.log(this.properties.panels)
     }
   }
 })

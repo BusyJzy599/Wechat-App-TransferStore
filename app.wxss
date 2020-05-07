@@ -23,4 +23,5 @@ page {
 .van-cell{
   border-radius: 20rpx;
 }
+
   

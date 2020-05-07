@@ -28,6 +28,7 @@ Component({
       this.setData({
         modalName: e.currentTarget.dataset.target
       })
+      console.log(this.data.modalName)
     },
     hideModal(e) {
       this.setData({
@@ -35,12 +36,14 @@ Component({
       })
     },
     setStars(e){
-      this.hideModal(e);//待测试
+      var mes='DialogModal1'==this.data.modalName?'评分成功':'反馈成功'
+      var sel='DialogModal1'==this.data.modalName?'grade':'callback'
       Toast.success({
-        message: '评分成功',
-        selector: '#van-toast',
+        message: mes,
+        selector: '#'+sel,
         context:this
       });
+      this.hideModal(e);//待测试
       console.log(this.data.starValue)
     },
     openStars(event) {

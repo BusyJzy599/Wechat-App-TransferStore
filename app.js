@@ -32,6 +32,24 @@ App({
         }
       }
     })
+    if (wx.cloud) {
+      wx.cloud.init({
+        traceUser: true
+      })
+    }
+    //顶部返回条大小
+    wx.getSystemInfo({
+      success: e => {
+        this.globalData.StatusBar = e.statusBarHeight;
+        let capsule = wx.getMenuButtonBoundingClientRect();
+		if (capsule) {
+		 	this.globalData.Custom = capsule;
+			this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
+		} else {
+			this.globalData.CustomBar = e.statusBarHeight + 50;
+		}
+      }
+    })
   },
   //应用程序显示时
   onShow: function (options) {
@@ -49,10 +67,20 @@ App({
     userInfo: null,
     userMore: [
       [
-        { id:1,name: '001', comment: '测试1', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', time: '22:20', counts: 1, readed: false, },
-        { id:2,name: '002', comment: '测试2', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg', time: '22:20', counts: 2, readed: false, },
-        { id:3,name: '003', comment: '测试3', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg', time: '22:20', counts: 3, readed: false, }
+        { id:1,name: '001', 
+        comment: ['测试1','测试001'], 
+        avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', time: '22:20',  readed: false, },
+        { id:2,name: '002', comment: ['测试2','测试002'], 
+         avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg', time: '22:20',  readed: false, },
+        { id:3,name: '003', comment: ['测试3','测试003'], 
+         avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg', time: '22:20', readed: false, }
       ],
+      [
+        { name: 'index', icon: 'wap-home', label: '首页' },
+        { name: 'seller', icon: 'shop', label: '商家服务' },
+        { name: 'chat', icon: 'chat', dot: false, label: '消息' },
+        { name: 'my', icon: 'manager', label: '我的' },
+      ]
     ]
   },
 

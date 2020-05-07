@@ -7,19 +7,15 @@ Page({
    */
   data: {
     activeTab: 'index',
-    panels: [
-      { name: 'index', icon: 'wap-home', label: '首页' },
-      { name: 'seller', icon: 'shop', label: '商家服务' },
-      { name: 'chat', icon: 'chat', dot: 'true', label: '消息' },
-      { name: 'my', icon: 'manager', label: '我的' },
-    ],
+    panels: [],
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
   onTabChange(event) {
     this.setData({
-      activeTab: event.detail
+      activeTab: event.detail,
+      panels:app.globalData.userMore[1]
     })
   },
 
@@ -56,6 +52,22 @@ Page({
         }
       })
     }
+    //测试消息是否存在
+    this.setData({
+      panels:app.globalData.userMore[1]
+    })
+    var lists=app.globalData.userMore[0]
+    var hasInfo = 'panels[2].dot'
+    if(lists.length==0){
+      this.setData({
+        [hasInfo]:false
+      })
+    }else{
+      this.setData({
+        [hasInfo]:true
+      })
+    }
+    console.log(this.data.panels)
   },
 
   /**

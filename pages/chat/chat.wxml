@@ -26,7 +26,7 @@
 					</view>
 					<view class="action">
 						<view class="text-grey text-xs">{{item.time}}</view>
-						<view wx:if="{{!item.readed}}" class="cu-tag round bg-grey sm">{{item.counts}}</view>
+						<view wx:if="{{!item.readed}}" class="cu-tag round bg-grey sm">{{item.comment.length}}</view>
 					</view>
 					<view class="move">
 						<view class="bg-grey" bindtap="readedInfo">已读</view>

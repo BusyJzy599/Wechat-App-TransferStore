@@ -1,11 +1,14 @@
 // pages/personal/notify/notify.js
+const app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    chooseId:-1
+    chooseId:{},
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar
   },
   /**
    * 生命周期函数--监听页面加载
@@ -13,7 +16,7 @@ Page({
   onLoad: function (options) {
     console.log(options.info)
     this.setData({
-      chooseId:options.info
+      chooseId:app.globalData.userMore[0][options.info-1]
     })
   },
 
