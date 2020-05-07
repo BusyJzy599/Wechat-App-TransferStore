@@ -1,18 +1,88 @@
 // pages/personal/address/address.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    addresses: {},
+    isClicked:false,
+    modalName: null,
+    selector:0,
+    region: ['重庆市', '重庆市', '沙坪坝区'],
+    deleteShow: false,
+    deleteActions: [
+      { name: '确认删除?', color: '#07c160' }
+    ]
   },
-
+  RegionChange: function(e) {
+    this.setData({
+      region: e.detail.value
+    })
+  },
+  deleteAddress(e){
+    this.setData({ 
+      deleteShow: true,
+      isClicked:true,
+      selector:e.currentTarget.dataset.id
+    });
+  },
+  onClose() {
+    this.setData({ 
+      deleteShow: false,
+      isClicked:false
+    });
+  },
+  //确认删除
+  onSelect(e) {
+    console.log(e.detail);
+    for(var i=0;i<this.data.addresses.length;i++){
+      if(this.data.addresses[i].id==this.data.selector){
+        this.data.addresses.splice(i,1)
+        this.setData({
+          addresses: this.data.addresses,
+          selector:0
+        })
+      }
+    }
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  //确认添加地址
+  formSubmit(e){
+    if(e.detail.value.name==''||e.detail.value.phone==''||e.detail.value.address==''){
+      console.log("输入为空")
+      return
+    }
+    var timestamp = Date.parse(new Date())/1000;
+    var newAddress={id:timestamp,name:e.detail.value.name,phone:e.detail.value.phone,provincial:this.data.region.join(','),address:e.detail.value.address,type:e.detail.value.type}
+    app.globalData.userMore[2].push(newAddress)
+    this.setData({
+      addresses:app.globalData.userMore[2]
+    })
+    console.log(app.globalData.userMore[2])
+    this.hideModal()
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      addresses: app.globalData.userMore[2]
+    })
+    console.log(this.data.addresses)
   },
 
   /**

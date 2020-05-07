@@ -22,13 +22,13 @@
 		<view class="user-set">
 			<view class="cu-list menu sm-bordercard-menu margin-top">
 				<view class="cu-item arrow">
-					<navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+					<navigator class="content" hover-class="none" url="../user/address/address">
 						<text class="cuIcon-discoverfill text-green"></text>
 						<text class="text-grey">我的地址簿</text>
 					</navigator>
 				</view>
 				<view class="cu-item arrow">
-					<navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+					<navigator class="content" hover-class="none" url="../user/set/settings">
 						<text class="cuIcon-settingsfill text-orange"></text>
 						<text class="text-grey">设置</text>
 					</navigator>
@@ -47,7 +47,10 @@
 				</view>
 			</view>
 		</view>
-
+		<!--认证商家按钮-->
+		<button class="cn-btn bg-olive round lg shadow margin-top" bindtap="">
+			<text class="cuIcon-shopfill text-white text-sl"></text>认证商家
+		</button>
 	</view>
 	<!--评分窗口-->
 	<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
@@ -82,7 +85,7 @@
 			<!--反馈控件-->
 			<view>
 				<view class="cu-form-group">
-					<textarea maxlength="100" bindinput="textareaInput" placeholder="请输入..." style="height:350rpx"></textarea>
+					<textarea maxlength="100" bindinput="textareaInput" placeholder="请输入您的意见(字数不超过50)" style="height:350rpx;text-align:left;"></textarea>
 				</view>
 				<view class="divLine"></view>
 				<view class="cu-bar bg-white">
@@ -95,7 +98,7 @@
 				</view>
 				<view class="cu-form-group">
 					<view class="grid col-4 grid-square flex-sub">
-						<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+						<view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
 							<image src='{{imgList[index]}}' mode='aspectFill'></image>
 							<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
 								<text class="cuIcon-close"></text>

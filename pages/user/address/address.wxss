@@ -1,1 +1,13 @@
 /* pages/personal/address/address.wxss */
+@import "/components/main.wxss";
+@import "/components/icon.wxss";
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.input-address{
+  text-align: left;
+  border: none;
+}
+.hide{
+  display: none;
+}

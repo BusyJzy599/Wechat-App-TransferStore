@@ -36,6 +36,7 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-rate": "@vant/weapp/rate/index",
     "van-toast": "@vant/weapp/toast/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
     "index-tabbar": "/components/tabbar/index-tabbar",
     "index": "/pages/index/index",
     "seller": "/pages/seller/seller",

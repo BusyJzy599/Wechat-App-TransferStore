@@ -19,14 +19,15 @@
 			</view>
 			<view class="cu-list menu-avatar">
 				<view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" style="background:{{index==selectInfor?itemColor:'white'}}" wx:for="{{comments}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-id="{{item.id}}">
-					<view class="cu-avatar round lg" style="background-image:url({{item.avatar}});"></view>
+					<view class="cu-avatar round lg" style="background-image:url({{item.avatar}});">
+						<view class="cu-tag badge" wx:if="{{!item.readed}}"></view>
+					</view>
 					<view class="content">
 						<view class="text-grey">{{item.name}}</view>
-						<view class="text-gray text-sm">{{item.comment}}</view>
+						<view class="text-gray text-sm text-cut paddingradius">{{item.comment[item.comment.length-1].content}}</view>
 					</view>
 					<view class="action">
-						<view class="text-grey text-xs">{{item.time}}</view>
-						<view wx:if="{{!item.readed}}" class="cu-tag round bg-grey sm">{{item.comment.length}}</view>
+						<view class="text-grey text-xs">{{item.comment[0].time}}</view>
 					</view>
 					<view class="move">
 						<view class="bg-grey" bindtap="readedInfo">已读</view>

@@ -15,7 +15,7 @@ Page({
   onTabChange(event) {
     this.setData({
       activeTab: event.detail,
-      panels:app.globalData.userMore[1]
+      panels: app.globalData.userMore[1]
     })
   },
 
@@ -54,17 +54,17 @@ Page({
     }
     //测试消息是否存在
     this.setData({
-      panels:app.globalData.userMore[1]
+      panels: app.globalData.userMore[1]
     })
-    var lists=app.globalData.userMore[0]
+    var lists = app.globalData.userMore[0]
     var hasInfo = 'panels[2].dot'
-    if(lists.length==0){
+    if (lists.length == 0) {
       this.setData({
-        [hasInfo]:false
+        [hasInfo]: false
       })
-    }else{
+    } else {
       this.setData({
-        [hasInfo]:true
+        [hasInfo]: true
       })
     }
     console.log(this.data.panels)
@@ -81,7 +81,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      activeTab: this.data.activeTab,
+      panels: app.globalData.userMore[1],
+    })
+    if (this.data.activeTab == 'chat')
+      this.selectComponent('#chat').setData({
+        comments: app.globalData.userMore[0],
+      })
   },
 
   /**

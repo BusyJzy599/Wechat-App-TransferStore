@@ -1,23 +1,64 @@
 // pages/personal/notify/notify.js
-const app=getApp()
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    chooseId:{},
+    chooseId: {},
+    userInfo: {},
     StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar
+    CustomBar: app.globalData.CustomBar,
+    InputBottom: 0,
+    inputInfo: '',
+    dateTime: ''
+  },
+  InputFocus(e) {
+    this.setData({
+      InputBottom: e.detail.height,
+    })
+  },
+  getInputInfo(e) {
+    this.setData({
+      inputInfo: e.detail.value
+    })
+  },
+  InputBlur(e) {
+    this.setData({
+      InputBottom: 0
+    })
+  },
+  //发送信息
+  sendInfo(e) {
+    console.log(this.data.inputInfo)
+    var date = new Date();
+    //时  
+    var h = date.getHours();
+    //分  
+    var m = date.getMinutes();
+    this.data.chooseId.comment.push({ type: 1, content: this.data.inputInfo, time: h + ':' + m, link: '' })
+    this.setData({
+      inputInfo: '',
+      chooseId: this.data.chooseId
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.info)
-    this.setData({
-      chooseId:app.globalData.userMore[0][options.info-1]
-    })
+    console.log("------------------------" + options.info)
+    //获取选择的用户-商家消息界面id
+    var choose = null
+    for (var i = 0; i < app.globalData.userMore[0].length; i++) {
+      if (app.globalData.userMore[0][i].id == options.info) {
+        this.setData({
+          chooseId: app.globalData.userMore[0][i],
+          userInfo: app.globalData.userInfo
+        })
+      }
+    }
+
   },
 
   /**

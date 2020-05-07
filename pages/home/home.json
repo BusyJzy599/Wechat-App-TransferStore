@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    
+    "index": "/pages/index/index",
+    "seller": "/pages/seller/seller",
+    "chat": "/pages/chat/chat",
+    "my": "/pages/user/user"
   }
 }

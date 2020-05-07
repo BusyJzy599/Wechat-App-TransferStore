@@ -19,14 +19,13 @@ Component({
   },
   attached() {
     this.setData({
-      comments: app.globalData.userMore[0]
+      comments: app.globalData.userMore[0],
     })
-    console.log(app.globalData.userMore[0])
+    console.log("chat加载数据完成")
     if (this.data.comments.length == 0) {
       app.globalData.userMore[1][2].dot = false
       console.log("消息为空")
     }
-
   },
   /**
    * 组件的方法列表
@@ -53,12 +52,13 @@ Component({
       if (this.data.ListTouchDirection == 'left') {
         this.setData({
           modalName: e.currentTarget.dataset.target,
-          chooseId: e.currentTarget.dataset.id
         })
       } else if (this.data.modalName == null) {
         //跳转
+        this.readedInfo()
         this.setData({
-          itemColor: 'black'
+          itemColor: 'black',
+          chooseId: e.currentTarget.dataset.id
         })
         wx.navigateTo({
           url: '/pages/user/notify/notify?info=' + this.data.chooseId,
@@ -79,8 +79,9 @@ Component({
       var lists = this.data.comments
       lists.splice(this.data.selectInfor, 1)
       this.setData({
-        comments: lists
+        comments: lists,
       })
+      console.log(this.data.comments)
       if (this.data.comments.length == 0) {
         app.globalData.userMore[1][2].dot = false
         console.log("消息被删除为空")

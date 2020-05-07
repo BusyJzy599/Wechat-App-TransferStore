@@ -1,24 +1,33 @@
 <!--index.wxml-->
 <scroll-view scroll-y>
 	<view class="top">
-		<image src="/pages/img/top.jpg" mode="heightFix"/>
+		<image src="/pages/img/top.jpg" mode="heightFix" />
 		<text  wx:if="{{!hasUserInfo && canIUse}}" class="cover-top">未登录</text>
 		<text  wx:else class="cover-top">您好,{{userInfo.nickName}}</text>
 	</view>
 	<view class="main">
 		<!--搜索-->
-
-		<!--功能按钮-->
+		<view class="cu-bar search bg-white" style="background:rgba(114, 130, 138, 0)">
+			<view class="search-form round">
+				<text class="cuIcon-search"></text>
+				<input type="text" placeholder="搜索订单" confirm-type="search" style="border:none"></input>
+			</view>
+			<view class="action">
+				<button class="cu-btn bg-green shadow-blur round">搜索</button>
+			</view>
+		</view>
+		<!--功能按钮
 		<van-grid column-num="4">
 			<van-grid-item icon="photo-o" text="文字" wx:for="{{ 4 }}" />
 		</van-grid>
+		-->
+		<!--轮播-->
 		<view class="cu-bar bg-white">
 			<view class="action sub-title">
 				<text class="text-xl text-bold text-blue">推送消息</text>
 				<text class="text-ABC text-blue">recommend</text>
 			</view>
 		</view>
-		<!--轮播-->
 		<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
 			<swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
 				<view class="swiper-item">
@@ -107,7 +116,7 @@
 					<text class="userinfo-nickname">我爱你{{userInfo.nickName}}</text>
 				</block>
 			</view>
-		<!---------------------------------------->`
+			<!---------------------------------------->`
 		</view>
 	</view>
 </scroll-view>
