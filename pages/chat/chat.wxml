@@ -1,4 +1,6 @@
 <!--pages/chat/chat.wxml-->
+<!--微信js代码，视图层逻辑 -->
+<wxs module="filter" src="../../app.wxs"></wxs>
 <scroll-view scroll-y style="height:100%">
 	<view class="top">
 		<view class="user-top">
@@ -9,6 +11,13 @@
 			</view>
 		</view>
 		<image src="/pages/img/top.jpg" mode="heightFix"></image>
+	</view>
+	<!--搜索-->
+	<view class="cu-bar search bg-white">
+		<view class="search-form round" >
+			<text class="cuIcon-search"></text>
+			<input type="text" placeholder="搜索消息" confirm-type="search" bindinput="searchChat" style="border:none"></input>
+		</view>
 	</view>
 	<view class="chat-main">
 		<view class="padding-xl radius shadow-warp bg-white  margin-left margin-right">
@@ -27,7 +36,7 @@
 						<view class="text-gray text-sm text-cut paddingradius">{{item.comment[item.comment.length-1].content}}</view>
 					</view>
 					<view class="action">
-						<view class="text-grey text-xs">{{item.comment[0].time}}</view>
+						<view class="text-grey text-xs">{{filter.toFormatDate(item.comment[item.comment.length-1].time)}}</view>
 					</view>
 					<view class="move">
 						<view class="bg-grey" bindtap="readedInfo">已读</view>

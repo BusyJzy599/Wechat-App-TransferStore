@@ -1,6 +1,6 @@
 <!--tabbar-->
 <view style="height:20vh">
-	<van-tabbar active="{{ active }}" active-color="#FFEC8B" inactive-color="#CDCDC1" bind:change="onChange">
+	<van-tabbar active="{{ active }}" active-color="#f59739" inactive-color="#CDCDC1" bind:change="onChange">
 	<van-tabbar-item
 				wx:for="{{panels}}"
 				wx:for-item="item"

@@ -1,0 +1,26 @@
+<!--pages/user/order/order.wxml-->
+<!--微信js代码，视图层逻辑 -->
+<wxs module="filter" src="../../../app.wxs"></wxs>
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">{{status==0?'派送订单':'历史订单'}}</view>
+</cu-custom>
+<view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+	<view class="cu-list menu-avatar">
+		<button class="cu-item  radius shadow bg-white margin-bottom-xs" wx:for="{{show}}" bindtap="checkOrderInfo" data-id="{{item.id}}" >
+			<view class="cu-avatar  lg" style="background-image:url({{item.avatar}});"></view>
+			<view class="content">
+				<view class="text-{{status==0?'blue':'green'}}">{{status==0?'运送中':'已签收'}}</view>
+				<view class="text-gray text-sm flex">
+					<text class="text-cut">
+					<text>{{item.desc}}</text>
+					</text>
+				</view>
+			</view>
+			<view class="action">
+				<text class="cuIcon-{{status==0?'deliver_fill text-blue':'roundcheckfill text-green'}} ">{{status==0?'...':''}}</text>
+				<view class="text-grey text-xs">{{filter.toFormatDate(item.change_time)}}</view>
+			</view>
+		</button>
+	</view>
+</view>

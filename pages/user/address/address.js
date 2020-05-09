@@ -15,7 +15,7 @@ Page({
     region: ['重庆市', '重庆市', '沙坪坝区'],
     deleteShow: false,
     deleteActions: [
-      { name: '确认删除?', color: '#07c160' }
+      { name: '确认删除?', color: 'red' }
     ]
   },
   RegionChange: function(e) {
@@ -66,7 +66,7 @@ Page({
       return
     }
     var timestamp = Date.parse(new Date())/1000;
-    var newAddress={id:timestamp,name:e.detail.value.name,phone:e.detail.value.phone,provincial:this.data.region.join(','),address:e.detail.value.address,type:e.detail.value.type}
+    var newAddress={id:timestamp,name:e.detail.value.name,phone:e.detail.value.phone,provincial:this.data.region.join(','),address:e.detail.value.address,location:'',type:e.detail.value.type}
     app.globalData.userMore[2].push(newAddress)
     this.setData({
       addresses:app.globalData.userMore[2]

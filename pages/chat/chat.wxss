@@ -66,4 +66,12 @@
   padding: 5rpx;
   height: 65vh;
 }
+.search{
+	background:rgba(114, 130, 138, 0);
+	top:5%
+}
+.search-form{
+	border: solid 1px;
+	border-color:rgba(114, 130, 138, 0.2);
+}
 

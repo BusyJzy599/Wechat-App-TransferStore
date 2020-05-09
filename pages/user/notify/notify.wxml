@@ -1,4 +1,6 @@
 <!--pages/personal/notify/notify.wxml-->
+<!--微信js代码，视图层逻辑 -->
+<wxs module="filter" src="../../../app.wxs"></wxs>
 <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">{{chooseId.name}}</view>
@@ -14,7 +16,7 @@
 			</view>
 		</view>
 		<view class="cu-avatar radius" style="background-image:url({{userInfo.avatarUrl}});" wx:if="{{item.type==1}}"></view>
-		<view class="date "> {{item.time}}</view>
+		<view class="date "> {{filter.toFormatDate(item.time)}}</view>
 	</view>
 </view>
 <!--输入框-->

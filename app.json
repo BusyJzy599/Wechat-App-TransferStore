@@ -4,7 +4,9 @@
     "pages/logs/logs",
     "pages/user/notify/notify",
     "pages/user/address/address",
-    "pages/user/set/settings"
+    "pages/user/set/settings",
+    "pages/user/order/order",
+    "pages/user/orderInfo/orderInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

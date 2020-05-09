@@ -3,10 +3,10 @@
 const app = getApp()
 
 Component({
-  properties:{
-    userInfo:Object,
-    hasUserInfo:Boolean,
-    canIUse:Boolean
+  properties: {
+    userInfo: Object,
+    hasUserInfo: Boolean,
+    canIUse: Boolean,
   },
   data: {
     cardCur: 0,
@@ -40,17 +40,23 @@ Component({
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
     }],
     activeNames: ['1'],
+    sending: [],
+    history: []
   },
   //类似于加载函数
   attached() {
+    var lists = app.getOrder()
+    this.setData({
+      sending: lists[0],
+      history: lists[1]
+    })
     
   },
   methods: {
-    getUserInfo: function (e) {
-      app.globalData.userInfo = e.detail.userInfov
-      this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true
+    checkOrderInfo(e) {
+      console.log(e.currentTarget.dataset.id)
+      wx.navigateTo({
+        url: '/pages/user/orderInfo/orderInfo?orderId='+e.currentTarget.dataset.id,
       })
     },
     onCollapse(event) {

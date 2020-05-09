@@ -1311,7 +1311,7 @@ button.icon.lg {
 }
 
 .cu-list.menu-avatar>.cu-item .action {
-	width: 100rpx;
+	width: 150rpx;
 	text-align: center
 }
 
@@ -2039,7 +2039,7 @@ button.icon.lg {
 	content: "";
 	display: block;
 	position: absolute;
-	width: 1rpx;
+	width: 2rpx;
 	background-color: #ddd;
 	left: 60rpx;
 	height: 100%;

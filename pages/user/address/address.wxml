@@ -6,7 +6,7 @@
 <!--主页面-->
 <view class="box">
 	<view class="cu-list menu">
-		<view class="cu-item margin-bottom" wx:for="{{addresses}}">
+		<view class="cu-item margin-bottom-xs" wx:for="{{addresses}}">
 			<view class="content padding-tb-sm">
 				<view style="display:flex">
 					<text wx:if="{{item.type==0}}" class="cuIcon-myfill text-blue margin-right-xs"></text>

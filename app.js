@@ -1,26 +1,18 @@
 //app.js
 App({
-  getTime() {
-    //获取当前时间戳  
-    var timestamp = Date.parse(new Date());
-    timestamp = timestamp / 1000;
-    console.log("当前时间戳为：" + timestamp);
-
-    //获取当前时间  
-    var n = timestamp * 1000;
-    var date = new Date(n);
-    //年  
-    var Y = date.getFullYear();
-    //月  
-    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
-    //日  
-    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-    //时  
-    var h = date.getHours();
-    //分  
-    var m = date.getMinutes();
-    //秒  
-    var s = date.getSeconds();
+  //获取派送订单以及历史订单
+  getOrder() {
+    var lists = this.globalData.userMore[3];
+    var sending = []
+    var history = []
+    for (var i = 0; i < lists.length; i++) {
+      var current = lists[i]
+      if (current.status == 2)
+        sending.push(current)
+      else if (current.status == 3)
+        history.push(current)
+    }
+    return [sending, history]
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -35,6 +27,7 @@ App({
       }
     })
     // 获取用户信息
+
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -87,58 +80,130 @@ App({
   },
   globalData: {
     userInfo: null,
-    isSeller:false,
+    isSeller: false,
     userMore: [
       /*消息列表*/
       [
         {
           id: 1, name: '小李',
           comment: [
-            { type: 0, content: '测试1', time: '19:20', link: '' },
-            { type: 0, content: '测试001', time: '22:20', link: '' },
-            { type: 1, content: '收到测试1', time: '4:20', link: '' },
-            { type: 1, content: '收到测试2', time: '5:20', link: '' },
+            { type: 0, content: '测试1', time: 1589020756320, link: '' },
+            { type: 0, content: '测试001', time: 1589020756320, link: '' },
+            { type: 1, content: '收到测试1', time: 1589020756320, link: '' },
+            { type: 1, content: '收到测试2', time: 1589020756320, link: '' },
           ],
           avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', readed: false
         },
         {
           id: 2, name: '小张', comment: [
-            { type: 0, content: '测试2', time: '19:20', link: '' },
-            { type: 0, content: '测试002', time: '22:20', link: '' },
-            { type: 1, content: '收到测试3', time: '4:20', link: '' },
-            { type: 1, content: '收到测试4', time: '5:20', link: '' },
+            { type: 0, content: '测试2', time: 1589020756320, link: '' },
+            { type: 0, content: '测试002', time: 1589020756320, link: '' },
+            { type: 1, content: '收到测试3', time: 1589020756320, link: '' },
+            { type: 1, content: '收到测试4', time: 1589020756320, link: '' },
           ],
           avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg', readed: false
         },
         {
           id: 3, name: '小文', comment: [
-            { type: 0, content: '测试3', time: '19:20', link: '' },
-            { type: 0, content: '测试003', time: '22:20', link: '' },
-            { type: 1, content: '收到测试5', time: '4:20', link: '' },
-            { type: 1, content: '收到测试6', time: '5:20', link: '' },
+            { type: 0, content: '测试3', time: 1589020756320, link: '' },
+            { type: 0, content: '测试003', time: 1589020756320, link: '' },
+            { type: 1, content: '收到测试5', time: 1589020756320, link: '' },
+            { type: 1, content: '收到测试6', time: 1589020756320, link: '' },
           ],
           avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg', readed: false
         }
       ],
       /*tabbar列表*/
       [
-        {name: 'index', icon: 'wap-home', label: '首页' },
+        { name: 'index', icon: 'wap-home', label: '首页' },
         { name: 'seller', icon: 'shop', label: '商家服务' },
         { name: 'chat', icon: 'chat', dot: false, label: '消息' },
         { name: 'my', icon: 'manager', label: '我的' },
       ],
       /*地址簿*/
       [
-        {id:1,name:'小喆',phone:'13773665423',provincial:'江苏省,南通市,崇川区',address:'爱情公寓101幢520',type:'0'}
+        { id: 1, name: '小喆', phone: '13773665423', provincial: '重庆市,重庆市,沙坪坝区', address: '重庆师范大学', location: '106.307308,29.618613', type: '0' },
+        { id: 2, name: '小文', phone: '13773665423', provincial: '江苏省,南通市,崇川区', address: '南通大学', location: '120.918478,31.979069', type: '1' }
       ],
-      /*订单信息*/
+      /*订单列表*/
       [
-        {id:4547879112,sellerId:1,avatar:'',desc:'惠普暗夜精灵笔记本',price:521.49,status:'0',location:'',create_time:123456}
+        {//订单信息
+          id: 123456001, sellerId: 1, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i1/2201222579396/O1CN01WGetuk2JHQ0rOx0Pc_!!2201222579396.jpg_430x430q90.jpg', desc: '惠普暗夜精灵笔记本',
+          //订单状态
+          status: '2', curlocation: '',
+          //买家信息
+          destination_id: 1, destination_name: '小喆', destination_addr: '重庆市,重庆市,沙坪坝区,重庆师范大学', destination_lo: '106.307308,29.618613',
+          //卖家信息
+          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '106.475145,29.577752',
+          //物流信息
+          logistics:[  
+            {type:3,content:'已签收',time:1589020756320},
+            {type:2,content:'派送中',time:1589020756320},
+            {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
+            {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
+          ],
+          //时间信息
+          create_time: 1589020756320, change_time: 1589020756320
+        },
+        {
+          id: 123456002, sellerId: 2, userId: 123, avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2911785265,426425792&fm=26&gp=0.jpg', desc: 'Fear Of Gold短袖', 
+          status: '2', curlocation: '',
+          destination_id: 2, destination_name: '小文', destination_addr: '江苏省,南通市,崇川区,南通大学', destination_lo: '120.918478,31.979069',
+          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+            //物流信息
+            logistics:[
+              {type:3,content:'已签收',time:1589020756320},
+              {type:2,content:'派送中',time:1589020756320},
+              {type:1,content:'中转仓收到商家2号配货信息，准备派送',time:1589020756320},
+              {type:0,content:'商家2号收到下单信息，正在配货',time:1589020756320},
+            ],
+          create_time: 1589020756320, change_time: 1589020756320
+        },
+        {
+          id: 123456003, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i3/2206626571460/O1CN011Jo3ok1Meir3SOP8P_!!0-item_pic.jpg_430x430q90.jpg', desc: '名创优品牙膏', 
+          status: '3', curlocation: '',
+          destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
+          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          logistics:[  
+            {type:3,content:'已签收',time:1589020756320},
+            {type:2,content:'派送中',time:1589020756320},
+            {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
+            {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
+          ],
+          create_time: 1589020756320, change_time: 1589020756320
+        },
+        {
+          id: 123456004, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i3/1061727885/O1CN016dOCNJ287NZlcv8rX_!!1061727885-0-lubanu-s.jpg_60x60q90.jpg', desc: 'ipad Pro 2019款',
+          status: '2', curlocation: '',
+          destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
+          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          logistics:[  
+            {type:3,content:'已签收',time:1589020756320},
+            {type:2,content:'派送中',time:1589020756320},
+            {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
+            {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
+          ],
+          create_time: 1589020756320, change_time: 1589020756320
+        },
+        {
+          id: 123456005, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i2/2616970884/O1CN01oAVbxV1IOugdeRFkj_!!2616970884.jpg_60x60q90.jpg', desc: 'iPhone11 Pro Max 512G 国行',
+          status: '2', curlocation: '',
+          destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
+          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          logistics:[  
+            {type:3,content:'已签收',time:1589020756320},
+            {type:2,content:'派送中',time:1589020756320},
+            {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
+            {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
+          ],
+          create_time: 1589020756320, change_time: 1589020756320
+        },
+
       ]
     ]
   },
-  sellerMore:[
-    {id:1,avatar:'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg',link:'',grade:'4'}
+  sellerMore: [
+    { id: 1, avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', link: '', grade: '4' }
   ]
 
 

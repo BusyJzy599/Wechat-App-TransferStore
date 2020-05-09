@@ -37,7 +37,7 @@ Page({
     var h = date.getHours();
     //分  
     var m = date.getMinutes();
-    this.data.chooseId.comment.push({ type: 1, content: this.data.inputInfo, time: h + ':' + m, link: '' })
+    this.data.chooseId.comment.push({ type: 1, content: this.data.inputInfo, time: new Date().getTime(), link: '' })
     this.setData({
       inputInfo: '',
       chooseId: this.data.chooseId

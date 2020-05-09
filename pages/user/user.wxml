@@ -5,13 +5,14 @@
 	</view>
 	<van-row>
 		<van-col span="">
-			<view class="cu-avatar xl round margin-left" style="background-image:url({{userInfo.avatarUrl}}">
+			<view wx:if="{{!hasUserInfo && canIUse}}" class="cu-avatar xl round margin-left" style="background-image:url('/pages/img/default.jpg')"></view>
+			<view wx:else class="cu-avatar xl round margin-left" style="background-image:url({{userInfo.avatarUrl}}">
 				<view class="cu-tag badge {{userInfo.gender==1?'cuIcon-male bg-blue':'cuIcon-female bg-pink'}}"></view>
 			</view>
 		</van-col>
 		<van-col span="8">
 			<view class="solid-bottom text-xxl padding">
-				<text wx:if="{{!hasUserInfo && canIUse}}">未登录</text>
+			<button class="login-button" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
 				<text wx:else>{{userInfo.nickName}}</text>
 			</view>
 		</van-col>

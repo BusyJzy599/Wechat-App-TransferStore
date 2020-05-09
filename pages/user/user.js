@@ -1,5 +1,6 @@
 // pages/user/user.js
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+const app=getApp()
 Component({
   /**
    * 组件的属性列表
@@ -24,6 +25,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    getUserInfo: function (e) {
+      app.globalData.userInfo = e.detail.userInfo
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
+      console.log(this.data.userInfo)
+    },
     showModal(e) {
       this.setData({
         modalName: e.currentTarget.dataset.target

@@ -1,18 +1,33 @@
-// pages/personal/notify/notify.js
+// pages/user/order/order.js
+const app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    status:-1,
+    show:[]
   },
-
+  checkOrderInfo(e) {
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: '/pages/user/orderInfo/orderInfo?orderId='+e.currentTarget.dataset.id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var lists = app.getOrder()
+    this.setData({
+      status:options.status,
+      show: lists[options.status]
+    })
+    console.log(this.data.status)
+    
   },
 
   /**

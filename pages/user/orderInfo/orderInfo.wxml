@@ -1,0 +1,38 @@
+<!--pages/user/orderInfo/orderInfo.wxml-->
+<!--微信js代码，视图层逻辑 -->
+<wxs module="filter" src="../../../app.wxs"></wxs>
+<cu-custom class="cu-bar bg-white" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">
+		<view class="cu-avatar" style="background-image:url({{orderInfo.avatar}});"></view>
+		派送中
+	</view>
+</cu-custom>
+<!--我的地图-->
+<view class="map-container">
+	<map id="myMap" class="myMap" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" markers="{{markers}}" polyline="{{polyline}}" bindcontroltap="controltap" bindmarkertap="markertap" bindregionchange="regionchange" bindcallouttap="showOrderInfo" show-location></map>
+</view>
+<!--相关消息-->
+<view class="order-foot">
+	<view class="radius shadow bg-white" wx:if="{{orderInfo.status==3}}">
+		<view class="solid-bottom text-df padding">请您给{{orderInfo.warehouse_name}}评分:
+			<van-rate value="{{0}}" bind:change="openStars" style="margin-left:5%" />
+		</view>
+	</view>
+	<!--状态显示-->
+	<view class="bg-white padding  margin-top-xs solids-bottom ">
+		<view class="cu-steps steps-arrow">
+			<view class="cu-item {{index>basics?'':'text-'+filter.getType(item)[1]}}" wx:for="{{4}}" wx:key>
+				<text class="cuIcon-{{filter.getType(item)[0]}}"></text>
+			</view>
+		</view>
+	</view>
+	<!--时间轴-->
+	<view class="cu-timeline">
+		<view class="cu-item cur text-{{filter.getType(item.type)[1]}}  cuIcon-{{filter.getType(item.type)[0]}}" wx:for="{{orderInfo.logistics}}">
+			<view class="content bg-{{filter.getType(item.type)[1]}} shadow-blur">
+				<text>{{filter.toFormatDate(item.time)}}</text> {{item.content}}
+			</view>
+		</view>
+	</view>
+</view>

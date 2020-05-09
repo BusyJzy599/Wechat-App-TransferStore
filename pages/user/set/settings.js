@@ -1,4 +1,4 @@
-// pages/personal/set/settings.js
+// pages/user/set/settings.js
 Page({
 
   /**

@@ -31,6 +31,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //搜索消息
+    searchChat(){
+
+    },
     // ListTouch触摸开始
     ListTouchStart(e) {
       this.setData({
