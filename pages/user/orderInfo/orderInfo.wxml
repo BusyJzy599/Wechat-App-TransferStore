@@ -3,9 +3,9 @@
 <wxs module="filter" src="../../../app.wxs"></wxs>
 <cu-custom class="cu-bar bg-white" isBack="{{true}}">
 	<view slot="backText">返回</view>
-	<view slot="content">
+	<view slot="content" wx:if="{{orderInfo.status>1}}">
 		<view class="cu-avatar" style="background-image:url({{orderInfo.avatar}});"></view>
-		派送中
+		{{orderInfo.status==2?'派送中':'已签收'}}
 	</view>
 </cu-custom>
 <!--我的地图-->
@@ -33,6 +33,20 @@
 			<view class="content bg-{{filter.getType(item.type)[1]}} shadow-blur">
 				<text>{{filter.toFormatDate(item.time)}}</text> {{item.content}}
 			</view>
+		</view>
+	</view>
+</view>
+<!--信息显示-->
+<view class="cu-modal {{modalName=='info'?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content">{{modleTarget==0?'收货地址':'中转仓'}}</view>
+			<view class="action" bindtap="hideModal">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+		<view class="padding-xl">
+			{{modleTarget==0?orderInfo.destination_name:orderInfo.warehouse_name}}
 		</view>
 	</view>
 </view>

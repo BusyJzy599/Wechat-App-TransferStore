@@ -78,9 +78,14 @@ App({
   onError(msg) {
 
   },
+  //高德地图
+  gdMapProperties:{
+    
+  },
   globalData: {
     userInfo: null,
     isSeller: false,
+    gdkey:'31733dc142b32381bf0d05dcc49430da',
     userMore: [
       /*消息列表*/
       [
@@ -88,27 +93,24 @@ App({
           id: 1, name: '小李',
           comment: [
             { type: 0, content: '测试1', time: 1589020756320, link: '' },
-            { type: 0, content: '测试001', time: 1589020756320, link: '' },
             { type: 1, content: '收到测试1', time: 1589020756320, link: '' },
-            { type: 1, content: '收到测试2', time: 1589020756320, link: '' },
+            { type: 0, content: '测试001', time: 1589020756320, link: '' },
           ],
           avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', readed: false
         },
         {
           id: 2, name: '小张', comment: [
             { type: 0, content: '测试2', time: 1589020756320, link: '' },
-            { type: 0, content: '测试002', time: 1589020756320, link: '' },
             { type: 1, content: '收到测试3', time: 1589020756320, link: '' },
-            { type: 1, content: '收到测试4', time: 1589020756320, link: '' },
+            { type: 0, content: '测试002', time: 1589020756320, link: '' },
           ],
           avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg', readed: false
         },
         {
-          id: 3, name: '小文', comment: [
+          id: 3, name: '小明', comment: [
             { type: 0, content: '测试3', time: 1589020756320, link: '' },
-            { type: 0, content: '测试003', time: 1589020756320, link: '' },
             { type: 1, content: '收到测试5', time: 1589020756320, link: '' },
-            { type: 1, content: '收到测试6', time: 1589020756320, link: '' },
+            { type: 0, content: '测试003', time: 1589020756320, link: '' },
           ],
           avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg', readed: false
         }
@@ -134,10 +136,9 @@ App({
           //买家信息
           destination_id: 1, destination_name: '小喆', destination_addr: '重庆市,重庆市,沙坪坝区,重庆师范大学', destination_lo: '106.307308,29.618613',
           //卖家信息
-          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '106.475145,29.577752',
+          warehouse_id: '1', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '106.475145,29.577752',
           //物流信息
           logistics:[  
-            {type:3,content:'已签收',time:1589020756320},
             {type:2,content:'派送中',time:1589020756320},
             {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
             {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
@@ -149,10 +150,9 @@ App({
           id: 123456002, sellerId: 2, userId: 123, avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2911785265,426425792&fm=26&gp=0.jpg', desc: 'Fear Of Gold短袖', 
           status: '2', curlocation: '',
           destination_id: 2, destination_name: '小文', destination_addr: '江苏省,南通市,崇川区,南通大学', destination_lo: '120.918478,31.979069',
-          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          warehouse_id: '2', warehouse_name: '圆通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
             //物流信息
             logistics:[
-              {type:3,content:'已签收',time:1589020756320},
               {type:2,content:'派送中',time:1589020756320},
               {type:1,content:'中转仓收到商家2号配货信息，准备派送',time:1589020756320},
               {type:0,content:'商家2号收到下单信息，正在配货',time:1589020756320},
@@ -178,7 +178,6 @@ App({
           destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
           warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
           logistics:[  
-            {type:3,content:'已签收',time:1589020756320},
             {type:2,content:'派送中',time:1589020756320},
             {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
             {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
@@ -191,7 +190,7 @@ App({
           destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
           warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
           logistics:[  
-            {type:3,content:'已签收',time:1589020756320},
+
             {type:2,content:'派送中',time:1589020756320},
             {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
             {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},

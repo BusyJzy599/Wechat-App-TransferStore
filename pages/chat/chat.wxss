@@ -68,7 +68,7 @@
 }
 .search{
 	background:rgba(114, 130, 138, 0);
-	top:5%
+	top:7%
 }
 .search-form{
 	border: solid 1px;
