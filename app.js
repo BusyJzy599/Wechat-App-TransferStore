@@ -1,5 +1,36 @@
 //app.js
 App({
+  //获取用户信息
+  pageGetUserInfo(e){
+    if (this.globalData.userInfo) {
+      //设置data内数据
+      e.setData({
+        userInfo: this.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (e.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      this.userInfoReadyCallback = res => {
+        e.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+        console.log(e.data.userInfo)
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          this.globalData.userInfo = res.userInfo
+          e.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+  },
   //获取派送订单以及历史订单
   getOrder() {
     var lists = this.globalData.userMore[3];
@@ -78,14 +109,14 @@ App({
   onError(msg) {
 
   },
-  //高德地图
-  gdMapProperties:{
-    
-  },
   globalData: {
     userInfo: null,
     isSeller: false,
     gdkey:'31733dc142b32381bf0d05dcc49430da',
+    panels:[  { name: 'index', icon: 'wap-home', label: '首页' },
+    { name: 'seller', icon: 'shop', label: '商家服务' },
+    { name: 'chat', icon: 'chat', dot: false, label: '消息' },
+    { name: 'my', icon: 'manager', label: '我的' },],
     userMore: [
       /*消息列表*/
       [
@@ -96,7 +127,7 @@ App({
             { type: 1, content: '收到测试1', time: 1589020756320, link: '' },
             { type: 0, content: '测试001', time: 1589020756320, link: '' },
           ],
-          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', readed: false
+          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', readed: false,isShow:true
         },
         {
           id: 2, name: '小张', comment: [
@@ -104,7 +135,7 @@ App({
             { type: 1, content: '收到测试3', time: 1589020756320, link: '' },
             { type: 0, content: '测试002', time: 1589020756320, link: '' },
           ],
-          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg', readed: false
+          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg', readed: false,isShow:true
         },
         {
           id: 3, name: '小明', comment: [
@@ -112,16 +143,11 @@ App({
             { type: 1, content: '收到测试5', time: 1589020756320, link: '' },
             { type: 0, content: '测试003', time: 1589020756320, link: '' },
           ],
-          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg', readed: false
+          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg', readed: false,isShow:true
         }
       ],
-      /*tabbar列表*/
-      [
-        { name: 'index', icon: 'wap-home', label: '首页' },
-        { name: 'seller', icon: 'shop', label: '商家服务' },
-        { name: 'chat', icon: 'chat', dot: false, label: '消息' },
-        { name: 'my', icon: 'manager', label: '我的' },
-      ],
+      /*待定*/
+      [],
       /*地址簿*/
       [
         { id: 1, name: '小喆', phone: '13773665423', provincial: '重庆市,重庆市,沙坪坝区', address: '重庆师范大学', location: '106.307308,29.618613', type: '0' },
@@ -134,9 +160,9 @@ App({
           //订单状态
           status: '2', curlocation: '',
           //买家信息
-          destination_id: 1, destination_name: '小喆', destination_addr: '重庆市,重庆市,沙坪坝区,重庆师范大学', destination_lo: '106.307308,29.618613',
-          //卖家信息
-          warehouse_id: '1', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '106.475145,29.577752',
+          destination_id: 1, destination_lo: '106.307308,29.618613',
+          //仓库信息
+          warehouse_id: '1',warehouse_lo: '106.475145,29.577752',
           //物流信息
           logistics:[  
             {type:2,content:'派送中',time:1589020756320},
@@ -203,7 +229,9 @@ App({
   },
   sellerMore: [
     { id: 1, avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', link: '', grade: '4' }
+  ],
+  locations:[
+    
   ]
-
 
 })

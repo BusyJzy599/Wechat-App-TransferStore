@@ -6,7 +6,9 @@
     "pages/user/address/address",
     "pages/user/set/settings",
     "pages/user/order/order",
-    "pages/user/orderInfo/orderInfo"
+    "pages/user/orderInfo/orderInfo",
+    "pages/seller/myTransfer/myTransfer",
+    "pages/seller/myOrder/myOrder"
   ],
   "window": {
     "backgroundTextStyle": "light",

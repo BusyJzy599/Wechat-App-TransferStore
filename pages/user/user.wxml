@@ -5,14 +5,14 @@
 	</view>
 	<van-row>
 		<van-col span="">
-			<view wx:if="{{!hasUserInfo && canIUse}}" class="cu-avatar xl round margin-left" style="background-image:url('/pages/img/default.jpg')"></view>
+			<view wx:if="{{!hasUserInfo}}" class="cu-avatar xl round margin-left" style="background-image:url('/pages/img/default.jpg')"></view>
 			<view wx:else class="cu-avatar xl round margin-left" style="background-image:url({{userInfo.avatarUrl}}">
 				<view class="cu-tag badge {{userInfo.gender==1?'cuIcon-male bg-blue':'cuIcon-female bg-pink'}}"></view>
 			</view>
 		</van-col>
 		<van-col span="8">
 			<view class="solid-bottom text-xxl padding">
-			<button class="login-button" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
+			<button class="login-button" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
 				<text wx:else>{{userInfo.nickName}}</text>
 			</view>
 		</van-col>
@@ -28,6 +28,12 @@
 						<text class="text-grey">我的地址簿</text>
 					</navigator>
 				</view>
+				<view class="cu-item arrow" wx:if="{{isSeller}}">
+					<navigator class="content" hover-class="none" url="../user/set/settings">
+						<text class="cuIcon-taoxiaopu text-cyan"></text>
+						<text class="text-grey">我的仓库</text>
+					</navigator>
+				</view>
 				<view class="cu-item arrow">
 					<navigator class="content" hover-class="none" url="../user/set/settings">
 						<text class="cuIcon-settingsfill text-orange"></text>
@@ -41,7 +47,7 @@
 					</button>
 				</view>
 				<view class="cu-item arrow">
-					<button class="cu-btn content" bindtap="showModal" data-target="DialogModal1">
+					<button class="cu-btn content"  bindtap="showModal" data-target="DialogModal1">
 						<text class="cuIcon-favorfill text-pink"></text>
 						<text class="text-grey">评分</text>
 					</button>
@@ -49,7 +55,7 @@
 			</view>
 		</view>
 		<!--认证商家按钮-->
-		<button class="cn-btn bg-olive round lg shadow margin-top" bindtap="">
+		<button class="cn-btn bg-olive round lg shadow margin-top" wx:if="{{!isSeller}}" bindtap="">
 			<text class="cuIcon-shopfill text-white text-sl"></text>认证商家
 		</button>
 	</view>

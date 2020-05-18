@@ -2,7 +2,7 @@
 <scroll-view scroll-y>
 	<view class="top">
 		<image src="/pages/img/top.jpg" mode="heightFix" />
-		<text  wx:if="{{!hasUserInfo && canIUse}}" class="cover-top">未登录</text>
+		<text  wx:if="{{!hasUserInfo}}" class="cover-top">未登录</text>
 		<text  wx:else class="cover-top">您好,{{userInfo.nickName}}</text>
 	</view>
 	<view class="main">
@@ -13,7 +13,7 @@
 				<input type="text" placeholder="搜索订单" confirm-type="search" style="border:none"></input>
 			</view>
 			<view class="action">
-				<button class="cu-btn bg-green shadow-blur round">搜索</button>
+				<text class="cuIcon-scan  text-blue" bindtap="scanSearch"></text>
 			</view>
 		</view>
 		<!--功能按钮
@@ -31,7 +31,7 @@
 		<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
 			<swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
 				<view class="swiper-item">
-					<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+					<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}" ></image>
 					<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
 				</view>
 			</swiper-item>
@@ -42,14 +42,20 @@
 				<van-col span="24">
 					<view class="cu-bar bg-white">
 						<view class="action sub-title">
-							<text class="text-xl text-bold text-blue">与您相关</text>
+							<text class="text-xl text-bold text-blue">与我相关</text>
 							<text class="text-ABC text-blue">about</text>
 						</view>
 					</view>
 					<!--信息-->
 					<van-collapse value="{{ activeNames }}" bind:change="onCollapse">
+					<!--未发货-->
+						<van-collapse-item title="未发货" name="1" icon="todo-list-o">
+							<view class="cu-list menu-avatar">
+								
+							</view>
+						</van-collapse-item>
 						<!--派送中-->
-						<van-collapse-item title="派送中" name="1" icon="logistics">
+						<van-collapse-item title="派送中" name="2" icon="logistics">
 							<view class="cu-list menu-avatar">
 								<button class="cu-item  radius shadow bg-white margin-bottom-xs" wx:for="{{sending}}" bindtap="checkOrderInfo" data-id="{{item.id}}" wx:for-index="i" wx:if="{{i<3}}">
 									<view class="cu-avatar lg" style="background-image:url({{item.avatar}});"></view>
@@ -80,7 +86,7 @@
 							</view>
 						</van-collapse-item>
 						<!--订单列表-->
-						<van-collapse-item title="历史订单" name="2" icon="notes-o">
+						<van-collapse-item title="历史订单" name="3" icon="notes-o">
 							<view class="cu-list menu-avatar">
 								<button class="cu-item  radius shadow bg-white margin-bottom-xs" bindtap="checkOrderInfo" data-id="{{item.id}}" wx:for="{{history}}" wx:for-index="i" wx:if="{{i<3}}">
 									<view class="cu-avatar lg" style="background-image:url({{item.avatar}});"></view>

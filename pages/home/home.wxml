@@ -1,9 +1,9 @@
 <!--pages/home/home.wxml-->
 <view class="main-home">
-  <index userInfo="{{userInfo}}" hasUserInfo="{{hasUserInfo}}" canIUse="{{canIUse}}" wx:if="{{activeTab == 'index'}}">首页</index>
-  <seller userInfo="{{userInfo}}" hasUserInfo="{{hasUserInfo}}" canIUse="{{canIUse}}" wx:if="{{activeTab == 'seller'}}">商家服务</seller>
-  <chat id="chat" userInfo="{{userInfo}}" hasUserInfo="{{hasUserInfo}}" canIUse="{{canIUse}}" panels="{{panels}}" wx:if="{{activeTab == 'chat'}}">消息</chat>
-  <my userInfo="{{userInfo}}" hasUserInfo="{{hasUserInfo}}" canIUse="{{canIUse}}" wx:if="{{activeTab == 'my'}}">我的</my>
+  <index id="index" wx:if="{{activeTab == 'index'}}">首页</index>
+  <seller  wx:if="{{activeTab == 'seller'}}">商家服务</seller>
+  <chat id="chat" panels="{{panels}}" wx:if="{{activeTab == 'chat'}}">消息</chat>
+  <my wx:if="{{activeTab == 'my'}}">我的</my>
  <index-tabbar active="{{activeTab}}" panels="{{panels}}" bind:changeTab="onTabChange"></index-tabbar> 
 </view>
  

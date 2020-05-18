@@ -13,7 +13,7 @@ var filter = {
     hour = hour < 10 ? "0" + hour : hour;
     minute = minute < 10 ? "0" + minute : minute;
     second = second < 10 ? "0" + second : second;
-    return [year, month, date, hour,minute]
+    return [year, month, date, hour, minute]
   },
   toFormatDate: function (time) {
     var curr = filter.getDateTime(getDate())
@@ -30,23 +30,24 @@ var filter = {
     } else
       return input[3] + ":" + input[4]
   },
-  getType:function(type){
-    switch(type){
+  getType: function (type) {
+    switch (type) {
       case 0:
-        return['shopfill','cyan']
+        return ['shopfill', 'cyan']
       case 1:
-        return['homefill','blue']
+        return ['homefill', 'blue']
       case 2:
-        return['deliver_fill','red']
+        return ['deliver_fill', 'red']
       case 3:
-        return['roundcheckfill','green']
+        return ['roundcheckfill', 'green']
     }
 
   }
 }
+
 // 导出对外暴露的属性
 module.exports = {
   getDateTime: filter.getDateTime,
   toFormatDate: filter.toFormatDate,
-  getType:filter.getType
+  getType: filter.getType,
 }

@@ -10,15 +10,17 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     orderInfo: {},
+    userOrderInfo: {},
+    wareHouseOrderInfo: {},
     longitude: '106.475145',
     latitude: '29.577752',
     scale: 11,
     markers: [],
     polyline: [],
     basics: 0,
-    modalName:null,
-    modleTarget:-1,
-    loading:true
+    modalName: null,
+    modleTarget: -1,
+    loading: true
   },
   regionchange(e) {
     console.log(e.type)
@@ -33,14 +35,13 @@ Page({
   showOrderInfo(e) {
     this.setData({
       modalName: 'info',
-      modleTarget:e.markerId
+      modleTarget: e.markerId
     })
-    console.log(e)
   },
   hideModal(e) {
     this.setData({
       modalName: null,
-      modleTarget:-1
+      modleTarget: -1
     })
   },
   //打开评分窗口
@@ -56,6 +57,10 @@ Page({
     for (var i = 0; i < app.globalData.userMore[3].length; i++) {
       if (app.globalData.userMore[3][i].id == options.orderId)
         this.setData({ orderInfo: app.globalData.userMore[3][i] })
+    }
+    for (var i = 0; i < app.globalData.userMore[2].length; i++) {
+      if (app.globalData.userMore[2][i].id == this.data.orderInfo.destination_id)
+        var userOrderInfo = app.globalData.userMore[2][i]
     }
     if (this.data.orderInfo != {}) {
       var destination = this.data.orderInfo.destination_lo.split(',')
@@ -148,7 +153,8 @@ Page({
           longitude: mylongitude,
           latitude: mylatitude,
           scale: myscale,
-          basics: that.data.orderInfo.status
+          basics: that.data.orderInfo.status,
+          userOrderInfo:userOrderInfo
         })
       },
       fail: function (data) {
@@ -163,7 +169,7 @@ Page({
    */
   onReady: function () {
     this.mapCtx = wx.createMapContext('myMap')
-    this.setData({loading:false})
+    this.setData({ loading: false })
   },
 
   /**

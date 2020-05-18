@@ -12,18 +12,20 @@ Component({
    * 组件的初始数据
    */
   data: {
+    userInfo: {},
+    hasUserInfo: false,
     gridCol: 3,
     skin: false,
     itemColor: 'white',
-    comments: []
+    comments: [],
   },
   attached() {
+    app.pageGetUserInfo(this)
     this.setData({
       comments: app.globalData.userMore[0],
     })
-    console.log("chat加载数据完成")
     if (this.data.comments.length == 0) {
-      app.globalData.userMore[1][2].dot = false
+      app.globalData.panels[2].dot = false
       console.log("消息为空")
     }
   },
@@ -32,8 +34,24 @@ Component({
    */
   methods: {
     //搜索消息
-    searchChat(){
-
+    searchChat(e) {
+      let key = e.detail.value;
+      console.log(key)
+      let list = app.globalData.userMore[0]
+      console.log(list)
+      for (let i = 0; i < list.length; i++) {
+        let a = key;
+        let b = list[i].name
+        if (b.search(a) != -1) {
+          list[i].isShow = true
+        } else {
+          list[i].isShow = false
+        }
+      }
+      this.setData({
+        comments: list,
+        isSearch: false
+      })
     },
     // ListTouch触摸开始
     ListTouchStart(e) {
@@ -43,14 +61,12 @@ Component({
         chooseId: e.currentTarget.dataset.id
       })
     },
-
     // ListTouch计算方向
     ListTouchMove(e) {
       this.setData({
         ListTouchDirection: e.touches[0].pageX - this.data.ListTouchStart > 0 ? 'right' : 'left'
       })
     },
-
     // ListTouch计算滚动
     ListTouchEnd(e) {
       if (this.data.ListTouchDirection == 'left') {
@@ -79,18 +95,15 @@ Component({
     },
     //删除消息
     deleteInfo(e) {
-      console.log(this.data.selectInfor)
       var lists = this.data.comments
       lists.splice(this.data.selectInfor, 1)
       this.setData({
         comments: lists,
       })
-      console.log(this.data.comments)
       if (this.data.comments.length == 0) {
-        app.globalData.userMore[1][2].dot = false
+        app.globalData.panels[2].dot = false
         console.log("消息被删除为空")
       }
-
     },
     //读取信息
     readedInfo(e) {
@@ -104,10 +117,7 @@ Component({
         res &= this.data.comments[i].readed
       }
       if (res)
-        app.globalData.userMore[1][2].dot = false
-
+        app.globalData.panels[2].dot = false
     }
-
   }
-
 })

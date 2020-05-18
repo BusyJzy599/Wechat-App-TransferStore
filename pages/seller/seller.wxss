@@ -1,1 +1,9 @@
 /* pages/seller/seller.wxss */
+@import "/components/main.wxss";
+@import "/components/icon.wxss";
+page{
+  height: 100%;
+}
+.top{
+  height: 300rpx;
+}

@@ -4,12 +4,15 @@ const app = getApp()
 
 Component({
   properties: {
-    userInfo: Object,
-    hasUserInfo: Boolean,
-    canIUse: Boolean,
   },
   data: {
+    userInfo: {},
+    hasUserInfo: false,
+    activeNames: ['2'],
+    sending: [],
+    history: [],
     cardCur: 0,
+    //轮播图
     swiperList: [{
       id: 0,
       type: 'image',
@@ -39,36 +42,42 @@ Component({
       type: 'image',
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
     }],
-    activeNames: ['1'],
-    sending: [],
-    history: []
   },
   //类似于加载函数
   attached() {
+    //获取用户信息
+    app.pageGetUserInfo(this)
+    //获取订单信息分类
     var lists = app.getOrder()
     this.setData({
       sending: lists[0],
-      history: lists[1]
+      history: lists[1],
     })
-    
   },
   methods: {
+    //点击扫码
+    scanSearch(e) {
+      wx.scanCode({
+        onlyFromCamera: true,
+        success: (res) => { 
+          console.log(res)
+        },
+      })
+    },
+    //跳转具体订单信息
     checkOrderInfo(e) {
       console.log(e.currentTarget.dataset.id)
       wx.navigateTo({
-        url: '/pages/user/orderInfo/orderInfo?orderId='+e.currentTarget.dataset.id,
+        url: '/pages/user/orderInfo/orderInfo?orderId=' + e.currentTarget.dataset.id,
       })
     },
+    //展开信息栏
     onCollapse(event) {
       this.setData({
         activeNames: event.detail
       });
     },
-    DotStyle(e) {
-      this.setData({
-        DotStyle: e.detail.value
-      })
-    },
+  
     // cardSwiper
     cardSwiper(e) {
       this.setData({

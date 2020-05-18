@@ -82,7 +82,6 @@ Page({
     this.setData({
       addresses: app.globalData.userMore[2]
     })
-    console.log(this.data.addresses)
   },
 
   /**

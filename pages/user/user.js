@@ -1,26 +1,29 @@
 // pages/user/user.js
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
-const app=getApp()
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    userInfo:Object,
-    hasUserInfo:Boolean,
-    canIUse:Boolean
+   
   },
 
   /**
    * 组件的初始数据
    */
   data: {
+    userInfo: {},
+    hasUserInfo: false,
     starValue: 5,
     imgList: [],
     modalName: null,
-    textareaValue:''
+    textareaValue: '',
+    isSeller: app.globalData.isSeller
   },
-
+  attached() {
+    app.pageGetUserInfo(this)
+  },
   /**
    * 组件的方法列表
    */
@@ -31,29 +34,27 @@ Component({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
       })
-      console.log(this.data.userInfo)
+      console.log(app.globalData.userInfo)
     },
     showModal(e) {
       this.setData({
         modalName: e.currentTarget.dataset.target
       })
-      console.log(this.data.modalName)
     },
     hideModal(e) {
       this.setData({
         modalName: null
       })
     },
-    setStars(e){
-      var mes='DialogModal1'==this.data.modalName?'评分成功':'反馈成功'
-      var sel='DialogModal1'==this.data.modalName?'grade':'callback'
+    setStars(e) {
+      var mes = 'DialogModal1' == this.data.modalName ? '评分成功' : '反馈成功'
+      var sel = 'DialogModal1' == this.data.modalName ? 'grade' : 'callback'
       Toast.success({
         message: mes,
-        selector: '#'+sel,
-        context:this
+        selector: '#' + sel,
+        context: this
       });
       this.hideModal(e);//待测试
-      console.log(this.data.starValue)
     },
     openStars(event) {
       this.setData({

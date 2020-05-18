@@ -29,8 +29,6 @@ Component({
     //路由页面
     onChange(event) {
       this.triggerEvent('changeTab', event.detail)
-      console.log("tabbar插件内")
-      console.log(this.properties.panels)
     }
   }
 })

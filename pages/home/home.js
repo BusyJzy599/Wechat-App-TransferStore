@@ -15,8 +15,16 @@ Page({
   onTabChange(event) {
     this.setData({
       activeTab: event.detail,
-      panels: app.globalData.userMore[1]
+      panels: app.globalData.panels
     })
+    if (this.data.activeTab == 'chat') {
+      for (let i = 0; i < app.globalData.userMore[0].length; i++) {
+        app.globalData.userMore[0][i].isShow = true
+      }
+      this.selectComponent('#chat').setData({
+        comments: app.globalData.userMore[0],
+      })
+    }
   },
 
 
@@ -24,37 +32,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      //设置data内数据
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-        console.log(this.data.userInfo)
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    //获取信息
+    app.pageGetUserInfo(this)
     //测试消息是否存在
     this.setData({
-      panels: app.globalData.userMore[1]
+      panels: app.globalData.panels
     })
     var lists = app.globalData.userMore[0]
     var hasInfo = 'panels[2].dot'
@@ -67,7 +49,14 @@ Page({
         [hasInfo]: true
       })
     }
-    console.log(this.data.panels)
+    var that = this
+    if (this.data.activeTab == 'index') {
+      console.log(app.globalData.userInfo)
+      this.selectComponent('#index').setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: app.globalData.hasUserInfo
+      })
+    }
   },
 
   /**
@@ -83,12 +72,13 @@ Page({
   onShow: function () {
     this.setData({
       activeTab: this.data.activeTab,
-      panels: app.globalData.userMore[1],
+      panels: app.globalData.panels,
     })
-    if (this.data.activeTab == 'chat')
+    if (this.data.activeTab == 'chat') {
       this.selectComponent('#chat').setData({
         comments: app.globalData.userMore[0],
       })
+    }
   },
 
   /**

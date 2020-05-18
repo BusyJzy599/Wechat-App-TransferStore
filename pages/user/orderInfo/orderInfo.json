@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "cu-custom": "/components/colorui/components/cu-custom"
+    "cu-custom": "/components/colorui/components/cu-custom",
+    "info-bar":"/components/bar/infoBar"
   }
 }

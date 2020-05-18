@@ -1,0 +1,7 @@
+<!--components/infoBar.wxml-->
+<view class="cu-bar bg-white margin-top-xs solids-bottom">
+		<view class="action">
+			<text class="cuIcon-titles text-green"></text>
+			<text class="text-xl text-bold">{{info}}</text>
+		</view>
+	</view>

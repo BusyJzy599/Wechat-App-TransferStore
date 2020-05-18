@@ -1,2 +1,26 @@
-<text>123456</text>
-
+<scroll-view scroll-y="true" style="height:100%" bindscrolltoupper="upper" bindscrolltolower="lower">
+	<view class="top">
+		<image src="/pages/img/top.jpg" mode="heightFix" />
+	</view>
+	<!--选择按钮-->
+	<view class="radius  shadow  bg-white margin-top-xl margin-lr-xl">
+		<van-grid column-num="2">
+			<van-grid-item icon="send-gift-o" text="我的仓库" id="myTransfer" bind:click="toShow" />
+			<van-grid-item icon="balance-list-o" id="myOrder" text="我的订单" bind:click="toShow" />
+		</van-grid>
+	</view>
+	<view class="cu-bar bg-white  margin-top">
+		<view class="action sub-title">
+			<text class="text-xl text-bold text-blue">全国中转仓分布图</text>
+			<text class="bg-gradual-blue" style="width:3rem"></text>
+		</view>
+	</view>
+	<!--图片-->
+	<view class="radius  shadow  bg-white margin-lr margin-top-xs">
+		<image style="width:100%" src="/pages/img/warehouse_location.png" mode="acceptFill"></image>
+	</view>
+	<!--导入订单数据-->
+	<button class="cn-btn bg-blue round lg shadow margin-top margin-lr"  bindtap="">
+		<text class="cuIcon-rankfill text-white text-sl"></text>导入订单数据
+	</button>
+</scroll-view>

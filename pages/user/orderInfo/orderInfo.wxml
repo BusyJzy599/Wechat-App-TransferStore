@@ -10,7 +10,7 @@
 </cu-custom>
 <!--我的地图-->
 <view class="map-container">
-	<map id="myMap" class="myMap" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" markers="{{markers}}" polyline="{{polyline}}" bindcontroltap="controltap" bindmarkertap="markertap" bindregionchange="regionchange" bindcallouttap="showOrderInfo" show-location></map>
+	<map id="myMap" class="myMap" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" markers="{{markers}}" polyline="{{polyline}}" bindcontroltap="controltap" bindmarkertap="markertap" bindregionchange="regionchange" bindcallouttap="showOrderInfo"></map>
 </view>
 <!--相关消息-->
 <view class="order-foot">
@@ -35,6 +35,21 @@
 			</view>
 		</view>
 	</view>
+	<!--买家信息-->
+	<info-bar info="派送信息" />
+	<view class="padding-xl radius shadow bg-white">
+	<view class="text-left padding-xs "><text decode="{{true}}">姓名:&ensp;{{userOrderInfo.name}}</text> </view>
+  <view class="text-left padding-xs"><text decode="{{true}}">电话:&ensp;{{userOrderInfo.phone}}</text></view>
+  <view class="text-left padding-xs"><text decode="{{true}}">地址:&ensp;{{userOrderInfo.provincial}}{{userOrderInfo.address}}</text></view>
+	</view>
+	<!--卖家信息-->
+	<info-bar info="卖家信息" />
+	<view class="padding-xl radius shadow bg-white">
+	</view>
+	<!--中转仓信息-->
+	<info-bar info="仓库信息" />
+	<view class="padding-xl radius shadow bg-white">
+	</view>
 </view>
 <!--信息显示-->
 <view class="cu-modal {{modalName=='info'?'show':''}}">
@@ -46,7 +61,7 @@
 			</view>
 		</view>
 		<view class="padding-xl">
-			{{modleTarget==0?orderInfo.destination_name:orderInfo.warehouse_name}}
+			功能完善中...
 		</view>
 	</view>
 </view>

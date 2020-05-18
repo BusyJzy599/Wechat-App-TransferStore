@@ -16,7 +16,7 @@
 	<view class="cu-bar search bg-white">
 		<view class="search-form round" >
 			<text class="cuIcon-search"></text>
-			<input type="text" placeholder="搜索消息" confirm-type="search" bindinput="searchChat" style="border:none"></input>
+			<input type="text" placeholder="搜索消息" confirm-type="search" bindinput="searchChat"  style="border:none"></input>
 		</view>
 	</view>
 	<view class="chat-main">
@@ -27,7 +27,7 @@
 				</view>
 			</view>
 			<view class="cu-list menu-avatar">
-				<view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" style="background:{{index==selectInfor?itemColor:'white'}}" wx:for="{{comments}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-id="{{item.id}}">
+				<view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" style="background:{{index==selectInfor?itemColor:'white'}}" wx:for="{{comments}}" wx:if="{{item.isShow}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-id="{{item.id}}">
 					<view class="cu-avatar round lg" style="background-image:url({{item.avatar}});">
 						<view class="cu-tag badge" wx:if="{{!item.readed}}"></view>
 					</view>
