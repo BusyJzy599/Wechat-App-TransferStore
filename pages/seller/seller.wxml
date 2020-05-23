@@ -1,4 +1,5 @@
-<scroll-view scroll-y="true" style="height:100%" bindscrolltoupper="upper" bindscrolltolower="lower">
+<scroll-view scroll-y="true">
+	<!--订单数据统计-->
 	<view class="top">
 		<image src="/pages/img/top.jpg" mode="heightFix" />
 	</view>
@@ -20,7 +21,7 @@
 		<image style="width:100%" src="/pages/img/warehouse_location.png" mode="acceptFill"></image>
 	</view>
 	<!--导入订单数据-->
-	<button class="cn-btn bg-blue round lg shadow margin-top margin-lr"  bindtap="">
-		<text class="cuIcon-rankfill text-white text-sl"></text>导入订单数据
+	<button class="cn-btn bg-blue round lg shadow margin-top margin-lr" bindtap="showData">
+		<text class="cuIcon-rankfill text-white text-sl"></text>查看我的订单数据
 	</button>
 </scroll-view>

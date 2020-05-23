@@ -1,7 +1,7 @@
 <!--pages/user/orderInfo/orderInfo.wxml-->
 <!--微信js代码，视图层逻辑 -->
 <wxs module="filter" src="../../../app.wxs"></wxs>
-<cu-custom class="cu-bar bg-white" isBack="{{true}}">
+<cu-custom bgColor="bg-white" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content" wx:if="{{orderInfo.status>1}}">
 		<view class="cu-avatar" style="background-image:url({{orderInfo.avatar}});"></view>

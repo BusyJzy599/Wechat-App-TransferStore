@@ -1,7 +1,7 @@
 <!--pages/user/order/order.wxml-->
 <!--微信js代码，视图层逻辑 -->
 <wxs module="filter" src="../../../app.wxs"></wxs>
-<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+<cu-custom bgColor="bg-white" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">{{status==0?'派送订单':'历史订单'}}</view>
 </cu-custom>

@@ -1,0 +1,18 @@
+/* pages/seller/myData/myData.wxss */
+@import "/components/main.wxss";
+@import "/components/icon.wxss";
+#order-button{
+  margin-top: 65%;
+}
+.move-container {
+  width: 100%;
+  min-height: 500px;
+}
+#mychart-dom-move-bar,#mychart-dom-pie,#mychart-dom-line{
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+#mychart-dom-pie,#mychart-dom-line{
+  margin-top: 20rpx;
+}

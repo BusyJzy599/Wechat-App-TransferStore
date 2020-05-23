@@ -1,4 +1,6 @@
 // pages/seller/seller.js
+import * as echarts from '../../components/ec-canvas/echarts'
+const app = getApp()
 
 Component({
   data: {
@@ -13,6 +15,10 @@ Component({
        url: '/pages/seller/'+id+'/'+id,
      })
     },
-    
+    showData(e){
+      wx.navigateTo({
+        url: '/pages/seller/myData/myData',
+      })
+    }
   }
 })

@@ -1,11 +1,10 @@
 <!--pages/personal/notify/notify.wxml-->
 <!--微信js代码，视图层逻辑 -->
 <wxs module="filter" src="../../../app.wxs"></wxs>
-<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+<cu-custom bgColor="bg-white" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">{{chooseId.name}}</view>
 </cu-custom>
-
 <!--聊天界面-->
 <view class="cu-chat">
 	<view class="cu-item {{item.type==1?'self':''}}" wx:for="{{chooseId.comment}}">

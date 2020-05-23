@@ -1,5 +1,5 @@
 <!--pages/personal/address/address.wxml-->
-<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+<cu-custom bgColor="bg-white" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">地址簿</view>
 </cu-custom>

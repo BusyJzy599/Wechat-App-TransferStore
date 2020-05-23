@@ -1,0 +1,17 @@
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">我的订单</view>
+</cu-custom>
+<scroll-view scroll-x class="bg-olive light nav text-center">
+	<view class="flex text-center">
+		<view class="flex-sub cu-item {{0==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="0">
+			未处理订单
+		</view>
+		<view class="flex-sub cu-item {{1==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="1">
+			派送订单
+		</view>
+		<view class="flex-sub cu-item {{2==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="2">
+			所有订单
+		</view>
+	</view>
+</scroll-view>

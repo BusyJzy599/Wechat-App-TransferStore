@@ -8,7 +8,8 @@
     "pages/user/order/order",
     "pages/user/orderInfo/orderInfo",
     "pages/seller/myTransfer/myTransfer",
-    "pages/seller/myOrder/myOrder"
+    "pages/seller/myOrder/myOrder",
+    "pages/seller/myData/myData"
   ],
   "window": {
     "backgroundTextStyle": "light",
