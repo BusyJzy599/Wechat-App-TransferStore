@@ -1,7 +1,7 @@
 //app.js
 App({
   //获取用户信息
-  pageGetUserInfo(e){
+  pageGetUserInfo(e) {
     if (this.globalData.userInfo) {
       //设置data内数据
       e.setData({
@@ -34,6 +34,7 @@ App({
   //获取派送订单以及历史订单
   getOrder() {
     var lists = this.globalData.userMore[3];
+    var waiting = []
     var sending = []
     var history = []
     for (var i = 0; i < lists.length; i++) {
@@ -42,8 +43,10 @@ App({
         sending.push(current)
       else if (current.status == 3)
         history.push(current)
+      else if (current.status == 1)
+        waiting.push(current)
     }
-    return [sending, history]
+    return [waiting, sending, history]
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -112,8 +115,8 @@ App({
   globalData: {
     userInfo: null,
     isSeller: false,
-    gdkey:'31733dc142b32381bf0d05dcc49430da',
-    panels:[  { name: 'index', icon: 'wap-home', label: '首页' },
+    gdkey: '31733dc142b32381bf0d05dcc49430da',
+    panels: [{ name: 'index', icon: 'wap-home', label: '首页' },
     { name: 'seller', icon: 'shop', label: '商家服务' },
     { name: 'chat', icon: 'chat', dot: false, label: '消息' },
     { name: 'my', icon: 'manager', label: '我的' },],
@@ -127,7 +130,7 @@ App({
             { type: 1, content: '收到测试1', time: 1589020756320, link: '' },
             { type: 0, content: '测试001', time: 1589020756320, link: '' },
           ],
-          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', readed: false,isShow:true
+          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', readed: false, isShow: true
         },
         {
           id: 2, name: '小张', comment: [
@@ -135,7 +138,7 @@ App({
             { type: 1, content: '收到测试3', time: 1589020756320, link: '' },
             { type: 0, content: '测试002', time: 1589020756320, link: '' },
           ],
-          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg', readed: false,isShow:true
+          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg', readed: false, isShow: true
         },
         {
           id: 3, name: '小明', comment: [
@@ -143,11 +146,23 @@ App({
             { type: 1, content: '收到测试5', time: 1589020756320, link: '' },
             { type: 0, content: '测试003', time: 1589020756320, link: '' },
           ],
-          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg', readed: false,isShow:true
+          avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg', readed: false, isShow: true
         }
       ],
-      /*待定*/
-      [],
+      /*商家服务仓库信息*/
+      [
+        {
+          id: 1, name: '顺丰速运顺义集散中心(北京顺义顺于路营业点)', address: '高丽营镇顺于路9号天龙汽配城北门斜对面', phone: '95338', wareSize: 30, mySize: 60, myAllSize: '16x24', ware: [
+            { id: 1, name: '口罩', number: 123 }
+          ], time: '2020-07-19'
+        },
+        {
+          id: 325, name: '快递集散中心', address: '春晖路街道金桥路3号古渡春色3栋一楼一号快递集散中心', phone: '00000000', wareSize: 70, mySize: 45, myAllSize: '16x24', ware: [
+            { id: 1, name: '口罩', number: 520 },
+            { id: 2, name: '消毒液', number: 1421 }
+          ], time: '2020-12-19'
+        }
+      ],
       /*地址簿*/
       [
         { id: 1, name: '小喆', phone: '13773665423', provincial: '重庆市,重庆市,沙坪坝区', address: '重庆师范大学', location: '106.307308,29.618613', type: '0' },
@@ -162,39 +177,53 @@ App({
           //买家信息
           destination_id: 1, destination_lo: '106.307308,29.618613',
           //仓库信息
-          warehouse_id: '1',warehouse_lo: '106.475145,29.577752',
+          warehouse_id: '1', warehouse_lo: '106.475145,29.577752',
           //物流信息
-          logistics:[  
-            {type:2,content:'派送中',time:1589020756320},
-            {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
-            {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
+          logistics: [
+            { type: 2, content: '派送中', time: 1589020756320 },
+            { type: 1, content: '中转仓收到商家1号配货信息，准备派送', time: 1589020756320 },
+            { type: 0, content: '商家1号收到下单信息，正在配货', time: 1589020756320 },
+            { type: 0, content: '订单支付成功', time: 1589020756320 },
           ],
           //时间信息
           create_time: 1589020756320, change_time: 1589020756320
         },
         {
-          id: 123456002, sellerId: 2, userId: 123, avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2911785265,426425792&fm=26&gp=0.jpg', desc: 'Fear Of Gold短袖', 
-          status: '2', curlocation: '',
+          id: 123452202, sellerId: 2, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i1/1761446060/O1CN01HDVk1L1udWjsQVAqi_!!1761446060.jpg_60x60q90.jpg', desc: 'aj1 郭艾伦',
+          status: '1', curlocation: '',
           destination_id: 2, destination_name: '小文', destination_addr: '江苏省,南通市,崇川区,南通大学', destination_lo: '120.918478,31.979069',
           warehouse_id: '2', warehouse_name: '圆通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
-            //物流信息
-            logistics:[
-              {type:2,content:'派送中',time:1589020756320},
-              {type:1,content:'中转仓收到商家2号配货信息，准备派送',time:1589020756320},
-              {type:0,content:'商家2号收到下单信息，正在配货',time:1589020756320},
-            ],
+          //物流信息
+          logistics: [
+            { type: 0, content: '订单支付成功', time: 1589020756320 },
+          ],
           create_time: 1589020756320, change_time: 1589020756320
         },
         {
-          id: 123456003, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i3/2206626571460/O1CN011Jo3ok1Meir3SOP8P_!!0-item_pic.jpg_430x430q90.jpg', desc: '名创优品牙膏', 
+          id: 123456002, sellerId: 2, userId: 123, avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2911785265,426425792&fm=26&gp=0.jpg', desc: 'Fear Of Gold短袖',
+          status: '2', curlocation: '',
+          destination_id: 2, destination_name: '小文', destination_addr: '江苏省,南通市,崇川区,南通大学', destination_lo: '120.918478,31.979069',
+          warehouse_id: '2', warehouse_name: '圆通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          //物流信息
+          logistics: [
+            { type: 2, content: '派送中', time: 1589020756320 },
+            { type: 1, content: '中转仓收到商家2号配货信息，准备派送', time: 1589020756320 },
+            { type: 0, content: '商家2号收到下单信息，正在配货', time: 1589020756320 },
+            { type: 0, content: '订单支付成功', time: 1589020756320 },
+          ],
+          create_time: 1589020756320, change_time: 1589020756320
+        },
+        {
+          id: 123456003, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i3/2206626571460/O1CN011Jo3ok1Meir3SOP8P_!!0-item_pic.jpg_430x430q90.jpg', desc: '名创优品牙膏',
           status: '3', curlocation: '',
           destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
           warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
-          logistics:[  
-            {type:3,content:'已签收',time:1589020756320},
-            {type:2,content:'派送中',time:1589020756320},
-            {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
-            {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
+          logistics: [
+            { type: 3, content: '已签收', time: 1589020756320 },
+            { type: 2, content: '派送中', time: 1589020756320 },
+            { type: 1, content: '中转仓收到商家1号配货信息，准备派送', time: 1589020756320 },
+            { type: 0, content: '商家1号收到下单信息，正在配货', time: 1589020756320 },
+            { type: 0, content: '订单支付成功', time: 1589020756320 },
           ],
           create_time: 1589020756320, change_time: 1589020756320
         },
@@ -203,10 +232,11 @@ App({
           status: '2', curlocation: '',
           destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
           warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
-          logistics:[  
-            {type:2,content:'派送中',time:1589020756320},
-            {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
-            {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
+          logistics: [
+            { type: 2, content: '派送中', time: 1589020756320 },
+            { type: 1, content: '中转仓收到商家1号配货信息，准备派送', time: 1589020756320 },
+            { type: 0, content: '商家1号收到下单信息，正在配货', time: 1589020756320 },
+            { type: 0, content: '订单支付成功', time: 1589020756320 },
           ],
           create_time: 1589020756320, change_time: 1589020756320
         },
@@ -215,11 +245,12 @@ App({
           status: '2', curlocation: '',
           destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
           warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
-          logistics:[  
+          logistics: [
 
-            {type:2,content:'派送中',time:1589020756320},
-            {type:1,content:'中转仓收到商家1号配货信息，准备派送',time:1589020756320},
-            {type:0,content:'商家1号收到下单信息，正在配货',time:1589020756320},
+            { type: 2, content: '派送中', time: 1589020756320 },
+            { type: 1, content: '中转仓收到商家1号配货信息，准备派送', time: 1589020756320 },
+            { type: 0, content: '商家1号收到下单信息，正在配货', time: 1589020756320 },
+            { type: 0, content: '订单支付成功', time: 1589020255320 },
           ],
           create_time: 1589020756320, change_time: 1589020756320
         },
@@ -227,11 +258,9 @@ App({
       ]
     ]
   },
-  sellerMore: [
-    { id: 1, avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg', link: '', grade: '4' }
-  ],
-  locations:[
-    
+  /*仓库信息*/
+  wareHouse: [
+    { id: 1, city: '北京', name: '顺丰速运顺义集散中心(北京顺义顺于路营业点)', address: '高丽营镇顺于路9号天龙汽配城北门斜对面', phone: '95338', wareSize: 30 },
+    { id: 325, city: '重庆', name: '快递集散中心', address: '春晖路街道金桥路3号古渡春色3栋一楼一号快递集散中心', phone: '00000000', wareSize: 70, mySize: 45, }
   ]
-
 })

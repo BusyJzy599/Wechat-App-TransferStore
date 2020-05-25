@@ -3,7 +3,7 @@
 <wxs module="filter" src="../../../app.wxs"></wxs>
 <cu-custom bgColor="bg-white" isBack="{{true}}">
 	<view slot="backText">返回</view>
-	<view slot="content" wx:if="{{orderInfo.status>1}}">
+	<view slot="content">
 		<view class="cu-avatar" style="background-image:url({{orderInfo.avatar}});"></view>
 		{{orderInfo.status==2?'派送中':'已签收'}}
 	</view>

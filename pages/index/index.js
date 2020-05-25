@@ -9,8 +9,7 @@ Component({
     userInfo: {},
     hasUserInfo: false,
     activeNames: ['2'],
-    sending: [],
-    history: [],
+    about:[],
     cardCur: 0,
     //轮播图
     swiperList: [{
@@ -50,9 +49,13 @@ Component({
     //获取订单信息分类
     var lists = app.getOrder()
     this.setData({
-      sending: lists[0],
-      history: lists[1],
+      about:[
+        {title:'未发货',name:'1',content:'待商家发货',icon1:'todo-list-o',icon2:{name:'timefill',color:'red'},data:lists[0],status:0},
+        {title:'派送中',name:'2',content:'运送中',icon1:'logistics',icon2:{name:'deliver_fill',color:'blue'},data:lists[1],status:1},
+        {title:'历史订单',name:'3',content:'已签收',icon1:'notes-o',icon2:{name:'roundcheckfill',color:'green'},data:lists[2],status:2},
+      ]
     })
+    console.log(this.data.about)
   },
   methods: {
     //点击扫码

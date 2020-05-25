@@ -42,6 +42,14 @@ var filter = {
         return ['roundcheckfill', 'green']
     }
 
+  },
+  formatWareId: function (id) {
+    if (id < 10)
+      return '000' + id
+    else if (id < 100 && id >= 10)
+      return '00' + id
+    else if (id < 1000 && id >= 100)
+      return '0' + id
   }
 }
 
@@ -50,4 +58,5 @@ module.exports = {
   getDateTime: filter.getDateTime,
   toFormatDate: filter.toFormatDate,
   getType: filter.getType,
+  formatWareId: filter.formatWareId
 }

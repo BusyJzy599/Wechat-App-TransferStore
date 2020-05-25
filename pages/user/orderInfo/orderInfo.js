@@ -161,6 +161,7 @@ Page({
         console.log(data)
       }
     })
+    console.log(this.data.orderInfo)
   },
 
 

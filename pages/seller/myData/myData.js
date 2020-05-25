@@ -136,7 +136,6 @@ function getPieOption() {
     }]
   };
 }
-
 function getBarOption() {
   return {
     title: {
@@ -238,14 +237,28 @@ Page({
       }
     }
   },
-  initChart(){
-    this.setData({ isShow: true })
+  //存入本地缓存(是否加载数据)
+  initChart() {
+    wx: wx.setStorage({
+      data: true,
+      key: 'isShow',
+      success: (res) => {
+        this.setData({ isShow: true })
+      },
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    try {
+      var value = wx.getStorageSync('isShow')
+     this.setData({
+       isShow:value
+     })
+    }catch(e){
 
+    }
   },
 
   /**

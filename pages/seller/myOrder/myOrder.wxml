@@ -5,13 +5,17 @@
 <scroll-view scroll-x class="bg-olive light nav text-center">
 	<view class="flex text-center">
 		<view class="flex-sub cu-item {{0==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="0">
-			未处理订单
+			未发货订单
 		</view>
 		<view class="flex-sub cu-item {{1==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="1">
-			派送订单
+			派送中订单
 		</view>
 		<view class="flex-sub cu-item {{2==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="2">
-			所有订单
+			历史订单
 		</view>
 	</view>
 </scroll-view>
+<!--订单数据-->
+<view class="">
+
+</view>

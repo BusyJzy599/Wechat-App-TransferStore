@@ -4,5 +4,86 @@
 	<view slot="content">我的仓库</view>
 </cu-custom>
 <scroll-view scroll-y>
-	
+	<view class="cu-card case card">
+		<!--卡片-->
+		<view class="cu-item shadow  radius bg-white" wx:for="{{wareHouses}}">
+			<view class="cu-list menu-avatar">
+				<!--名称-->
+				<view class="text-cut padding solids-bottom">{{item.name}}</view>
+				<view class="padding solids-bottom">
+					<!--容量-->
+					<view class="text-shadow text-sm text-gray">仓库容量:</view>
+					<view class="cu-progress  radius striped active">
+						<view class="bg-purple" style="width:{{loading?item.wareSize+'%':''}};">{{item.wareSize}}%</view>
+					</view>
+					<view class="text-shadow text-sm text-gray margin-top">我的容量:</view>
+					<view class="cu-progress  radius striped active">
+						<view class="bg-cyan" style="width:{{loading?item.mySize+'%':''}};">{{item.mySize}}%</view>
+					</view>
+					<!--商品余量-->
+					<view class="text-shadow text-sm text-gray margin-top">商品余量:</view>
+					<view class="cu-capsule radius margin-top-sm" wx:for="{{item.ware}}">
+						<view class="cu-tag bg-blue ">{{item.name}}</view>
+						<view class="cu-tag line-blue">{{item.number}}</view>
+					</view>
+				</view>
+				<!--仓库信息-->
+				<view class="cu-item solids-bottom">
+					<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+					<view class="content">
+						<view class="text-gray text-sm justify-between">编号:{{filter.formatWareId(item.id)}}</view>
+						<view class="text-gray text-sm justify-between text-cut">地址:{{item.address}}</view>
+						<view class="text-gray text-sm justify-between">电话:{{item.phone}}</view>
+					</view>
+				</view>
+				<!--租赁信息-->
+				<view class="padding solids-bottom">
+					<view class="text-grey flex margin-bottom-sm">到期时间:{{item.time}}
+						<view class="cu-tag line-red action  margin-left" bindtap="">续费</view>
+					</view>
+					<view class="text-grey flex">租赁容量:{{item.myAllSize}}
+						<view class="cu-tag line-green action   margin-left-xl" bindtap="">扩容</view>
+					</view>
+				</view>
+				<!--管理仓库-->
+				<view class="padding">
+					<button class="cu-btn bg-olive shadow-blur" bindtap="showModal" data-target="addStock" data-id="{{item.id}}">增加库存</button>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view style="height:200rpx"></view>
+	<!--增加库存窗口-->
+	<view class="cu-modal {{modalName=='addStock'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end solids-bottom">
+				<view class="content">增加库存</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-red"></text>
+				</view>
+			</view>
+			<view class="bg-white">
+				<form>
+					<view class="flex margin-left cu-bar " wx:for="{{chooseWare}}">
+						<checkbox class="round" checked="{{true}}" bindtap="isChecked" data-target="{{item.id}}"></checkbox>
+						{{item.name}}
+						<view class="action">
+							<van-stepper name="num-{{item.id}}" value="{{ 1 }}" />
+						</view>
+					</view>
+				</form>
+			</view>
+			<view class="cu-bar bg-white justify-end">
+				<view class="action">
+					<button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+					<button class="cu-btn bg-green margin-left" bindtap="">确定</button>
+				</view>
+			</view>
+		</view>
+	</view>
 </scroll-view>
+<!--租赁仓库-->
+<view class="cu-bar btn-group foot bg-white">
+	<navigator  class="cu-btn bg-green shadow-blur lg" url="./hire/hire">租赁仓库</navigator>
+</view>
+<wxs module="filter" src="../../../app.wxs"></wxs>

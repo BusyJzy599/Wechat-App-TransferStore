@@ -16,11 +16,6 @@
 				<text class="cuIcon-scan  text-blue" bindtap="scanSearch"></text>
 			</view>
 		</view>
-		<!--功能按钮
-		<van-grid column-num="4">
-			<van-grid-item icon="photo-o" text="文字" wx:for="{{ 4 }}" />
-		</van-grid>
-		-->
 		<!--轮播-->
 		<view class="cu-bar bg-white">
 			<view class="action sub-title">
@@ -31,7 +26,7 @@
 		<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
 			<swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
 				<view class="swiper-item">
-					<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}" ></image>
+					<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
 					<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
 				</view>
 			</swiper-item>
@@ -48,76 +43,38 @@
 					</view>
 					<!--信息-->
 					<van-collapse value="{{ activeNames }}" bind:change="onCollapse">
-					<!--未发货-->
-						<van-collapse-item title="未发货" name="1" icon="todo-list-o">
+						<van-collapse-item wx:for="{{about}}" title="{{item.title}}" name="{{item.name}}" icon="{{item.icon1}}">
 							<view class="cu-list menu-avatar">
-								
-							</view>
-						</van-collapse-item>
-						<!--派送中-->
-						<van-collapse-item title="派送中" name="2" icon="logistics">
-							<view class="cu-list menu-avatar">
-								<button class="cu-item  radius shadow bg-white margin-bottom-xs" wx:for="{{sending}}" bindtap="checkOrderInfo" data-id="{{item.id}}" wx:for-index="i" wx:if="{{i<3}}">
-									<view class="cu-avatar lg" style="background-image:url({{item.avatar}});"></view>
+								<button class="cu-item  radius shadow bg-white margin-bottom-xs" wx:for="{{item.data}}" wx:for-item="itemData" bindtap="checkOrderInfo" data-id="{{itemData.id}}" wx:for-index="i" wx:if="{{i<3}}">
+									<view class="cu-avatar lg" style="background-image:url({{itemData.avatar}});"></view>
 									<view class="content">
-										<view class="text-blue">运送中</view>
+										<view class="text-{{item.icon2.color}}">{{item.content}}</view>
 										<view class="text-gray text-sm flex">
 											<text class="text-cut">
-												<text>{{item.desc}}</text>
+												<text>{{itemData.desc}}</text>
 											</text>
 										</view>
 									</view>
 									<view class="action">
-										<text class="cuIcon-deliver_fill text-blue">...</text>
-										<view class="text-grey text-xs">{{filter.toFormatDate(item.change_time)}}</view>
+										<text class="cuIcon-{{item.icon2.name}} text-{{item.icon2.color}}"></text>
+										<view class="text-grey text-xs">{{filter.toFormatDate(itemData.change_time)}}</view>
 									</view>
 								</button>
 							</view>
 							<!--查看所有-->
-							<view class="cu-list menu solids-top margin-top" wx:if="{{sending.length>=3}}">
+							<view class="cu-list menu solids-top margin-top" wx:if="{{item.data.length>=3}}">
 								<view class="cu-item arrow">
 									<view class="content">
-										<navigator class="content" hover-class="none" url="/pages/user/order/order?status=0" open-type="navigate">
+										<navigator class="content" hover-class="none" url="/pages/user/order/order?status={{item.status}}" open-type="navigate">
 											<text class="cuIcon-forwardfill text-blue"></text>
-											<text class="text-grey">查看所有派送订单</text>
+											<text class="text-grey">查看所有</text>
 										</navigator>
 									</view>
 								</view>
 							</view>
 						</van-collapse-item>
-						<!--订单列表-->
-						<van-collapse-item title="历史订单" name="3" icon="notes-o">
-							<view class="cu-list menu-avatar">
-								<button class="cu-item  radius shadow bg-white margin-bottom-xs" bindtap="checkOrderInfo" data-id="{{item.id}}" wx:for="{{history}}" wx:for-index="i" wx:if="{{i<3}}">
-									<view class="cu-avatar lg" style="background-image:url({{item.avatar}});"></view>
-									<view class="content">
-										<view class="text-green">已签收</view>
-										<view class="text-gray text-sm flex">
-											<text class="text-cut">
-												<text>{{item.desc}}</text>
-											</text>
-										</view>
-									</view>
-									<view class="action">
-										<text class="cuIcon-roundcheckfill text-green"></text>
-										<view class="text-grey text-xs">{{filter.toFormatDate(item.change_time)}}</view>
-									</view>
-								</button>
-							</view>
-							<!--查看所有-->
-							<view class="cu-list menu solids-top margin-top" wx:if="{{history.length>=3}}">
-								<view class="cu-item arrow">
-									<view class="content">
-										<navigator class="content" hover-class="none" url="/pages/user/order/order?status=1" open-type="navigate">
-											<text class="cuIcon-forwardfill text-blue"></text>
-											<text class="text-grey">查看所有历史订单</text>
-										</navigator>
-									</view>
-								</view>
-							</view>
-						</van-collapse-item>
-					</van-collapse>
 
+					</van-collapse>
 				</van-col>
 			</van-row>
 		</view>

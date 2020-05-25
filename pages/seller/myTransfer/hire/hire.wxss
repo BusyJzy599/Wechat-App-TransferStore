@@ -1,0 +1,12 @@
+/* pages/seller/myTransfer/hire/hire.wxss */
+@import "/components/main.wxss";
+@import "/components/icon.wxss";
+.move-container {
+  width: 100%;
+  min-height: 500px;
+}
+#mychart-dom-line{
+  width: 100%;
+  height: 300px;
+  display: block;
+}
