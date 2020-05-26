@@ -152,32 +152,33 @@ App({
       /*商家服务仓库信息*/
       [
         {
-          id: 1, name: '顺丰速运顺义集散中心(北京顺义顺于路营业点)', address: '高丽营镇顺于路9号天龙汽配城北门斜对面', phone: '95338', wareSize: 30, mySize: 60, myAllSize: '16x24', ware: [
-            { id: 1, name: '口罩', number: 123 }
-          ], time: '2020-07-19'
+          id: 1, name: '顺丰速运顺义集散中心(北京顺义顺于路营业点)', address: '高丽营镇顺于路9号天龙汽配城北门斜对面', phone: '95338', wareSize: 30, mySize: 60, myAllSize: '12x4', ware: [
+            { id: 1, name: '口罩', number: 123 },
+            { id: 3, name: '除湿袋', number: 51 }
+          ], time: 1589020756320,location:'116.574255,40.128854'
         },
         {
-          id: 325, name: '快递集散中心', address: '春晖路街道金桥路3号古渡春色3栋一楼一号快递集散中心', phone: '00000000', wareSize: 70, mySize: 45, myAllSize: '16x24', ware: [
+          id: 325, name: '快递集散中心', address: '春晖路街道金桥路3号古渡春色3栋一楼一号快递集散中心', phone: '00000000', wareSize: 70, mySize: 45, myAllSize: '6x4', ware: [
             { id: 1, name: '口罩', number: 520 },
             { id: 2, name: '消毒液', number: 1421 }
-          ], time: '2020-12-19'
+          ], time: 1589020756320,location:'106.481662,29.456909'
         }
       ],
       /*地址簿*/
       [
-        { id: 1, name: '小喆', phone: '13773665423', provincial: '重庆市,重庆市,沙坪坝区', address: '重庆师范大学', location: '106.307308,29.618613', type: '0' },
-        { id: 2, name: '小文', phone: '13773665423', provincial: '江苏省,南通市,崇川区', address: '南通大学', location: '120.918478,31.979069', type: '1' }
+        { id: 1, name: '小喆', phone: '13773665423', provincial: '重庆市,重庆市,沙坪坝区', address: '重庆师范大学', location: '106.309062,29.613748', type: '0' },
+        { id: 2, name: '小文', phone: '13773665423', provincial: '北京市,北京市,海淀区', address: '北京大学', location: '116.316833,39.998877', type: '1' }
       ],
       /*订单列表*/
       [
         {//订单信息
-          id: 123456001, sellerId: 1, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i1/2201222579396/O1CN01WGetuk2JHQ0rOx0Pc_!!2201222579396.jpg_430x430q90.jpg', desc: '惠普暗夜精灵笔记本',
+          id: 12301, sellerId: 123, userId: 123, avatar: 'https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/1658148935/O1CN01THVSKa2FsHPSLwSql_!!1658148935.jpg_60x60q90.jpg', desc: '除湿袋',
           //订单状态
-          status: '2', curlocation: '',
+          status: '2', curlocation: '',goods_id:3,
           //买家信息
-          destination_id: 1, destination_lo: '106.307308,29.618613',
+          destination_id: 2, destination_info: '小文 13773665423', destination_addr: '北京市,北京市,海淀区 北京大学',destination_lo: '116.316833,39.998877',
           //仓库信息
-          warehouse_id: '1', warehouse_lo: '106.475145,29.577752',
+          warehouse_id:1, warehouse_name: '顺丰速运顺义集散中心(北京顺义顺于路营业点)',warehouse_addr: '高丽营镇顺于路9号天龙汽配城北门斜对面',warehouse_lo: '116.574255,40.128854',warehouse_phone:'95338',
           //物流信息
           logistics: [
             { type: 2, content: '派送中', time: 1589020756320 },
@@ -189,10 +190,10 @@ App({
           create_time: 1589020756320, change_time: 1589020756320
         },
         {
-          id: 123452202, sellerId: 2, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i1/1761446060/O1CN01HDVk1L1udWjsQVAqi_!!1761446060.jpg_60x60q90.jpg', desc: 'aj1 郭艾伦',
-          status: '1', curlocation: '',
-          destination_id: 2, destination_name: '小文', destination_addr: '江苏省,南通市,崇川区,南通大学', destination_lo: '120.918478,31.979069',
-          warehouse_id: '2', warehouse_name: '圆通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          id: 12302, sellerId: 2, userId: 123, avatar: 'https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i4/1658148935/O1CN01THVSKa2FsHPSLwSql_!!1658148935.jpg_60x60q90.jpg', desc: '除湿袋',
+          status: '1', curlocation: '',goods_id:3,
+          destination_id: 2, destination_info: '小文 13773665423', destination_addr: '北京市,北京市,海淀区 北京大学',destination_lo: '116.316833,39.998877',
+          warehouse_id: 0, warehouse_name: '',warehouse_addr: '',warehouse_lo: '',warehouse_phone:'',
           //物流信息
           logistics: [
             { type: 0, content: '订单支付成功', time: 1589020756320 },
@@ -200,10 +201,10 @@ App({
           create_time: 1589020756320, change_time: 1589020756320
         },
         {
-          id: 123456002, sellerId: 2, userId: 123, avatar: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2911785265,426425792&fm=26&gp=0.jpg', desc: 'Fear Of Gold短袖',
-          status: '2', curlocation: '',
-          destination_id: 2, destination_name: '小文', destination_addr: '江苏省,南通市,崇川区,南通大学', destination_lo: '120.918478,31.979069',
-          warehouse_id: '2', warehouse_name: '圆通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          id: 12303, sellerId: 2, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i3/2207707567248/O1CN01NUVcoo23PdHdZaWkS_!!2207707567248.jpg_60x60q90.jpg', desc: '口罩',
+          status: '2', curlocation: '',goods_id:1,
+          destination_id: 2, destination_info: '小文 13773665423', destination_addr: '北京市,北京市,海淀区 北京大学',destination_lo: '116.316833,39.998877',
+          warehouse_id: 1, warehouse_name: '顺丰速运顺义集散中心(北京顺义顺于路营业点)',warehouse_addr: '高丽营镇顺于路9号天龙汽配城北门斜对面',warehouse_lo: '116.574255,40.128854',warehouse_phone:'95338',
           //物流信息
           logistics: [
             { type: 2, content: '派送中', time: 1589020756320 },
@@ -214,10 +215,10 @@ App({
           create_time: 1589020756320, change_time: 1589020756320
         },
         {
-          id: 123456003, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i3/2206626571460/O1CN011Jo3ok1Meir3SOP8P_!!0-item_pic.jpg_430x430q90.jpg', desc: '名创优品牙膏',
-          status: '3', curlocation: '',
-          destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
-          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          id: 12304, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i1/2405035918/O1CN01KiEuWI1taUVTonW2u_!!2405035918.jpg_60x60q90.jpg', desc: '消毒液',
+          status: '3', curlocation: '',goods_id:2,
+          destination_id: 2, destination_info: '小文 13773665423', destination_addr: '北京市,北京市,海淀区 北京大学',destination_lo: '116.316833,39.998877',
+          warehouse_id: 1, warehouse_name: '顺丰速运顺义集散中心(北京顺义顺于路营业点)',warehouse_addr: '高丽营镇顺于路9号天龙汽配城北门斜对面',warehouse_lo: '116.574255,40.128854',warehouse_phone:'95338',
           logistics: [
             { type: 3, content: '已签收', time: 1589020756320 },
             { type: 2, content: '派送中', time: 1589020756320 },
@@ -228,10 +229,10 @@ App({
           create_time: 1589020756320, change_time: 1589020756320
         },
         {
-          id: 123456004, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i3/1061727885/O1CN016dOCNJ287NZlcv8rX_!!1061727885-0-lubanu-s.jpg_60x60q90.jpg', desc: 'ipad Pro 2019款',
-          status: '2', curlocation: '',
-          destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
-          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          id: 12305, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i3/2087847987/O1CN011yOEZb28s5yZxj4jO_!!2087847987.jpg_60x60q90.jpg', desc: '笔记本',
+          status: '2', curlocation: '',goods_id:4,
+          destination_id: 1, destination_info: '小喆 13773665423', destination_addr: '重庆市,重庆市,沙坪坝区 重庆师范大学',destination_lo: '106.309062,29.613748',
+          warehouse_id: 325, warehouse_name: '快递集散中心', warehouse_addr: '春晖路街道金桥路3号古渡春色3栋一楼一号快递集散中心', warehouse_lo: '106.481662,29.456909',warehouse_phone:'00000000',
           logistics: [
             { type: 2, content: '派送中', time: 1589020756320 },
             { type: 1, content: '中转仓收到商家1号配货信息，准备派送', time: 1589020756320 },
@@ -241,12 +242,11 @@ App({
           create_time: 1589020756320, change_time: 1589020756320
         },
         {
-          id: 123456005, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/i2/2616970884/O1CN01oAVbxV1IOugdeRFkj_!!2616970884.jpg_60x60q90.jpg', desc: 'iPhone11 Pro Max 512G 国行',
-          status: '2', curlocation: '',
-          destination_id: '', destination_name: '', destination_addr: '', destination_lo: '120.918478,31.979069',
-          warehouse_id: '', warehouse_name: '中通快递', warehouse_addr: '', warehouse_lo: '120.857739,32.010414',
+          id: 12306, sellerId: 3, userId: 123, avatar: 'https://img.alicdn.com/imgextra/https://img.alicdn.com/imgextra/i1/4076482146/O1CN010DPeeg1RiuXdkWyaB_!!4076482146.jpg_60x60q90.jpg', desc: '纸巾',
+          status: '2', curlocation: '',goods_id:5,
+          destination_id: 1, destination_info: '小喆 13773665423', destination_addr: '重庆市,重庆市,沙坪坝区 重庆师范大学',destination_lo: '106.309062,29.613748',
+          warehouse_id: 325, warehouse_name: '快递集散中心', warehouse_addr: '春晖路街道金桥路3号古渡春色3栋一楼一号快递集散中心', warehouse_lo: '106.481662,29.456909',warehouse_phone:'00000000',
           logistics: [
-
             { type: 2, content: '派送中', time: 1589020756320 },
             { type: 1, content: '中转仓收到商家1号配货信息，准备派送', time: 1589020756320 },
             { type: 0, content: '商家1号收到下单信息，正在配货', time: 1589020756320 },
@@ -256,11 +256,19 @@ App({
         },
 
       ]
-    ]
+    ],
+    /*仓库信息*/
+    wareHouse: {
+      city: ['北京', '重庆'],
+      ware: [
+        [{ id: 1, picker: 0, name: '顺丰速运顺义集散中心(北京顺义顺于路营业点)', address: '高丽营镇顺于路9号天龙汽配城北门斜对面', phone: '95338', wareSize: 30 },
+        { id: 2,  picker: 1, name: '顺丰速运顺义集散中心', address: '高丽营镇空港物流园顺航路8号', phone: '00000000', wareSize: 30 }
+        ],
+        [{ id: 325, picker: 0, name: '快递集散中心', address: '春晖路街道金桥路3号古渡春色3栋一楼一号快递集散中心', phone: '00000000', wareSize: 70 },
+        { id: 326,  picker: 1, name:'九龙坡快递集散中心', address: '滩子口玻璃市场B区', phone: '023-81693836', wareSize: 50 }
+        ],
+      ]
+    }
   },
-  /*仓库信息*/
-  wareHouse: [
-    { id: 1, city: '北京', name: '顺丰速运顺义集散中心(北京顺义顺于路营业点)', address: '高丽营镇顺于路9号天龙汽配城北门斜对面', phone: '95338', wareSize: 30 },
-    { id: 325, city: '重庆', name: '快递集散中心', address: '春晖路街道金桥路3号古渡春色3栋一楼一号快递集散中心', phone: '00000000', wareSize: 70, mySize: 45, }
-  ]
+
 })

@@ -16,6 +16,58 @@
 	</view>
 </scroll-view>
 <!--订单数据-->
-<view class="">
-
+<view class="cu-list menu sm-border card-menu margin-top-sm">
+	<view class="cu-list menu-avatar  radius shadow" wx:for="{{orderInfo}}" data-id="{{item.id}}">
+		<button class="cu-item  bg-white" bindtap="">
+			<view class="cu-avatar lg" style="background-image:url({{item.avatar}});"></view>
+			<view class="content">
+				<view class="text-blue text-cut">{{item.desc}}</view>
+				<view class="text-gray text-sm flex">
+					<text class="text-cut">
+					<text>{{item.status!=1?'由'+item.warehouse_name+'发出':'等待派货中...'}}</text>
+					</text>
+				</view>
+			</view>
+			<view wx:if="{{item.status!=1}}">
+			</view>
+			<view class="action">
+				<text class="cuIcon-shop text-blue "></text>
+				<view class="text-grey text-xs">{{filter.toFormatDate(item.change_time)}}</view>
+			</view>
+		</button>
+		<view class="bg-white" wx:if="{{item.status==1}}">
+			<view class="action">
+				<text class="cuIcon-titles text-green"></text>
+				<text class="text-bold">订单信息</text>
+			</view>
+			<view class="padding">
+				<view class="flex bg-white margin-bottom-xs">
+					<view class="flex-sub radius text-gray">地址</view>
+					<view class="flex-treble  radius text-right"><text>{{item.destination_info+'\n'+item.destination_addr}}</text></view>
+				</view>
+			</view>
+			<view class="grid col-2 margin-bottom text-center solids-top" wx:key>
+				<view class=" padding-xs"><button class="cu-btn bg-olive shadow" bindtap="sendOrder">仓库派送</button></view>
+				<view class=" padding-xs"><button class="cu-btn bg-grey shadow">本地派出</button></view>
+			</view>
+		</view>
+		<!--查看详细信息-->
+		<van-collapse value="{{ activeNames }}" bind:change="onChange" border wx:else>
+			<van-collapse-item title="详细信息" name="{{item.id}}">
+				<view class="action">
+					<text class="cuIcon-titles text-green"></text>
+					<text class="text-bold">配送信息</text>
+				</view>
+				<view class="padding">
+					<view class="flex bg-white margin-bottom-xs" wx:for="{{aboutInfo}}" wx:for-item="itemData">
+						<view class="flex-sub radius text-gray">{{itemData.name}}</view>
+						<view class="flex-treble  radius text-right">{{item[itemData.info]}}</view>
+					</view>
+				</view>
+			</van-collapse-item>
+		</van-collapse>
+	</view>
 </view>
+
+<!--微信js代码，视图层逻辑 -->
+<wxs module="filter" src="../../../app.wxs"></wxs>

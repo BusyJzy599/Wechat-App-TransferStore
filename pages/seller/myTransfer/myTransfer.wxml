@@ -38,7 +38,7 @@
 				</view>
 				<!--租赁信息-->
 				<view class="padding solids-bottom">
-					<view class="text-grey flex margin-bottom-sm">到期时间:{{item.time}}
+					<view class="text-grey flex margin-bottom-sm">到期时间:{{filter.getLastTime( item.time)}}
 						<view class="cu-tag line-red action  margin-left" bindtap="">续费</view>
 					</view>
 					<view class="text-grey flex">租赁容量:{{item.myAllSize}}

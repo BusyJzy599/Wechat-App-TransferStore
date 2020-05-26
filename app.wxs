@@ -15,6 +15,10 @@ var filter = {
     second = second < 10 ? "0" + second : second;
     return [year, month, date, hour, minute]
   },
+  getLastTime:function(time) {
+    var out = filter.getDateTime(time)
+    return out[0]+'-'+out[1]+'-'+out[2]
+  },
   toFormatDate: function (time) {
     var curr = filter.getDateTime(getDate())
     var input = filter.getDateTime(time)
@@ -58,5 +62,6 @@ module.exports = {
   getDateTime: filter.getDateTime,
   toFormatDate: filter.toFormatDate,
   getType: filter.getType,
-  formatWareId: filter.formatWareId
+  formatWareId: filter.formatWareId,
+  getLastTime:filter.getLastTime
 }

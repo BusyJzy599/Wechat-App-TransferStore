@@ -36,31 +36,31 @@
 	<!--当前仓库容量-->
 	<view class="cu-form-group">
 		<view class="cu-progress  radius striped active">
-			<view  class="bg-purple" style="width:50%;">50%</view>
+			<view class="bg-purple" style="width:{{size}}%;">{{size}}%</view>
 		</view>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">租赁大小:</view>
 		<van-dropdown-menu>
-			<van-dropdown-item  name="size"  value="{{ value1 }}" options="{{ option1 }}" />
+			<van-dropdown-item id="size" bind:close="changePrice" value="{{ value1 }}" options="{{ option1 }}" />
 		</van-dropdown-menu>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">租赁时间:</view>
 		<van-dropdown-menu>
-			<van-dropdown-item  name="time" value="{{ value2 }}" options="{{ option2 }}" />
+			<van-dropdown-item id="time" bind:close="changePrice" value="{{ value2 }}" options="{{ option2 }}" />
 		</van-dropdown-menu>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">是否自动续费</view>
-		<switch name="renewal" class="orange radius sm"  checked></switch>
+		<switch name="renewal" class="orange radius sm" checked></switch>
 	</view>
 	<view class="cu-form-group">
 		<view class="title"></view>
 		<view class="solids-bottom padding-xs flex align-center">
 			<view class="flex-sub text-right">
 				<view class="solid-bottom text-xxl padding">
-					总价:<text class="text-price text-red margin-left">80.00</text>
+					总价:<text class="text-price text-red margin-left">{{price?price+'.00':'--'}}</text>
 				</view>
 			</view>
 		</view>
@@ -68,7 +68,8 @@
 	<view class="cu-form-group">
 		<view class="title"></view>
 		<view class="padding ">
-			<button class="cu-btn bg-olive shadow lg" form-type='submit'>确认支付</button>
+			<button class="cu-btn bg-olive shadow lg" form-type='submit' bindtap="callBack">确认支付</button>
 		</view>
 	</view>
+	<van-toast id="grade" />
 </form>
