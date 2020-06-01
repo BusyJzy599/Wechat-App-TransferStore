@@ -9,39 +9,39 @@
 		<view class="cu-item shadow  radius bg-white" wx:for="{{wareHouses}}">
 			<view class="cu-list menu-avatar">
 				<!--名称-->
-				<view class="text-cut padding solids-bottom">{{item.name}}</view>
+				<view class="text-cut padding solids-bottom">{{item.ware.name}}</view>
 				<view class="padding solids-bottom">
 					<!--容量-->
 					<view class="text-shadow text-sm text-gray">仓库容量:</view>
 					<view class="cu-progress  radius striped active">
-						<view class="bg-purple" style="width:{{loading?item.wareSize+'%':''}};">{{item.wareSize}}%</view>
+						<view class="bg-purple" style="width:{{loading?item.ware.wareSize+'%':''}};">{{item.ware.wareSize}}%</view>
 					</view>
 					<view class="text-shadow text-sm text-gray margin-top">我的容量:</view>
 					<view class="cu-progress  radius striped active">
-						<view class="bg-cyan" style="width:{{loading?item.mySize+'%':''}};">{{item.mySize}}%</view>
+						<view class="bg-cyan" style="width:{{loading?item.index.mySize+'%':''}};">{{item.index.mySize}}%</view>
 					</view>
 					<!--商品余量-->
 					<view class="text-shadow text-sm text-gray margin-top">商品余量:</view>
-					<view class="cu-capsule radius margin-top-sm" wx:for="{{item.ware}}">
-						<view class="cu-tag bg-blue ">{{item.name}}</view>
-						<view class="cu-tag line-blue">{{item.number}}</view>
+					<view class="cu-capsule radius margin-top-sm" wx:for="{{item.index.ware}}" wx:for-item="itemData" >
+						<view class="cu-tag bg-blue ">{{itemData.info.name}}</view>
+						<view class="cu-tag line-blue">{{itemData.number}}</view>
 					</view>
 				</view>
 				<!--仓库信息-->
 				<view class="cu-item solids-bottom">
 					<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
 					<view class="content">
-						<view class="text-gray text-sm justify-between">编号:{{filter.formatWareId(item.id)}}</view>
-						<view class="text-gray text-sm justify-between text-cut">地址:{{item.address}}</view>
-						<view class="text-gray text-sm justify-between">电话:{{item.phone}}</view>
+						<view class="text-gray text-sm justify-between">编号:{{filter.formatWareId(item.ware.id)}}</view>
+						<view class="text-gray text-sm justify-between text-cut">地址:{{item.ware.address}}</view>
+						<view class="text-gray text-sm justify-between">电话:{{item.ware.phone}}</view>
 					</view>
 				</view>
 				<!--租赁信息-->
 				<view class="padding solids-bottom">
-					<view class="text-grey flex margin-bottom-sm">到期时间:{{filter.getLastTime( item.time)}}
+					<view class="text-grey flex margin-bottom-sm">到期时间:{{filter.getLastTime( item.index.time)}}
 						<view class="cu-tag line-red action  margin-left" bindtap="">续费</view>
 					</view>
-					<view class="text-grey flex">租赁容量:{{item.myAllSize}}
+					<view class="text-grey flex">租赁容量:{{item.index.myAllSize}}
 						<view class="cu-tag line-green action   margin-left-xl" bindtap="">扩容</view>
 					</view>
 				</view>

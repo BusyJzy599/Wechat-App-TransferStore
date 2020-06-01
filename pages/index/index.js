@@ -3,13 +3,11 @@
 const app = getApp()
 
 Component({
-  properties: {
-  },
   data: {
     userInfo: {},
     hasUserInfo: false,
     activeNames: ['2'],
-    about:[],
+    about: [],
     cardCur: 0,
     //轮播图
     swiperList: [{
@@ -42,27 +40,34 @@ Component({
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
     }],
   },
-  //类似于加载函数
-  attached() {
-    //获取用户信息
-    app.pageGetUserInfo(this)
-    //获取订单信息分类
-    var lists = app.getOrder()
-    this.setData({
-      about:[
-        {title:'未发货',name:'1',content:'待商家发货',icon1:'todo-list-o',icon2:{name:'timefill',color:'red'},data:lists[0],status:0},
-        {title:'派送中',name:'2',content:'运送中',icon1:'logistics',icon2:{name:'deliver_fill',color:'blue'},data:lists[1],status:1},
-        {title:'历史订单',name:'3',content:'已签收',icon1:'notes-o',icon2:{name:'roundcheckfill',color:'green'},data:lists[2],status:2},
-      ]
-    })
-    console.log(this.data.about)
+  lifetimes: {
+    // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
+    attached: function () {//获取用户信息
+      app.pageGetUserInfo(this)
+      //获取订单信息分类
+      var out = app.getOrder()
+      console.log(out)
+      this.setData({
+        about: [
+          {
+            title: '未发货', name: '1', content: '待商家发货', icon1: 'todo-list-o', icon2: { name: 'timefill', color: 'red' }, data: out[0]
+          },
+          {
+            title: '派送中', name: '2', content: '运送中', icon1: 'logistics', icon2: { name: 'deliver_fill', color: 'blue' }, data: out[1]
+          },
+          {
+            title: '历史订单', name: '3', content: '已签收', icon1: 'notes-o', icon2: { name: 'roundcheckfill', color: 'green' }, data: out[2]
+          },
+        ]
+      })
+      console.log(this.data.about) },
   },
   methods: {
     //点击扫码
     scanSearch(e) {
       wx.scanCode({
         onlyFromCamera: true,
-        success: (res) => { 
+        success: (res) => {
           console.log(res)
         },
       })
@@ -80,7 +85,7 @@ Component({
         activeNames: event.detail
       });
     },
-  
+
     // cardSwiper
     cardSwiper(e) {
       this.setData({
@@ -142,6 +147,5 @@ Component({
       }
     },
   },
-
 
 })

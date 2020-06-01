@@ -121,9 +121,10 @@ Page({
   //提交订单
   formSubmit(e) {
     var id = getWareInfo(this.data.multiIndex)[1].id
+    console.log("当前"+id)
     var mes = '租赁成功'
     var isSuccess = true
-    app.globalData.userMore[1].forEach(function (value, index, array) {
+    app.globalData.myWareHouse.forEach(function (value, index, array) {
       if (value.id == id) {
         mes = '已拥有该仓库'
         isSuccess = false
@@ -138,8 +139,8 @@ Page({
       var w = getWareInfo(this.data.multiIndex)[1]
       var time = this.selectComponent('#time').data.value + Date.parse(new Date())
       var size = this.selectComponent('#size').data.value
-      var newWare = { id: w.id, name: w.name, address: w.address, phone: w.phone, wareSize: w.wareSize, mySize: 0, myAllSize: size, ware: [], time: time }
-      app.globalData.userMore[1].push(newWare)
+      var newWare = { id: w.id,mySize: 0, myAllSize: size, ware: [], time: time }
+      app.globalData.myWareHouse.push(newWare)
       Toast.success({
         message: mes,
         selector: '#grade',

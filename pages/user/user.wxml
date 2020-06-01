@@ -12,13 +12,12 @@
 		</van-col>
 		<van-col span="8">
 			<view class="solid-bottom text-xxl padding">
-			<button class="login-button" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
+				<button class="login-button" wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
 				<text wx:else>{{userInfo.nickName}}</text>
 			</view>
 		</van-col>
-
 	</van-row>
-	<view class="main">
+	<view class="main" wx:if="{{hasUserInfo}}">
 		<!--个人选项-->
 		<view class="user-set">
 			<view class="cu-list menu sm-bordercard-menu margin-top">
@@ -47,7 +46,7 @@
 					</button>
 				</view>
 				<view class="cu-item arrow">
-					<button class="cu-btn content"  bindtap="showModal" data-target="DialogModal1">
+					<button class="cu-btn content" bindtap="showModal" data-target="DialogModal1">
 						<text class="cuIcon-favorfill text-pink"></text>
 						<text class="text-grey">评分</text>
 					</button>
@@ -55,9 +54,15 @@
 			</view>
 		</view>
 		<!--认证商家按钮-->
-		<button class="cn-btn bg-olive round lg shadow margin-top" wx:if="{{!isSeller}}" bindtap="">
+		<button class="cn-btn bg-olive round lg shadow margin-top" wx:if="{{!isSeller}}" bindtap="identify">
 			<text class="cuIcon-shopfill text-white text-sl"></text>认证商家
 		</button>
+	</view>
+	<!--未登录-->
+	<view wx:else style="margin-top:40%">
+		<view class="solid-bottom text-xsl padding">
+			<text class=" cuIcon-notice text-grey">请先登录!</text>
+		</view>
 	</view>
 	<!--评分窗口-->
 	<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">

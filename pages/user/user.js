@@ -6,7 +6,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-   
+
   },
 
   /**
@@ -19,20 +19,58 @@ Component({
     imgList: [],
     modalName: null,
     textareaValue: '',
-    isSeller: app.globalData.isSeller
   },
   attached() {
+    this.setData({ isSeller: app.globalData.isSeller })
     app.pageGetUserInfo(this)
   },
   /**
    * 组件的方法列表
    */
   methods: {
+    //认证商家
+    identify(e) {
+      var that = this
+      wx.request({
+        url: 'http://localhost:8887/user/seller', //服务器地址
+        menthod: "get",
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          'userId': app.globalData.userId,
+        },
+        success: function (res) {
+          if (res.data) {
+            app.getSellerInfo()
+            that.setData({ isSeller: app.globalData.isSeller })
+          }
+        },
+        fail: function (res) {
+          wx: wx.showToast({
+            title: '认证失败',
+            duration: 404,
+          }) 
+        }
+      })
+      app.globalData.isSeller = true
+      this.setData({ isSeller: app.globalData.isSeller })
+      if (this.data.isSeller) {
+        wx: wx.showToast({
+          title: '认证成功',
+          duration: 2000,
+        })
+      }
+
+    },
     getUserInfo: function (e) {
       app.globalData.userInfo = e.detail.userInfo
+      console.log("登录状态" + app.globalData.isSeller)
+      app.userLogin(e.detail.userInfo.nickName, e.detail.userInfo.avatarUrl)
       this.setData({
         userInfo: e.detail.userInfo,
-        hasUserInfo: true
+        hasUserInfo: true,
+        isSeller: app.globalData.isSeller
       })
       console.log(app.globalData.userInfo)
     },

@@ -16,13 +16,26 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+    var w = app.globalData.myWareHouse
+    var info = []
+    var wh = {}
+    for (var i in w) {
+      wh = app.getWareHouseInfo(w[i].id)
+      for (var j in w[i].ware) {
+        w[i].ware[j].info = app.getGood(w[i].ware[j].id)
+      }
+      info.push({ index: w[i], ware: wh })
+    }
     setTimeout(function () {
       that.setData({
         loading: true,
-        wareHouses: app.globalData.userMore[1]
+        wareHouses: info
       })
     }, 500)
 
+  },
+  onPullDownRefresh: function () {
+    this.onLoad();
   },
   showModal(e) {
     var c = []
@@ -43,59 +56,9 @@ Page({
       modalName: null
     })
   },
-  isChecked(e){
-   console.log(e) 
-   
-
+  isChecked(e) {
+    console.log(e)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    this.setData({ wareHouses: app.globalData.userMore[1]})
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  
 })

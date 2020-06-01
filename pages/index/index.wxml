@@ -32,7 +32,7 @@
 			</swiper-item>
 		</swiper>
 		<!--主界面-->
-		<view>
+		<view wx:if="{{hasUserInfo}}">
 			<van-row>
 				<van-col span="24">
 					<view class="cu-bar bg-white">
@@ -46,12 +46,12 @@
 						<van-collapse-item wx:for="{{about}}" title="{{item.title}}" name="{{item.name}}" icon="{{item.icon1}}">
 							<view class="cu-list menu-avatar">
 								<button class="cu-item  radius shadow bg-white margin-bottom-xs" wx:for="{{item.data}}" wx:for-item="itemData" bindtap="checkOrderInfo" data-id="{{itemData.id}}" wx:for-index="i" wx:if="{{i<3}}">
-									<view class="cu-avatar lg" style="background-image:url({{itemData.avatar}});"></view>
+									<view class="cu-avatar lg" style="background-image:url({{itemData.goods.avatar}});"></view>
 									<view class="content">
 										<view class="text-{{item.icon2.color}}">{{item.content}}</view>
 										<view class="text-gray text-sm flex">
 											<text class="text-cut">
-												<text>{{itemData.desc}}</text>
+												<text>{{itemData.goods.desc}}</text>
 											</text>
 										</view>
 									</view>
@@ -65,7 +65,7 @@
 							<view class="cu-list menu solids-top margin-top" wx:if="{{item.data.length>=3}}">
 								<view class="cu-item arrow">
 									<view class="content">
-										<navigator class="content" hover-class="none" url="/pages/user/order/order?status={{item.status}}" open-type="navigate">
+										<navigator class="content" hover-class="none" url="/pages/user/order/order?status={{item.data[0].status}}" open-type="navigate">
 											<text class="cuIcon-forwardfill text-blue"></text>
 											<text class="text-grey">查看所有</text>
 										</navigator>
@@ -77,6 +77,12 @@
 					</van-collapse>
 				</van-col>
 			</van-row>
+		</view>
+		<!--未登录-->
+		<view wx:else>
+			<view class="solid-bottom text-xsl padding">
+				<text class=" cuIcon-notice text-grey">请先登录!</text>
+			</view>
 		</view>
 	</view>
 </scroll-view>

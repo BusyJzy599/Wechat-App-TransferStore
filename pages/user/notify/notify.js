@@ -47,7 +47,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("------------------------" + options.info)
     //获取选择的用户-商家消息界面id
     var choose = null
     for (var i = 0; i < app.globalData.userMore[0].length; i++) {

@@ -6,7 +6,12 @@ Component({
   data: {
     userInfo: {},
     hasUserInfo: false,
-   
+  },
+  attached() {
+    app.pageGetUserInfo(this)
+    this.setData({
+      isSeller:app.globalData.isSeller
+    })
   },
   methods: {
     toShow(e) {

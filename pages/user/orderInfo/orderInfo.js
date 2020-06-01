@@ -45,26 +45,18 @@ Page({
     })
   },
   //打开评分窗口
-  openStars() {
-
-  },
+  openStars() {},
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
-    for (var i = 0; i < app.globalData.userMore[3].length; i++) {
-      if (app.globalData.userMore[3][i].id == options.orderId)
-        this.setData({ orderInfo: app.globalData.userMore[3][i] })
-    }
-    for (var i = 0; i < app.globalData.userMore[2].length; i++) {
-      if (app.globalData.userMore[2][i].id == this.data.orderInfo.destination_id)
-        var userOrderInfo = app.globalData.userMore[2][i]
-    }
+    this.setData({ orderInfo: app.getOrderInfo(options.orderId) })
+    var userOrderInfo = this.data.orderInfo.dest
     if (this.data.orderInfo != {}) {
-      var destination = this.data.orderInfo.destination_lo.split(',')
-      var warehouse = this.data.orderInfo.warehouse_lo.split(',')
+      var destination = this.data.orderInfo.dest.location.split(',')
+      var warehouse = this.data.orderInfo.ware.location.split(',')
       //设置经纬度
       var mylongitude = (parseFloat(warehouse[0]) + parseFloat(destination[0])) / 2
       var mylatitude = (parseFloat(warehouse[1]) + parseFloat(destination[1])) / 2
@@ -154,7 +146,7 @@ Page({
           latitude: mylatitude,
           scale: myscale,
           basics: that.data.orderInfo.status,
-          userOrderInfo:userOrderInfo
+          userOrderInfo: userOrderInfo
         })
       },
       fail: function (data) {
@@ -171,47 +163,5 @@ Page({
   onReady: function () {
     this.mapCtx = wx.createMapContext('myMap')
     this.setData({ loading: false })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

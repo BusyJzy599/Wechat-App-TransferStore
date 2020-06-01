@@ -38,7 +38,6 @@ Page({
   },
   //确认删除
   onSelect(e) {
-    console.log(e.detail);
     for(var i=0;i<this.data.addresses.length;i++){
       if(this.data.addresses[i].id==this.data.selector){
         this.data.addresses.splice(i,1)
@@ -67,11 +66,10 @@ Page({
     }
     var timestamp = Date.parse(new Date())/1000;
     var newAddress={id:timestamp,name:e.detail.value.name,phone:e.detail.value.phone,provincial:this.data.region.join(','),address:e.detail.value.address,location:'',type:e.detail.value.type}
-    app.globalData.userMore[2].push(newAddress)
+    app.globalData.myAddress.push(newAddress)
     this.setData({
-      addresses:app.globalData.userMore[2]
+      addresses:app.globalData.myAddress
     })
-    console.log(app.globalData.userMore[2])
     this.hideModal()
   },
   
@@ -80,7 +78,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      addresses: app.globalData.userMore[2]
+      addresses: app.globalData.myAddress
     })
   },
 

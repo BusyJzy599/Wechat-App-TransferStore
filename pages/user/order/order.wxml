@@ -8,12 +8,12 @@
 <view class="cu-list menu sm-border card-menu margin-top">
 	<view class="cu-list menu-avatar">
 		<button class="cu-item  radius shadow bg-white margin-bottom-xs" wx:for="{{show.data}}" bindtap="checkOrderInfo" data-id="{{item.id}}" >
-			<view class="cu-avatar  lg" style="background-image:url({{item.avatar}});"></view>
+			<view class="cu-avatar  lg" style="background-image:url({{item.goods.avatar}});"></view>
 			<view class="content">
 				<view class="text-{{item.icon.color}}">{{show.content}}</view>
 				<view class="text-gray text-sm flex">
 					<text class="text-cut">
-					<text>{{item.desc}}</text>
+					<text>{{item.goods.desc}}</text>
 					</text>
 				</view>
 			</view>

@@ -24,13 +24,15 @@ Page({
     var s = {}
     if(options.status==0)
     s = { title: '未发货订单', content: '未发货', icon: { name: 'timefill', color: 'red' }, data: lists[0] }
-    else if(options.status==1)
+    else if(options.status==2)
     s = { title: '派送订单', content: '派送中', icon: { name: 'deliver_fill', color: 'blue' }, data: lists[1] }
-    else 
+    else if(options.status==3)
     s = { title: '历史订单', content: '已签收', icon: { name: 'roundcheckfill', color: 'green' }, data: lists[2] }
     this.setData({
       show: s
     })
+    console.log("进入")
+    console.log(options.status)
     console.log(this.data.show)
 
   },

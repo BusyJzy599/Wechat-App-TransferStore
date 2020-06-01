@@ -4,8 +4,8 @@
 <cu-custom bgColor="bg-white" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">
-		<view class="cu-avatar" style="background-image:url({{orderInfo.avatar}});"></view>
-		{{orderInfo.status==2?'派送中':'已签收'}}
+		<view class="cu-avatar" style="background-image:url({{orderInfo.goods.avatar}});"></view>
+		{{orderInfo.goods.status==2?'派送中':'已签收'}}
 	</view>
 </cu-custom>
 <!--我的地图-->
@@ -14,8 +14,8 @@
 </view>
 <!--相关消息-->
 <view class="order-foot">
-	<view class="radius shadow bg-white" wx:if="{{orderInfo.status==3}}">
-		<view class="solid-bottom text-df padding">请您给{{orderInfo.warehouse_name}}评分:
+	<view class="radius shadow bg-white" wx:if="{{orderInfo.goods.status==3}}">
+		<view class="solid-bottom text-df padding">请您给{{orderInfo.ware.name}}评分:
 			<van-rate value="{{0}}" bind:change="openStars" style="margin-left:5%" />
 		</view>
 	</view>
