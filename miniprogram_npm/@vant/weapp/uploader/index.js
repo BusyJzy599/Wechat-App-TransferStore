@@ -1,6 +1,6 @@
 "use strict";
 var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
+    __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
@@ -10,49 +10,68 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var utils_1 = require("./utils");
 var shared_1 = require("./shared");
 component_1.VantComponent({
-    props: __assign(__assign({ disabled: Boolean, multiple: Boolean, uploadText: String, useBeforeRead: Boolean, afterRead: null, beforeRead: null, previewSize: {
+    props: __assign(__assign({
+        disabled: Boolean,
+        multiple: Boolean,
+        uploadText: String,
+        useBeforeRead: Boolean,
+        afterRead: null,
+        beforeRead: null,
+        previewSize: {
             type: null,
             value: 90
-        }, name: {
+        },
+        name: {
             type: [Number, String],
             value: ''
-        }, accept: {
+        },
+        accept: {
             type: String,
             value: 'image'
-        }, fileList: {
+        },
+        fileList: {
             type: Array,
             value: [],
             observer: 'formatFileList'
-        }, maxSize: {
+        },
+        maxSize: {
             type: Number,
             value: Number.MAX_VALUE
-        }, maxCount: {
+        },
+        maxCount: {
             type: Number,
             value: 100
-        }, deletable: {
+        },
+        deletable: {
             type: Boolean,
             value: true
-        }, showUpload: {
+        },
+        showUpload: {
             type: Boolean,
             value: true
-        }, previewImage: {
+        },
+        previewImage: {
             type: Boolean,
             value: true
-        }, previewFullImage: {
+        },
+        previewFullImage: {
             type: Boolean,
             value: true
-        }, imageFit: {
+        },
+        imageFit: {
             type: String,
             value: 'scaleToFill'
-        }, uploadIcon: {
+        },
+        uploadIcon: {
             type: String,
             value: 'photograph'
-        } }, shared_1.chooseImageProps), shared_1.chooseVideoProps),
+        }
+    }, shared_1.chooseImageProps), shared_1.chooseVideoProps),
     data: {
         lists: [],
         isInCount: true
@@ -60,8 +79,10 @@ component_1.VantComponent({
     methods: {
         formatFileList: function () {
             var _a = this.data, _b = _a.fileList, fileList = _b === void 0 ? [] : _b, maxCount = _a.maxCount;
-            var lists = fileList.map(function (item) { return (__assign(__assign({}, item), { isImage: typeof item.isImage === 'undefined' ? utils_1.isImageFile(item) : item.isImage })); });
-            this.setData({ lists: lists, isInCount: lists.length < maxCount });
+            var lists = fileList.map(function (item) {
+                return (__assign(__assign({}, item), {isImage: typeof item.isImage === 'undefined' ? utils_1.isImageFile(item) : item.isImage}));
+            });
+            this.setData({lists: lists, isInCount: lists.length < maxCount});
         },
         getDetail: function (index) {
             return {
@@ -71,23 +92,23 @@ component_1.VantComponent({
         },
         startUpload: function () {
             var _this = this;
-            var _a = this.data, maxCount = _a.maxCount, multiple = _a.multiple, accept = _a.accept, lists = _a.lists, disabled = _a.disabled;
+            var _a = this.data, maxCount = _a.maxCount, multiple = _a.multiple, accept = _a.accept, lists = _a.lists,
+                disabled = _a.disabled;
             if (disabled)
                 return;
-            utils_1.chooseFile(__assign(__assign({}, this.data), { maxCount: maxCount - lists.length }))
+            utils_1.chooseFile(__assign(__assign({}, this.data), {maxCount: maxCount - lists.length}))
                 .then(function (res) {
-                var file = null;
-                if (utils_1.isVideo(res, accept)) {
-                    file = __assign({ path: res.tempFilePath }, res);
-                }
-                else {
-                    file = multiple ? res.tempFiles : res.tempFiles[0];
-                }
-                _this.onBeforeRead(file);
-            })
+                    var file = null;
+                    if (utils_1.isVideo(res, accept)) {
+                        file = __assign({path: res.tempFilePath}, res);
+                    } else {
+                        file = multiple ? res.tempFiles : res.tempFiles[0];
+                    }
+                    _this.onBeforeRead(file);
+                })
                 .catch(function (error) {
-                _this.$emit('error', error);
-            });
+                    _this.$emit('error', error);
+                });
         },
         onBeforeRead: function (file) {
             var _this = this;
@@ -98,53 +119,62 @@ component_1.VantComponent({
             }
             if (useBeforeRead) {
                 res = new Promise(function (resolve, reject) {
-                    _this.$emit('before-read', __assign(__assign({ file: file }, _this.getDetail()), { callback: function (ok) {
+                    _this.$emit('before-read', __assign(__assign({file: file}, _this.getDetail()), {
+                        callback: function (ok) {
                             ok ? resolve() : reject();
-                        } }));
+                        }
+                    }));
                 });
             }
             if (!res) {
                 return;
             }
             if (utils_1.isPromise(res)) {
-                res.then(function (data) { return _this.onAfterRead(data || file); });
-            }
-            else {
+                res.then(function (data) {
+                    return _this.onAfterRead(data || file);
+                });
+            } else {
                 this.onAfterRead(file);
             }
         },
         onAfterRead: function (file) {
             var maxSize = this.data.maxSize;
             var oversize = Array.isArray(file)
-                ? file.some(function (item) { return item.size > maxSize; })
+                ? file.some(function (item) {
+                    return item.size > maxSize;
+                })
                 : file.size > maxSize;
             if (oversize) {
-                this.$emit('oversize', __assign({ file: file }, this.getDetail()));
+                this.$emit('oversize', __assign({file: file}, this.getDetail()));
                 return;
             }
             if (typeof this.data.afterRead === 'function') {
                 this.data.afterRead(file, this.getDetail());
             }
-            this.$emit('after-read', __assign({ file: file }, this.getDetail()));
+            this.$emit('after-read', __assign({file: file}, this.getDetail()));
         },
         deleteItem: function (event) {
             var index = event.currentTarget.dataset.index;
-            this.$emit('delete', __assign(__assign({}, this.getDetail(index)), { file: this.data.fileList[index] }));
+            this.$emit('delete', __assign(__assign({}, this.getDetail(index)), {file: this.data.fileList[index]}));
         },
         onPreviewImage: function (event) {
             var index = event.currentTarget.dataset.index;
             var lists = this.data.lists;
             var item = lists[index];
-            this.$emit('click-preview', __assign({ url: item.url || item.path }, this.getDetail(index)));
+            this.$emit('click-preview', __assign({url: item.url || item.path}, this.getDetail(index)));
             if (!this.data.previewFullImage)
                 return;
             wx.previewImage({
                 urls: lists
-                    .filter(function (item) { return item.isImage; })
-                    .map(function (item) { return item.url || item.path; }),
+                    .filter(function (item) {
+                        return item.isImage;
+                    })
+                    .map(function (item) {
+                        return item.url || item.path;
+                    }),
                 current: item.url || item.path,
                 fail: function () {
-                    wx.showToast({ title: '预览图片失败', icon: 'none' });
+                    wx.showToast({title: '预览图片失败', icon: 'none'});
                 }
             });
         }

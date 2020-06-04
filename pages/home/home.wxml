@@ -1,10 +1,10 @@
 <!--pages/home/home.wxml-->
 <view class="main-home">
-  <index id="index" wx:if="{{activeTab == 'index'}}">首页</index>
-  <seller id="seller"  wx:if="{{activeTab == 'seller'}}">商家服务</seller>
-  <chat id="chat" panels="{{panels}}" wx:if="{{activeTab == 'chat'}}">消息</chat>
-  <my id="my" wx:if="{{activeTab == 'my'}}">我的</my>
- <index-tabbar active="{{activeTab}}" panels="{{panels}}" bind:changeTab="onTabChange"></index-tabbar> 
+    <index id="index" wx:if="{{activeTab == 'index'}}">首页</index>
+    <seller id="seller" wx:if="{{activeTab == 'seller'}}">商家服务</seller>
+    <chat id="chat" panels="{{panels}}" wx:if="{{activeTab == 'chat'}}">消息</chat>
+    <my id="my" wx:if="{{activeTab == 'my'}}">我的</my>
+    <index-tabbar active="{{activeTab}}" panels="{{panels}}" bind:changeTab="onTabChange"></index-tabbar>
 </view>
  
 

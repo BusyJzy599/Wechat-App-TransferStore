@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 component_1.VantComponent({
     props: {
@@ -13,6 +13,6 @@ component_1.VantComponent({
         textSize: String
     },
     data: {
-        array12: Array.from({ length: 12 }),
+        array12: Array.from({length: 12}),
     },
 });

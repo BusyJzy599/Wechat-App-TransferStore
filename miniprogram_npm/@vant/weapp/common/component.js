@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var basic_1 = require("../mixins/basic");
 var relationFunctions = {
     ancestor: {
@@ -16,10 +16,13 @@ var relationFunctions = {
             this.children.push(child);
         },
         unlinked: function (child) {
-            this.children = (this.children || []).filter(function (it) { return it !== child; });
+            this.children = (this.children || []).filter(function (it) {
+                return it !== child;
+            });
         },
     },
 };
+
 function mapKeys(source, target, map) {
     Object.keys(map).forEach(function (key) {
         if (source[key]) {
@@ -27,9 +30,11 @@ function mapKeys(source, target, map) {
         }
     });
 }
+
 function makeRelation(options, vantOptions, relation) {
     var _a;
-    var type = relation.type, name = relation.name, linked = relation.linked, unlinked = relation.unlinked, linkChanged = relation.linkChanged;
+    var type = relation.type, name = relation.name, linked = relation.linked, unlinked = relation.unlinked,
+        linkChanged = relation.linkChanged;
     var beforeCreate = vantOptions.beforeCreate, destroyed = vantOptions.destroyed;
     if (type === 'descendant') {
         options.created = function () {
@@ -58,8 +63,11 @@ function makeRelation(options, vantOptions, relation) {
         },
         _a));
 }
+
 function VantComponent(vantOptions) {
-    if (vantOptions === void 0) { vantOptions = {}; }
+    if (vantOptions === void 0) {
+        vantOptions = {};
+    }
     var options = {};
     mapKeys(vantOptions, options, {
         data: 'data',
@@ -102,4 +110,5 @@ function VantComponent(vantOptions) {
     };
     Component(options);
 }
+
 exports.VantComponent = VantComponent;

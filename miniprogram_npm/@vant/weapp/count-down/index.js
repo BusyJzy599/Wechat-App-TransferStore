@@ -1,10 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var utils_1 = require("./utils");
+
 function simpleTick(fn) {
     return setTimeout(fn, 30);
 }
+
 component_1.VantComponent({
     props: {
         useSlot: Boolean,
@@ -57,8 +59,7 @@ component_1.VantComponent({
         tick: function () {
             if (this.data.millisecond) {
                 this.microTick();
-            }
-            else {
+            } else {
                 this.macroTick();
             }
         },

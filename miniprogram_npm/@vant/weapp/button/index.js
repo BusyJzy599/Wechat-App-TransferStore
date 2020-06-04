@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var button_1 = require("../mixins/button");
 var open_type_1 = require("../mixins/open-type");
@@ -49,13 +49,12 @@ component_1.VantComponent({
                     // hide border when color is linear-gradient
                     if (color.indexOf('gradient') !== -1) {
                         style += 'border: 0;';
-                    }
-                    else {
+                    } else {
                         style += "border-color: " + color + ";";
                     }
                 }
                 if (style !== this.data.baseStyle) {
-                    this.setData({ baseStyle: style });
+                    this.setData({baseStyle: style});
                 }
             }
         }
@@ -66,6 +65,7 @@ component_1.VantComponent({
                 this.$emit('click');
             }
         },
-        noop: function () { }
+        noop: function () {
+        }
     }
 });

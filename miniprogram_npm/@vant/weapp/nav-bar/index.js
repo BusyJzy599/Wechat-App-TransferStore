@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 component_1.VantComponent({
     classes: ['title-class'],
@@ -57,7 +57,7 @@ component_1.VantComponent({
             }
             wx.nextTick(function () {
                 _this.getRect('.van-nav-bar').then(function (res) {
-                    _this.setData({ height: res.height });
+                    _this.setData({height: res.height});
                 });
             });
         }

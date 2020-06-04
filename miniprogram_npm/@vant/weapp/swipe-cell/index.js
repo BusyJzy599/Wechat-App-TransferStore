@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var touch_1 = require("../mixins/touch");
 var utils_1 = require("../common/utils");
@@ -12,7 +12,9 @@ component_1.VantComponent({
             type: Number,
             value: 0,
             observer: function (leftWidth) {
-                if (leftWidth === void 0) { leftWidth = 0; }
+                if (leftWidth === void 0) {
+                    leftWidth = 0;
+                }
                 if (this.offset > 0) {
                     this.swipeMove(leftWidth);
                 }
@@ -22,7 +24,9 @@ component_1.VantComponent({
             type: Number,
             value: 0,
             observer: function (rightWidth) {
-                if (rightWidth === void 0) { rightWidth = 0; }
+                if (rightWidth === void 0) {
+                    rightWidth = 0;
+                }
                 if (this.offset < 0) {
                     this.swipeMove(-rightWidth);
                 }
@@ -44,7 +48,9 @@ component_1.VantComponent({
     },
     destroyed: function () {
         var _this = this;
-        ARRAY = ARRAY.filter(function (item) { return item !== _this; });
+        ARRAY = ARRAY.filter(function (item) {
+            return item !== _this;
+        });
     },
     methods: {
         open: function (position) {
@@ -60,7 +66,9 @@ component_1.VantComponent({
             this.swipeMove(0);
         },
         swipeMove: function (offset) {
-            if (offset === void 0) { offset = 0; }
+            if (offset === void 0) {
+                offset = 0;
+            }
             this.offset = utils_1.range(offset, -this.data.rightWidth, this.data.leftWidth);
             var transform = "translate3d(" + this.offset + "px, 0, 0)";
             var transition = this.dragging
@@ -75,14 +83,12 @@ component_1.VantComponent({
             var offset = this.offset;
             if (rightWidth > 0 && -offset > rightWidth * THRESHOLD) {
                 this.open('right');
-            }
-            else if (leftWidth > 0 && offset > leftWidth * THRESHOLD) {
+            } else if (leftWidth > 0 && offset > leftWidth * THRESHOLD) {
                 this.open('left');
-            }
-            else {
+            } else {
                 this.swipeMove(0);
             }
-            this.setData({ catchMove: false });
+            this.setData({catchMove: false});
         },
         startDrag: function (event) {
             if (this.data.disabled) {
@@ -91,7 +97,8 @@ component_1.VantComponent({
             this.startOffset = this.offset;
             this.touchStart(event);
         },
-        noop: function () { },
+        noop: function () {
+        },
         onDrag: function (event) {
             var _this = this;
             if (this.data.disabled) {
@@ -102,8 +109,12 @@ component_1.VantComponent({
                 return;
             }
             this.dragging = true;
-            ARRAY.filter(function (item) { return item !== _this; }).forEach(function (item) { return item.close(); });
-            this.setData({ catchMove: true });
+            ARRAY.filter(function (item) {
+                return item !== _this;
+            }).forEach(function (item) {
+                return item.close();
+            });
+            this.setData({catchMove: true});
             this.swipeMove(this.startOffset + this.deltaX);
         },
         endDrag: function () {
@@ -125,8 +136,7 @@ component_1.VantComponent({
                     instance: this,
                     name: this.data.name
                 });
-            }
-            else {
+            } else {
                 this.swipeMove(0);
             }
         }

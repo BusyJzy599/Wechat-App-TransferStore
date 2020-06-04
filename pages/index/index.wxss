@@ -3,104 +3,104 @@
 @import "/components/icon.wxss";
 
 .card-swiper {
-  height: 420rpx !important;
-  margin-top: -35rpx;
+    height: 420rpx !important;
+    margin-top: -35rpx;
 }
 
 .card-swiper swiper-item {
-  width: 610rpx !important;
-  left: 70rpx;
-  box-sizing: border-box;
-  padding: 40rpx 0rpx 70rpx;
-  overflow: initial;
+    width: 610rpx !important;
+    left: 70rpx;
+    box-sizing: border-box;
+    padding: 40rpx 0rpx 70rpx;
+    overflow: initial;
 }
 
 .card-swiper swiper-item .swiper-item {
-  width: 100%;
-  display: block;
-  height: 100%;
-  border-radius: 10rpx;
-  transform: scale(0.9);
-  transition: all 0.2s ease-in 0s;
-  overflow: hidden;
+    width: 100%;
+    display: block;
+    height: 100%;
+    border-radius: 10rpx;
+    transform: scale(0.9);
+    transition: all 0.2s ease-in 0s;
+    overflow: hidden;
 }
 
 .card-swiper swiper-item.cur .swiper-item {
-  transform: none;
-  transition: all 0.2s ease-in 0s;
+    transform: none;
+    transition: all 0.2s ease-in 0s;
 }
 
 .main {
-  height: 100%;
-  padding-left: 20rpx;
-  padding-right: 20rpx;
+    height: 100%;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
 }
 
 .top {
-  height: 300rpx;
+    height: 300rpx;
 }
 
 .func-grid {
-  border-style: solid;
-  box-shadow: 0px 2px 4px 2px #DDDDDD;
-  border-width: 0rpx;
-  border-radius: 20rpx;
+    border-style: solid;
+    box-shadow: 0px 2px 4px 2px #DDDDDD;
+    border-width: 0rpx;
+    border-radius: 20rpx;
 }
 
 .cover-top {
-  position: absolute;
-  top: 4%;
-  left: 4%;
-  font-size: 28rpx;
-  font: bold;
-  font-family: NSimSun;
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    font-size: 28rpx;
+    font: bold;
+    font-family: NSimSun;
 }
 
 .userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
 }
 
 .userinfo-nickname {
-  color: #aaa;
+    color: #aaa;
 }
 
 .usermotto {
-  margin-top: 200px;
+    margin-top: 200px;
 }
 
 input {
-  border: 1px solid #ccc;
+    border: 1px solid #ccc;
 }
 
 .u-wrp-bnr {
-  width: 100%;
-  height: 200rpx;
-  display: block;
-  position: relative;
-  background: #f0f0f0;
+    width: 100%;
+    height: 200rpx;
+    display: block;
+    position: relative;
+    background: #f0f0f0;
 }
 
 .u-img-slide {
-  width: 100%;
-  height: inherit;
+    width: 100%;
+    height: inherit;
 }
 
 .tower-swiper .tower-item {
-  transform: scale(calc(0.5 + var(--index) / 10));
-  margin-left: calc(var(--left) * 100rpx - 150rpx);
-  z-index: var(--index);
+    transform: scale(calc(0.5 + var(--index) / 10));
+    margin-left: calc(var(--left) * 100rpx - 150rpx);
+    z-index: var(--index);
 }
 
-.cu-bar .action>text[class*="cuIcon-"],
-.cu-bar .action>view[class*="cuIcon-"] {
-  font-size: 65rpx;
+.cu-bar .action > text[class*="cuIcon-"],
+.cu-bar .action > view[class*="cuIcon-"] {
+    font-size: 65rpx;
 }

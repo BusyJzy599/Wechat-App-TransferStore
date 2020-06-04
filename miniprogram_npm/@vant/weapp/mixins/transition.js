@@ -1,13 +1,19 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var utils_1 = require("../common/utils");
-var getClassNames = function (name) { return ({
-    enter: "van-" + name + "-enter van-" + name + "-enter-active enter-class enter-active-class",
-    'enter-to': "van-" + name + "-enter-to van-" + name + "-enter-active enter-to-class enter-active-class",
-    leave: "van-" + name + "-leave van-" + name + "-leave-active leave-class leave-active-class",
-    'leave-to': "van-" + name + "-leave-to van-" + name + "-leave-active leave-to-class leave-active-class"
-}); };
-var nextTick = function () { return new Promise(function (resolve) { return setTimeout(resolve, 1000 / 30); }); };
+var getClassNames = function (name) {
+    return ({
+        enter: "van-" + name + "-enter van-" + name + "-enter-active enter-class enter-active-class",
+        'enter-to': "van-" + name + "-enter-to van-" + name + "-enter-active enter-to-class enter-active-class",
+        leave: "van-" + name + "-leave van-" + name + "-leave-active leave-class leave-active-class",
+        'leave-to': "van-" + name + "-leave-to van-" + name + "-leave-active leave-to-class leave-active-class"
+    });
+};
+var nextTick = function () {
+    return new Promise(function (resolve) {
+        return setTimeout(resolve, 1000 / 30);
+    });
+};
 exports.transition = function (showDefaultValue) {
     return Behavior({
         properties: {
@@ -51,24 +57,25 @@ exports.transition = function (showDefaultValue) {
                 Promise.resolve()
                     .then(nextTick)
                     .then(function () {
-                    _this.checkStatus('enter');
-                    _this.$emit('enter');
-                    _this.setData({
-                        inited: true,
-                        display: true,
-                        classes: classNames.enter,
-                        currentDuration: currentDuration
-                    });
-                })
+                        _this.checkStatus('enter');
+                        _this.$emit('enter');
+                        _this.setData({
+                            inited: true,
+                            display: true,
+                            classes: classNames.enter,
+                            currentDuration: currentDuration
+                        });
+                    })
                     .then(nextTick)
                     .then(function () {
-                    _this.checkStatus('enter');
-                    _this.transitionEnded = false;
-                    _this.setData({
-                        classes: classNames['enter-to']
+                        _this.checkStatus('enter');
+                        _this.transitionEnded = false;
+                        _this.setData({
+                            classes: classNames['enter-to']
+                        });
+                    })
+                    .catch(function () {
                     });
-                })
-                    .catch(function () { });
             },
             leave: function () {
                 var _this = this;
@@ -83,23 +90,26 @@ exports.transition = function (showDefaultValue) {
                 Promise.resolve()
                     .then(nextTick)
                     .then(function () {
-                    _this.checkStatus('leave');
-                    _this.$emit('leave');
-                    _this.setData({
-                        classes: classNames.leave,
-                        currentDuration: currentDuration
-                    });
-                })
+                        _this.checkStatus('leave');
+                        _this.$emit('leave');
+                        _this.setData({
+                            classes: classNames.leave,
+                            currentDuration: currentDuration
+                        });
+                    })
                     .then(nextTick)
                     .then(function () {
-                    _this.checkStatus('leave');
-                    _this.transitionEnded = false;
-                    setTimeout(function () { return _this.onTransitionEnd(); }, currentDuration);
-                    _this.setData({
-                        classes: classNames['leave-to']
+                        _this.checkStatus('leave');
+                        _this.transitionEnded = false;
+                        setTimeout(function () {
+                            return _this.onTransitionEnd();
+                        }, currentDuration);
+                        _this.setData({
+                            classes: classNames['leave-to']
+                        });
+                    })
+                    .catch(function () {
                     });
-                })
-                    .catch(function () { });
             },
             checkStatus: function (status) {
                 if (status !== this.status) {
@@ -114,7 +124,7 @@ exports.transition = function (showDefaultValue) {
                 this.$emit("after-" + this.status);
                 var _a = this.data, show = _a.show, display = _a.display;
                 if (!show && display) {
-                    this.setData({ display: false });
+                    this.setData({display: false});
                 }
             }
         }

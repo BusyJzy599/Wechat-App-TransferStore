@@ -1,77 +1,92 @@
 /* pages/chat/chat.wxss */
 @import "/components/main.wxss";
 @import "/components/icon.wxss";
-.top{
-  height: 10%;
+
+.top {
+    height: 10%;
 }
-.user-top{
-  position: absolute;
-  top: 20%;
-  left: 5%;
-  font-size: 28rpx;
+
+.user-top {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    font-size: 28rpx;
 }
+
 /*头像*/
 .cu-avatar {
-	font-variant: small-caps;
-	margin: 0;
-	padding: 0;
-	display: inline-flex;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
-	background-color: #ccc;
-	color: var(--white);
-	white-space: nowrap;
-	position: relative;
-	width: 64rpx;
-	height: 64rpx;
-	background-size: cover;
-	background-position: center;
-	vertical-align: middle;
-	font-size: 1.5em;
+    font-variant: small-caps;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    color: var(--white);
+    white-space: nowrap;
+    position: relative;
+    width: 64rpx;
+    height: 64rpx;
+    background-size: cover;
+    background-position: center;
+    vertical-align: middle;
+    font-size: 1.5em;
 }
+
 .cu-avatar.xl {
-	width: 128rpx;
-	height: 128rpx;
-	font-size: 2.5em;
+    width: 128rpx;
+    height: 128rpx;
+    font-size: 2.5em;
 }
+
 .round {
-	border-radius: 5000rpx;
+    border-radius: 5000rpx;
 }
+
 .margin-left {
-	margin-left: 30rpx;
+    margin-left: 30rpx;
 }
-.avatar-top{
-  margin-top: 10%;
+
+.avatar-top {
+    margin-top: 10%;
 }
+
 /*消息*/
 .radius {
-	border-radius: 6rpx;
+    border-radius: 6rpx;
 }
+
 .shadow-warp {
-	position: relative;
-	box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.1);
+    position: relative;
+    box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.1);
 }
+
 .bg-white {
-	background-color: var(--white);
-	color: var(--darkGray);
+    background-color: var(--white);
+    color: var(--darkGray);
 }
+
 .margin-right {
-	margin-right: 30rpx;
+    margin-right: 30rpx;
 }
-.chat-main{
-  margin-top: 15%;
+
+.chat-main {
+    margin-top: 15%;
 }
-.padding-xl{
-  padding: 5rpx;
-  height: 65vh;
+
+.padding-xl {
+    padding: 5rpx;
+    height: 65vh;
 }
-.search{
-	background:rgba(114, 130, 138, 0);
-	top:7%
+
+.search {
+    background: rgba(114, 130, 138, 0);
+    top: 7%
 }
-.search-form{
-	border: solid 1px;
-	border-color:rgba(114, 130, 138, 0.2);
+
+.search-form {
+    border: solid 1px;
+    border-color: rgba(114, 130, 138, 0.2);
 }
 

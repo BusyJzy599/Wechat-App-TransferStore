@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var utils_1 = require("../common/utils");
 var DEFAULT_DURATION = 200;
@@ -61,7 +61,7 @@ component_1.VantComponent({
         onTouchEnd: function () {
             var data = this.data;
             if (data.offset !== data.startOffset) {
-                this.setData({ duration: DEFAULT_DURATION });
+                this.setData({duration: DEFAULT_DURATION});
                 var index = utils_1.range(Math.round(-data.offset / data.itemHeight), 0, this.getCount() - 1);
                 this.setIndex(index, true);
             }
@@ -98,11 +98,11 @@ component_1.VantComponent({
             index = this.adjustIndex(index) || 0;
             var offset = -index * data.itemHeight;
             if (index !== data.currentIndex) {
-                return this.set({ offset: offset, currentIndex: index }).then(function () {
+                return this.set({offset: offset, currentIndex: index}).then(function () {
                     userAction && _this.$emit('change', index);
                 });
             }
-            return this.set({ offset: offset });
+            return this.set({offset: offset});
         },
         setValue: function (value) {
             var options = this.data.options;

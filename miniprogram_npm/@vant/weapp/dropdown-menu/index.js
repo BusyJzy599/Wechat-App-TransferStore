@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var utils_1 = require("../common/utils");
 var ARRAY = [];
@@ -60,12 +60,16 @@ component_1.VantComponent({
     },
     destroyed: function () {
         var _this = this;
-        ARRAY = ARRAY.filter(function (item) { return item !== _this; });
+        ARRAY = ARRAY.filter(function (item) {
+            return item !== _this;
+        });
     },
     methods: {
         updateItemListData: function () {
             this.setData({
-                itemListData: this.children.map(function (child) { return child.data; })
+                itemListData: this.children.map(function (child) {
+                    return child.data;
+                })
             });
         },
         updateChildrenData: function () {
@@ -78,15 +82,14 @@ component_1.VantComponent({
                 var showPopup = item.data.showPopup;
                 if (index === active) {
                     item.toggle();
-                }
-                else if (showPopup) {
-                    item.toggle(false, { immediate: true });
+                } else if (showPopup) {
+                    item.toggle(false, {immediate: true});
                 }
             });
         },
         close: function () {
             this.children.forEach(function (child) {
-                child.toggle(false, { immediate: true });
+                child.toggle(false, {immediate: true});
             });
         },
         getChildWrapperStyle: function () {
@@ -98,8 +101,7 @@ component_1.VantComponent({
                 var wrapperStyle = "z-index: " + zIndex + ";";
                 if (direction === 'down') {
                     wrapperStyle += "top: " + utils_1.addUnit(offset) + ";";
-                }
-                else {
+                } else {
                     wrapperStyle += "bottom: " + utils_1.addUnit(offset) + ";";
                 }
                 return wrapperStyle;

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 component_1.VantComponent({
     relation: {
@@ -32,9 +32,10 @@ component_1.VantComponent({
             if (!accordion) {
                 name = expanded
                     ? (value || []).concat(name)
-                    : (value || []).filter(function (activeName) { return activeName !== name; });
-            }
-            else {
+                    : (value || []).filter(function (activeName) {
+                        return activeName !== name;
+                    });
+            } else {
                 name = expanded ? name : '';
             }
             this.$emit('change', name);

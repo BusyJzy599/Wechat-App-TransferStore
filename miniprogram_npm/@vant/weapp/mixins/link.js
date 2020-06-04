@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.link = Behavior({
     properties: {
         url: String,
@@ -10,10 +10,12 @@ exports.link = Behavior({
     },
     methods: {
         jumpLink: function (urlKey) {
-            if (urlKey === void 0) { urlKey = 'url'; }
+            if (urlKey === void 0) {
+                urlKey = 'url';
+            }
             var url = this.data[urlKey];
             if (url) {
-                wx[this.data.linkType]({ url: url });
+                wx[this.data.linkType]({url: url});
             }
         }
     }

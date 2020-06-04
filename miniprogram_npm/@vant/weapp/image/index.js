@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var utils_1 = require("../common/utils");
 var component_1 = require("../common/component");
 var button_1 = require("../mixins/button");
@@ -81,7 +81,7 @@ component_1.VantComponent({
                 style += 'overflow: hidden;';
                 style += "border-radius: " + utils_1.addUnit(radius) + ";";
             }
-            this.setData({ viewStyle: style });
+            this.setData({viewStyle: style});
         },
         onLoad: function (event) {
             this.setData({

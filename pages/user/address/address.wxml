@@ -1,102 +1,104 @@
 <!--pages/personal/address/address.wxml-->
 <cu-custom bgColor="bg-white" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">地址簿</view>
+    <view slot="backText">返回</view>
+    <view slot="content">地址簿</view>
 </cu-custom>
-<!--主页面-->
+        <!--主页面-->
 <view class="box">
-	<view class="cu-list menu">
-		<view class="cu-item margin-bottom-xs" wx:for="{{addresses}}">
-			<view class="content padding-tb-sm">
-				<view style="display:flex">
-					<text wx:if="{{item.type==0}}" class="cuIcon-myfill text-blue margin-right-xs"></text>
-					<text wx:if="{{item.type==1}}" class="cuIcon-friendfill text-blue margin-right-xs"></text>
-					<text wx:if="{{item.type==2}}" class="cuIcon-group_fill text-blue margin-right-xs"></text>
-					{{item.name}}
-					<view class="text-gray text-df margin-left">
-						{{item.phone}}
-					</view>
-				</view>
-				<view class="text-gray text-sm">
-					{{item.provincial}} {{item.address}}
-				</view>
-			</view>
-			<view class="action">
-				<!--删除-->
-				<button class="cn-btn line-red sm" bindtap="deleteAddress"  data-id="{{item.id}}">
-					<text class="cuIcon-deletefill text-red text-sl"></text>
-				</button>
-			</view>
-		</view>
-	</view>
-	<!--新建-->
-	<view class="cu-bar btn-group foot {{isClicked?'hide':''}} margin-bottom">
-		<button class="cu-btn bg-green shadow-blur round lg" bindtap="showModal" data-target="addAddress">新增地址</button>
-	</view>
-	<!--新建地址-->
-	<view class="cu-modal {{modalName=='addAddress'?'show':''}}">
-		<view class="cu-dialog">
-			<view class="cu-bar bg-white justify-end">
-				<view class="content">新增地址</view>
-				<view class="action" bindtap="hideModal">
-					<text class="cuIcon-close text-red"></text>
-				</view>
-			</view>
-			<!--地址表单-->
-			<form bindsubmit="formSubmit" id="formAddress">
-				<!--姓名-->
-				<view class="cu-form-group">
-					<view class="title">姓名</view>
-					<input name="name" class="input-address" placeholder="输入姓名.."></input>
-				</view>
-				<!--手机号码-->
-				<view class="cu-form-group">
-					<view class="title">手机号码</view>
-					<input name="phone" class="input-address" placeholder="输入号码.."></input>
-					<view class="cu-capsule radius">
-						<view class="cu-tag bg-blue">
-							+86
-						</view>
-						<view class="cu-tag line-blue">
-							中国大陆
-						</view>
-					</view>
-				</view>
-				<!--省市区-->
-				<view class="cu-form-group">
-					<view class="title">地址选择</view>
-					<picker name="provincial" mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
-						<view class="picker">
-							{{region[0]}}，{{region[1]}}，{{region[2]}}
-						</view>
-					</picker>
-				</view>
-				<!--详细地址-->
-				<view class="cu-form-group">
-					<view class="title">详细地址</view>
-					<input name="address" class="input-address" placeholder="输入详细地址.."></input>
-				</view>
-				<!--标签-->
-				<radio-group name="type" class="block">
-					<view class="cu-form-group">
-						<view class="title">标签选择</view>
-						<view>
-							<radio class="red margin-left-sm" value="0" checked></radio>自己
-							<radio class="red margin-left-sm" value="1"></radio>亲友
-							<radio class="red margin-left-sm" value="2"></radio>其他
-						</view>
-					</view>
-				</radio-group>
-				<view class="cu-bar bg-white justify-end">
-					<view class="action">
-						<button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
-						<button class="cu-btn bg-green margin-left" form-type='submit'>确定</button>
-					</view>
-				</view>
-			</form>
+    <view class="cu-list menu">
+        <view class="cu-item margin-bottom-xs" wx:for="{{addresses}}">
+            <view class="content padding-tb-sm">
+                <view style="display:flex">
+                    <text wx:if="{{item.type==0}}" class="cuIcon-myfill text-blue margin-right-xs"></text>
+                    <text wx:if="{{item.type==1}}" class="cuIcon-friendfill text-blue margin-right-xs"></text>
+                    <text wx:if="{{item.type==2}}" class="cuIcon-group_fill text-blue margin-right-xs"></text>
+                    {{item.name}}
+                    <view class="text-gray text-df margin-left">
+                        {{item.phone}}
+                    </view>
+                </view>
+                <view class="text-gray text-sm">
+                    {{item.provincial}} {{item.address}}
+                </view>
+            </view>
+            <view class="action">
+                <!--删除-->
+                <button class="cn-btn line-red sm" bindtap="deleteAddress" data-id="{{item.id}}">
+                    <text class="cuIcon-deletefill text-red text-sl"></text>
+                </button>
+            </view>
+        </view>
+    </view>
+    <!--新建-->
+    <view class="cu-bar btn-group foot {{isClicked?'hide':''}} margin-bottom">
+        <button class="cu-btn bg-green shadow-blur round lg" bindtap="showModal" data-target="addAddress">新增地址</button>
+    </view>
+    <!--新建地址-->
+    <view class="cu-modal {{modalName=='addAddress'?'show':''}}">
+        <view class="cu-dialog">
+            <view class="cu-bar bg-white justify-end">
+                <view class="content">新增地址</view>
+                <view class="action" bindtap="hideModal">
+                    <text class="cuIcon-close text-red"></text>
+                </view>
+            </view>
+            <!--地址表单-->
+            <form bindsubmit="formSubmit" id="formAddress">
+                <!--姓名-->
+                <view class="cu-form-group">
+                    <view class="title">姓名</view>
+                    <input name="name" class="input-address" placeholder="输入姓名.."></input>
+                </view>
+                <!--手机号码-->
+                <view class="cu-form-group">
+                    <view class="title">手机号码</view>
+                    <input name="phone" class="input-address" placeholder="输入号码.."></input>
+                    <view class="cu-capsule radius">
+                        <view class="cu-tag bg-blue">
+                            +86
+                        </view>
+                        <view class="cu-tag line-blue">
+                            中国大陆
+                        </view>
+                    </view>
+                </view>
+                <!--省市区-->
+                <view class="cu-form-group">
+                    <view class="title">地址选择</view>
+                    <picker name="provincial" mode="region" bindchange="RegionChange" value="{{region}}"
+                            custom-item="{{customItem}}">
+                        <view class="picker">
+                            {{region[0]}}，{{region[1]}}，{{region[2]}}
+                        </view>
+                    </picker>
+                </view>
+                <!--详细地址-->
+                <view class="cu-form-group">
+                    <view class="title">详细地址</view>
+                    <input name="address" class="input-address" placeholder="输入详细地址.."></input>
+                </view>
+                <!--标签-->
+                <radio-group name="type" class="block">
+                    <view class="cu-form-group">
+                        <view class="title">标签选择</view>
+                        <view>
+                            <radio class="red margin-left-sm" value="0" checked></radio>自己
+                            <radio class="red margin-left-sm" value="1"></radio>亲友
+                            <radio class="red margin-left-sm" value="2"></radio>其他
+                        </view>
+                    </view>
+                </radio-group>
+                <view class="cu-bar bg-white justify-end">
+                    <view class="action">
+                        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+                        <button class="cu-btn bg-green margin-left" form-type='submit'>确定</button>
+                    </view>
+                </view>
+            </form>
 
-		</view>
-	</view>
+        </view>
+    </view>
 </view>
-<!--删除-->
-<van-action-sheet show="{{ deleteShow }}" actions="{{ deleteActions }}" cancel-text="取消" bind:cancel="onClose" bind:close="onClose" bind:select="onSelect" />
+        <!--删除-->
+<van-action-sheet show="{{ deleteShow }}" actions="{{ deleteActions }}" cancel-text="取消" bind:cancel="onClose"
+                  bind:close="onClose" bind:select="onSelect"/>

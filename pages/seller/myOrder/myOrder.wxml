@@ -1,123 +1,132 @@
 <cu-custom bgColor="bg-white" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">我的订单</view>
+    <view slot="backText">返回</view>
+    <view slot="content">我的订单</view>
 </cu-custom>
 <scroll-view scroll-x class="bg-olive light nav text-center">
-	<view class="flex text-center">
-		<view class="flex-sub cu-item {{0==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="0">
-			未发货订单
-		</view>
-		<view class="flex-sub cu-item {{1==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="1">
-			派送中订单
-		</view>
-		<view class="flex-sub cu-item {{2==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="2">
-			历史订单
-		</view>
-	</view>
+    <view class="flex text-center">
+        <view class="flex-sub cu-item {{0==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="0">
+            未发货订单
+        </view>
+        <view class="flex-sub cu-item {{1==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="1">
+            派送中订单
+        </view>
+        <view class="flex-sub cu-item {{2==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="2">
+            历史订单
+        </view>
+    </view>
 </scroll-view>
-<!--订单数据-->
+        <!--订单数据-->
 <view class="cu-list menu sm-border card-menu margin-top-sm">
-	<view class="cu-list menu-avatar  radius shadow" wx:for="{{orderInfo}}" data-id="{{item.id}}">
-		<button class="cu-item  bg-white" bindtap="">
-			<view class="cu-avatar lg" style="background-image:url({{item.goods.avatar}});"></view>
-			<view class="content">
-				<view class="text-blue text-cut">{{item.goods.desc}}</view>
-				<view class="text-gray text-sm flex">
-					<text class="text-cut">
-					<text>{{item.status!=1?'由'+item.ware.name+'发出':'等待派货中...'}}</text>
-					</text>
-				</view>
-			</view>
-			<view wx:if="{{item.status!=1}}">
-			</view>
-			<view class="action">
-				<text class="cuIcon-shop text-blue "></text>
-				<view class="text-grey text-xs">{{filter.toFormatDate(item.change_time)}}</view>
-			</view>
-		</button>
-		<view class="bg-white" wx:if="{{item.status==1}}">
-			<view class="action">
-				<text class="cuIcon-titles text-green"></text>
-				<text class="text-bold">订单信息</text>
-			</view>
-			<view class="padding">
-				<view class="flex bg-white margin-bottom-xs">
-					<view class="flex-sub radius text-gray">地址</view>
-					<view class="flex-treble  radius text-right"><text>{{item.dest.name+' '+item.dest.phone+'\n'+item.dest.address}}</text></view>
-				</view>
-			</view>
-			<view class="grid col-2 margin-bottom text-center solids-top" wx:key>
-				<view class=" padding-xs"><button class="cu-btn bg-olive shadow" bindtap="showModal" data-target="sending" data-id="{{item}}">仓库派送</button></view>
-				<view class=" padding-xs"><button class="cu-btn bg-grey shadow">本地派出</button></view>
-			</view>
-		</view>
-		<!--查看详细信息-->
-		<van-collapse value="{{ activeNames }}" bind:change="onChange" border wx:else>
-			<van-collapse-item title="详细信息" name="{{item.id}}">
-				<view class="action">
-					<text class="cuIcon-titles text-green"></text>
-					<text class="text-bold">配送信息</text>
-				</view>
-				<view class="padding">
-					<view class="flex bg-white margin-bottom-xs" wx:for="{{aboutInfo}}" wx:for-item="itemData">
-						<view class="flex-sub radius text-gray">{{itemData.name}}</view>
-						<view class="flex-treble  radius text-right">{{item[itemData.type][itemData.info]}}</view>
-					</view>
-				</view>
-			</van-collapse-item>
-		</van-collapse>
-	</view>
-	<!--派送-->
-	<view class="cu-modal {{modalName=='sending'?'show':''}}">
-		<view class="cu-dialog">
-			<view class="cu-bar bg-white justify-end solids-bottom">
-				<view class="content">派送订单</view>
-				<view class="action" bindtap="hideModal">
-					<text class="cuIcon-close text-red"></text>
-				</view>
-			</view>
-			<view class="bg-white">
-				<view class="action">
-					<text class="cuIcon-titles text-green"></text>
-					<text class="text-bold">商品详情</text>
-				</view>
-				<view class="padding-sm">
-					<view class="flex bg-white margin-bottom-xs text-cut">
-						<view class="flex-sub radius text-gray">商品名称</view>
-						<view class="flex-treble  radius text-right">{{order.order.goods.desc}}x1</view>
-					</view>
-					<view class="flex bg-white margin-bottom-xs">
-						<view class="flex-sub radius text-gray">下单时间</view>
-						<view class="flex-treble  radius text-right">{{filter.toFormatDate(order.order.create_time)}}</view>
-					</view>
-				</view>
-				<view class="action">
-					<text class="cuIcon-titles text-green"></text>
-					<text class="text-bold">已为您选择最佳仓库</text>
-				</view>
-				<view class="padding-sm">
-					<view class="flex bg-white margin-bottom-xs">
-						<view class="flex-sub radius text-gray ">仓库名称</view>
-						<view class="flex-treble  radius text-right text-cut">{{order.ware.name}}</view>
-					</view>
-					<view class="flex bg-white margin-bottom-xs">
-						<view class="flex-sub radius text-gray">仓库地址</view>
-						<view class="flex-treble  radius text-right text-cut">{{order.ware.address}}</view>
-					</view>
-					<view class="flex bg-white margin-bottom-xs">
-						<view class="flex-sub radius text-gray">商品余量</view>
-						<view class="flex-treble  radius text-right text-cut">{{order.num}}</view>
-					</view>
-				</view>
-			</view>
-			<view class="cu-bar bg-white justify-end">
-				<view class="action">
-					<button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
-					<button class="cu-btn bg-green margin-left" bindtap="sendOrder">派送</button>
-				</view>
-			</view>
-		</view>
-	</view>
+    <view class="cu-list menu-avatar  radius shadow" wx:for="{{orderInfo}}" data-id="{{item.id}}">
+        <button class="cu-item  bg-white" bindtap="">
+            <view class="cu-avatar lg" style="background-image:url({{item.goods.avatar}});"></view>
+            <view class="content">
+                <view class="text-blue text-cut">{{item.goods.desc}}</view>
+                <view class="text-gray text-sm flex">
+                    <text class="text-cut">
+                        <text>{{item.status!=1?'由'+item.ware.name+'发出':'等待派货中...'}}</text>
+                    </text>
+                </view>
+            </view>
+            <view wx:if="{{item.status!=1}}">
+            </view>
+            <view class="action">
+                <text class="cuIcon-shop text-blue "></text>
+                <view class="text-grey text-xs">{{filter.toFormatDate(item.change_time)}}</view>
+            </view>
+        </button>
+        <view class="bg-white" wx:if="{{item.status==1}}">
+            <view class="action">
+                <text class="cuIcon-titles text-green"></text>
+                <text class="text-bold">订单信息</text>
+            </view>
+            <view class="padding">
+                <view class="flex bg-white margin-bottom-xs">
+                    <view class="flex-sub radius text-gray">地址</view>
+                    <view class="flex-treble  radius text-right">
+                        <text>{{item.dest.name+' '+item.dest.phone+'\n'+item.dest.address}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="grid col-2 margin-bottom text-center solids-top" wx:key>
+                <view class=" padding-xs">
+                    <button class="cu-btn bg-olive shadow" bindtap="showModal" data-target="sending" data-id="{{item}}">
+                        仓库派送
+                    </button>
+                </view>
+                <view class=" padding-xs">
+                    <button class="cu-btn bg-grey shadow">本地派出</button>
+                </view>
+            </view>
+        </view>
+        <!--查看详细信息-->
+        <van-collapse value="{{ activeNames }}" bind:change="onChange" border wx:else>
+            <van-collapse-item title="详细信息" name="{{item.id}}">
+                <view class="action">
+                    <text class="cuIcon-titles text-green"></text>
+                    <text class="text-bold">配送信息</text>
+                </view>
+                <view class="padding">
+                    <view class="flex bg-white margin-bottom-xs" wx:for="{{aboutInfo}}" wx:for-item="itemData">
+                        <view class="flex-sub radius text-gray">{{itemData.name}}</view>
+                        <view class="flex-treble  radius text-right">{{item[itemData.type][itemData.info]}}</view>
+                    </view>
+                </view>
+            </van-collapse-item>
+        </van-collapse>
+    </view>
+    <!--派送-->
+    <view class="cu-modal {{modalName=='sending'?'show':''}}">
+        <view class="cu-dialog">
+            <view class="cu-bar bg-white justify-end solids-bottom">
+                <view class="content">派送订单</view>
+                <view class="action" bindtap="hideModal">
+                    <text class="cuIcon-close text-red"></text>
+                </view>
+            </view>
+            <view class="bg-white">
+                <view class="action">
+                    <text class="cuIcon-titles text-green"></text>
+                    <text class="text-bold">商品详情</text>
+                </view>
+                <view class="padding-sm">
+                    <view class="flex bg-white margin-bottom-xs text-cut">
+                        <view class="flex-sub radius text-gray">商品名称</view>
+                        <view class="flex-treble  radius text-right">{{order.order.goods.desc}}x1</view>
+                    </view>
+                    <view class="flex bg-white margin-bottom-xs">
+                        <view class="flex-sub radius text-gray">下单时间</view>
+                        <view class="flex-treble  radius text-right">{{filter.toFormatDate(order.order.create_time)}}
+                        </view>
+                    </view>
+                </view>
+                <view class="action">
+                    <text class="cuIcon-titles text-green"></text>
+                    <text class="text-bold">已为您选择最佳仓库</text>
+                </view>
+                <view class="padding-sm">
+                    <view class="flex bg-white margin-bottom-xs">
+                        <view class="flex-sub radius text-gray ">仓库名称</view>
+                        <view class="flex-treble  radius text-right text-cut">{{order.ware.name}}</view>
+                    </view>
+                    <view class="flex bg-white margin-bottom-xs">
+                        <view class="flex-sub radius text-gray">仓库地址</view>
+                        <view class="flex-treble  radius text-right text-cut">{{order.ware.address}}</view>
+                    </view>
+                    <view class="flex bg-white margin-bottom-xs">
+                        <view class="flex-sub radius text-gray">商品余量</view>
+                        <view class="flex-treble  radius text-right text-cut">{{order.num}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="cu-bar bg-white justify-end">
+                <view class="action">
+                    <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+                    <button class="cu-btn bg-green margin-left" bindtap="sendOrder">派送</button>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>
-<!--微信js代码，视图层逻辑 -->
+        <!--微信js代码，视图层逻辑 -->
 <wxs module="filter" src="../../../app.wxs"></wxs>

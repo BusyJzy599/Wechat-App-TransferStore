@@ -1,19 +1,19 @@
 @import '../common/index.wxss';
 
 .van-tabbar {
-  display: -webkit-flex;
-  display: flex;
-  width: 100%;
-  background-color: #fff;
-  background-color: var(--tabbar-background-color, #fff)
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+    background-color: var(--tabbar-background-color, #fff)
 }
 
 .van-tabbar--fixed {
-  position: fixed;
-  bottom: 0;
-  left: 0
+    position: fixed;
+    bottom: 0;
+    left: 0
 }
 
 .van-tabbar--safe {
-  padding-bottom: env(safe-area-inset-bottom)
+    padding-bottom: env(safe-area-inset-bottom)
 }

@@ -1,16 +1,18 @@
 <!--pages/seller/myData/myData.wxml-->
 <cu-custom bgColor="bg-white" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">数据</view>
+    <view slot="backText">返回</view>
+    <view slot="content">数据</view>
 </cu-custom>
 <scroll-view scroll-y>
-	<!--导入订单数据-->
-	<button wx:if="{{!isShow}}" class="cn-btn bg-blue round lg shadow margin-top margin-lr" id="order-button" bindtap="initChart">
-		<text class="cuIcon-rankfill text-white text-sl"></text>导入订单数据
-	</button>
-	<view class="move-containe">
-		<ec-canvas wx:if="{{isShow}}" id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
-		<ec-canvas wx:if="{{isShow}}" id="mychart-dom-move-bar" canvas-id="mychart-move-bar" ec="{{ ecBar }}"></ec-canvas>
-		<ec-canvas wx:if="{{isShow}}" id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ecLine }}"></ec-canvas>
-	</view>
+    <!--导入订单数据-->
+    <button wx:if="{{!isShow}}" class="cn-btn bg-blue round lg shadow margin-top margin-lr" id="order-button"
+            bindtap="initChart">
+        <text class="cuIcon-rankfill text-white text-sl"></text>导入订单数据
+    </button>
+    <view class="move-containe">
+        <ec-canvas wx:if="{{isShow}}" id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
+        <ec-canvas wx:if="{{isShow}}" id="mychart-dom-move-bar" canvas-id="mychart-move-bar"
+                   ec="{{ ecBar }}"></ec-canvas>
+        <ec-canvas wx:if="{{isShow}}" id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ecLine }}"></ec-canvas>
+    </view>
 </scroll-view>

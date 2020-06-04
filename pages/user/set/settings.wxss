@@ -1,1 +1,3 @@
 /* pages/user/set/settings.wxss */
+@import "/components/main.wxss";
+@import "/components/icon.wxss";

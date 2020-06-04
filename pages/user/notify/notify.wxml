@@ -1,31 +1,35 @@
 <!--pages/personal/notify/notify.wxml-->
-<!--微信js代码，视图层逻辑 -->
+        <!--微信js代码，视图层逻辑 -->
 <wxs module="filter" src="../../../app.wxs"></wxs>
 <cu-custom bgColor="bg-white" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">{{chooseId.name}}</view>
+    <view slot="backText">返回</view>
+    <view slot="content">{{chooseId.name}}</view>
 </cu-custom>
-<!--聊天界面-->
+        <!--聊天界面-->
 <view class="cu-chat">
-	<view class="cu-item {{item.type==1?'self':''}}" wx:for="{{chooseId.comment}}">
-		<view class="cu-avatar radius" style="background-image:url({{chooseId.avatar}})" wx:if="{{item.type==0}}"></view>
-		<view class="main">
-			<view class="content shadow {{item.type==1?'bg-green':''}}">
-				<text>{{item.content}}</text>
-			</view>
-		</view>
-		<view class="cu-avatar radius" style="background-image:url({{userInfo.avatarUrl}});" wx:if="{{item.type==1}}"></view>
-		<view class="date "> {{filter.toFormatDate(item.time)}}</view>
-	</view>
+    <view class="cu-item {{item.type==1?'self':''}}" wx:for="{{chooseId.comment}}">
+        <view class="cu-avatar radius" style="background-image:url({{chooseId.avatar}})"
+              wx:if="{{item.type==0}}"></view>
+        <view class="main">
+            <view class="content shadow {{item.type==1?'bg-green':''}}">
+                <text>{{item.content}}</text>
+            </view>
+        </view>
+        <view class="cu-avatar radius" style="background-image:url({{userInfo.avatarUrl}});"
+              wx:if="{{item.type==1}}"></view>
+        <view class="date ">{{filter.toFormatDate(item.time)}}</view>
+    </view>
 </view>
-<!--输入框-->
+        <!--输入框-->
 <view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
-	<view class="action">
-		<text class="cuIcon-sound text-grey"></text>
-	</view>
-	<input type="text" class="solid-bottom" bindinput="getInputInfo" bindfocus="InputFocus" bindblur="InputBlur" adjust-position="{{false}}" focus="{{false}}" maxlength="300" cursor-spacing="10" value="{{inputInfo}}"></input>
-	<view class="action">
-		<text class="cuIcon-emojifill text-grey"></text>
-	</view>
-	<button class="cu-btn bg-green shadow" bindtap="sendInfo">发送</button>
+    <view class="action">
+        <text class="cuIcon-sound text-grey"></text>
+    </view>
+    <input type="text" class="solid-bottom" bindinput="getInputInfo" bindfocus="InputFocus" bindblur="InputBlur"
+           adjust-position="{{false}}" focus="{{false}}" maxlength="300" cursor-spacing="10"
+           value="{{inputInfo}}"></input>
+    <view class="action">
+        <text class="cuIcon-emojifill text-grey"></text>
+    </view>
+    <button class="cu-btn bg-green shadow" bindtap="sendInfo">发送</button>
 </view>

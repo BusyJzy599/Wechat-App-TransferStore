@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 component_1.VantComponent({
     field: true,
@@ -45,7 +45,7 @@ component_1.VantComponent({
     },
     methods: {
         onChange: function (event) {
-            this.setData({ value: event.detail });
+            this.setData({value: event.detail});
             this.$emit('change', event.detail);
         },
         onCancel: function () {
@@ -55,7 +55,7 @@ component_1.VantComponent({
              * https://github.com/youzan/@vant/weapp/issues/1768
              */
             setTimeout(function () {
-                _this.setData({ value: '' });
+                _this.setData({value: ''});
                 _this.$emit('cancel');
                 _this.$emit('change', '');
             }, 200);

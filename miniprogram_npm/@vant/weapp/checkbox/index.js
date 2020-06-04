@@ -1,10 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
+
 function emit(target, value) {
     target.$emit('input', value);
     target.$emit('change', value);
 }
+
 component_1.VantComponent({
     field: true,
     relation: {
@@ -36,8 +38,7 @@ component_1.VantComponent({
         emitChange: function (value) {
             if (this.parent) {
                 this.setParentValue(this.parent, value);
-            }
-            else {
+            } else {
                 emit(this, value);
             }
         },
@@ -48,7 +49,8 @@ component_1.VantComponent({
             }
         },
         onClickLabel: function () {
-            var _a = this.data, labelDisabled = _a.labelDisabled, parentDisabled = _a.parentDisabled, disabled = _a.disabled, value = _a.value;
+            var _a = this.data, labelDisabled = _a.labelDisabled, parentDisabled = _a.parentDisabled,
+                disabled = _a.disabled, value = _a.value;
             if (!disabled && !labelDisabled && !parentDisabled) {
                 this.emitChange(!value);
             }
@@ -65,8 +67,7 @@ component_1.VantComponent({
                     parentValue.push(name);
                     emit(parent, parentValue);
                 }
-            }
-            else {
+            } else {
                 var index = parentValue.indexOf(name);
                 if (index !== -1) {
                     parentValue.splice(index, 1);

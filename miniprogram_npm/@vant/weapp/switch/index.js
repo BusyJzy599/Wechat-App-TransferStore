@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var color_1 = require("../common/color");
 component_1.VantComponent({
@@ -10,7 +10,7 @@ component_1.VantComponent({
             type: null,
             observer: function (value) {
                 var loadingColor = this.getLoadingColor(value);
-                this.setData({ value: value, loadingColor: loadingColor });
+                this.setData({value: value, loadingColor: loadingColor});
             }
         },
         loading: Boolean,
@@ -33,7 +33,7 @@ component_1.VantComponent({
     created: function () {
         var value = this.data.checked;
         var loadingColor = this.getLoadingColor(value);
-        this.setData({ value: value, loadingColor: loadingColor });
+        this.setData({value: value, loadingColor: loadingColor});
     },
     methods: {
         getLoadingColor: function (checked) {

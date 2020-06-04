@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var button_1 = require("../mixins/button");
 var open_type_1 = require("../mixins/open-type");
@@ -103,7 +103,7 @@ component_1.VantComponent({
             }
             this.$emit('close', action);
             // 把 dialog 实例传递出去，可以通过 stopLoading() 在外部关闭按钮的 loading
-            this.$emit(action, { dialog: this });
+            this.$emit(action, {dialog: this});
             var callback = this.data[action === 'confirm' ? 'onConfirm' : 'onCancel'];
             if (callback) {
                 callback(this);

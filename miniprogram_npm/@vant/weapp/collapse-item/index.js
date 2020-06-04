@@ -1,7 +1,11 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
-var nextTick = function () { return new Promise(function (resolve) { return setTimeout(resolve, 20); }); };
+var nextTick = function () {
+    return new Promise(function (resolve) {
+        return setTimeout(resolve, 20);
+    });
+};
 component_1.VantComponent({
     classes: ['title-class', 'content-class'],
     relation: {
@@ -36,12 +40,12 @@ component_1.VantComponent({
         this.updateExpanded()
             .then(nextTick)
             .then(function () {
-            var data = { transition: true };
-            if (_this.data.expanded) {
-                data.contentHeight = 'auto';
-            }
-            _this.setData(data);
-        });
+                var data = {transition: true};
+                if (_this.data.expanded) {
+                    data.contentHeight = 'auto';
+                }
+                _this.setData(data);
+            });
     },
     methods: {
         updateExpanded: function () {
@@ -55,28 +59,34 @@ component_1.VantComponent({
             var currentName = name == null ? index : name;
             var expanded = accordion
                 ? value === currentName
-                : (value || []).some(function (name) { return name === currentName; });
+                : (value || []).some(function (name) {
+                    return name === currentName;
+                });
             var stack = [];
             if (expanded !== this.data.expanded) {
                 stack.push(this.updateStyle(expanded));
             }
-            stack.push(this.set({ index: index, expanded: expanded }));
+            stack.push(this.set({index: index, expanded: expanded}));
             return Promise.all(stack);
         },
         updateStyle: function (expanded) {
             var _this = this;
             return this.getRect('.van-collapse-item__content')
-                .then(function (rect) { return rect.height; })
+                .then(function (rect) {
+                    return rect.height;
+                })
                 .then(function (height) {
-                if (expanded) {
-                    return _this.set({
-                        contentHeight: height ? height + "px" : 'auto'
-                    });
-                }
-                return _this.set({ contentHeight: height + "px" })
-                    .then(nextTick)
-                    .then(function () { return _this.set({ contentHeight: 0 }); });
-            });
+                    if (expanded) {
+                        return _this.set({
+                            contentHeight: height ? height + "px" : 'auto'
+                        });
+                    }
+                    return _this.set({contentHeight: height + "px"})
+                        .then(nextTick)
+                        .then(function () {
+                            return _this.set({contentHeight: 0});
+                        });
+                });
         },
         onClick: function () {
             if (this.data.disabled) {

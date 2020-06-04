@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var color_1 = require("../common/color");
 component_1.VantComponent({
@@ -32,14 +32,14 @@ component_1.VantComponent({
     },
     created: function () {
         var statusBarHeight = wx.getSystemInfoSync().statusBarHeight;
-        this.setData({ statusBarHeight: statusBarHeight });
+        this.setData({statusBarHeight: statusBarHeight});
     },
     methods: {
         show: function () {
             var _this = this;
             var _a = this.data, duration = _a.duration, onOpened = _a.onOpened;
             clearTimeout(this.timer);
-            this.setData({ show: true });
+            this.setData({show: true});
             wx.nextTick(onOpened);
             if (duration > 0 && duration !== Infinity) {
                 this.timer = setTimeout(function () {
@@ -50,7 +50,7 @@ component_1.VantComponent({
         hide: function () {
             var onClose = this.data.onClose;
             clearTimeout(this.timer);
-            this.setData({ show: false });
+            this.setData({show: false});
             wx.nextTick(onClose);
         },
         onTap: function (event) {

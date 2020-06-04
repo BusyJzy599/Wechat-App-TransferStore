@@ -1,6 +1,6 @@
 "use strict";
 var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
+    __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
@@ -10,19 +10,22 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var utils_1 = require("../common/utils");
 var LONG_PRESS_START_TIME = 600;
 var LONG_PRESS_INTERVAL = 200;
+
 // add num and avoid float number
 function add(num1, num2) {
     var cardinal = Math.pow(10, 10);
     return Math.round((num1 + num2) * cardinal) / cardinal;
 }
+
 function equal(value1, value2) {
     return String(value1) === String(value2);
 }
+
 component_1.VantComponent({
     field: true,
     classes: ['input-class', 'plus-class', 'minus-class'],
@@ -31,7 +34,7 @@ component_1.VantComponent({
             type: null,
             observer: function (value) {
                 if (!equal(value, this.data.currentValue)) {
-                    this.setData({ currentValue: this.format(value) });
+                    this.setData({currentValue: this.format(value)});
                 }
             }
         },
@@ -90,7 +93,7 @@ component_1.VantComponent({
         check: function () {
             var val = this.format(this.data.currentValue);
             if (!equal(val, this.data.currentValue)) {
-                this.setData({ currentValue: val });
+                this.setData({currentValue: val});
             }
         },
         isDisabled: function (type) {
@@ -109,7 +112,7 @@ component_1.VantComponent({
         onBlur: function (event) {
             var value = this.format(event.detail.value);
             this.emitChange(value);
-            this.$emit('blur', __assign(__assign({}, event.detail), { value: value }));
+            this.$emit('blur', __assign(__assign({}, event.detail), {value: value}));
         },
         // filter illegal characters
         filter: function (value) {
@@ -147,7 +150,7 @@ component_1.VantComponent({
         },
         emitChange: function (value) {
             if (!this.data.asyncChange) {
-                this.setData({ currentValue: value });
+                this.setData({currentValue: value});
             }
             this.$emit('change', value);
         },

@@ -1,6 +1,6 @@
 "use strict";
 var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
+    __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
@@ -10,25 +10,48 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var props_1 = require("./props");
 component_1.VantComponent({
     field: true,
     classes: ['input-class', 'right-icon-class'],
-    props: __assign(__assign(__assign(__assign({}, props_1.commonProps), props_1.inputProps), props_1.textareaProps), { size: String, icon: String, label: String, error: Boolean, center: Boolean, isLink: Boolean, leftIcon: String, rightIcon: String, autosize: [Boolean, Object], readonly: {
+    props: __assign(__assign(__assign(__assign({}, props_1.commonProps), props_1.inputProps), props_1.textareaProps), {
+        size: String,
+        icon: String,
+        label: String,
+        error: Boolean,
+        center: Boolean,
+        isLink: Boolean,
+        leftIcon: String,
+        rightIcon: String,
+        autosize: [Boolean, Object],
+        readonly: {
             type: Boolean,
             observer: 'setShowClear'
-        }, required: Boolean, iconClass: String, clearable: {
+        },
+        required: Boolean,
+        iconClass: String,
+        clearable: {
             type: Boolean,
             observer: 'setShowClear'
-        }, clickable: Boolean, inputAlign: String, customStyle: String, errorMessage: String, arrowDirection: String, showWordLimit: Boolean, errorMessageAlign: String, border: {
+        },
+        clickable: Boolean,
+        inputAlign: String,
+        customStyle: String,
+        errorMessage: String,
+        arrowDirection: String,
+        showWordLimit: Boolean,
+        errorMessageAlign: String,
+        border: {
             type: Boolean,
             value: true
-        }, titleWidth: {
+        },
+        titleWidth: {
             type: String,
             value: '90px'
-        } }),
+        }
+    }),
     data: {
         focused: false,
         innerValue: '',
@@ -36,7 +59,7 @@ component_1.VantComponent({
     },
     created: function () {
         this.value = this.data.value;
-        this.setData({ innerValue: this.value });
+        this.setData({innerValue: this.value});
     },
     methods: {
         onInput: function (event) {
@@ -60,7 +83,7 @@ component_1.VantComponent({
         },
         onClear: function () {
             var _this = this;
-            this.setData({ innerValue: '' });
+            this.setData({innerValue: ''});
             this.value = '';
             this.setShowClear();
             wx.nextTick(function () {
@@ -78,7 +101,7 @@ component_1.VantComponent({
             this.value = value;
             this.setShowClear();
             if (value === '') {
-                this.setData({ innerValue: '' });
+                this.setData({innerValue: ''});
             }
             this.emitChange();
         },
@@ -90,7 +113,7 @@ component_1.VantComponent({
         },
         emitChange: function () {
             var _this = this;
-            this.setData({ value: this.value });
+            this.setData({value: this.value});
             wx.nextTick(function () {
                 _this.$emit('input', _this.value);
                 _this.$emit('change', _this.value);
@@ -103,6 +126,7 @@ component_1.VantComponent({
                 showClear: clearable && focused && !!value && !readonly
             });
         },
-        noop: function () { }
+        noop: function () {
+        }
     }
 });

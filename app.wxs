@@ -1,67 +1,67 @@
 var filter = {
-  getDateTime: function (value) {
-    //不能使用 new Date()
-    var time = getDate(value);
-    var year = time.getFullYear();
-    var month = time.getMonth() + 1;
-    var date = time.getDate();
-    var hour = time.getHours();
-    var minute = time.getMinutes();
-    var second = time.getSeconds();
-    month = month < 10 ? "0" + month : month;
-    date = date < 10 ? "0" + date : date;
-    hour = hour < 10 ? "0" + hour : hour;
-    minute = minute < 10 ? "0" + minute : minute;
-    second = second < 10 ? "0" + second : second;
-    return [year, month, date, hour, minute]
-  },
-  getLastTime:function(time) {
-    var out = filter.getDateTime(time)
-    return out[0]+'-'+out[1]+'-'+out[2]
-  },
-  toFormatDate: function (time) {
-    var curr = filter.getDateTime(getDate())
-    var input = filter.getDateTime(time)
-    if (curr[0] != input[0])
-      return input[0] + "年" + input[1] + "月" + input[2] + "日"
-    else if (curr[1] != input[1])
-      return input[1] + "月" + input[2] + "日"
-    else if (curr[2] != input[2]) {
-      if (curr[2] - 1 == input[2])
-        return "昨天" + input[3] + ":" + input[4]
-      else
-        return input[1] + "月" + input[2] + "日" + input[3] + ":" + input[4]
-    } else
-      return input[3] + ":" + input[4]
-  },
-  getType: function (type) {
-    switch (type) {
-      case 0:
-        return ['shopfill', 'cyan']
-      case 1:
-        return ['homefill', 'blue']
-      case 2:
-        return ['deliver_fill', 'red']
-      case 3:
-        return ['roundcheckfill', 'green']
-    }
+    getDateTime: function (value) {
+        //不能使用 new Date()
+        var time = getDate(value);
+        var year = time.getFullYear();
+        var month = time.getMonth() + 1;
+        var date = time.getDate();
+        var hour = time.getHours();
+        var minute = time.getMinutes();
+        var second = time.getSeconds();
+        month = month < 10 ? "0" + month : month;
+        date = date < 10 ? "0" + date : date;
+        hour = hour < 10 ? "0" + hour : hour;
+        minute = minute < 10 ? "0" + minute : minute;
+        second = second < 10 ? "0" + second : second;
+        return [year, month, date, hour, minute]
+    },
+    getLastTime: function (time) {
+        var out = filter.getDateTime(time)
+        return out[0] + '-' + out[1] + '-' + out[2]
+    },
+    toFormatDate: function (time) {
+        var curr = filter.getDateTime(getDate())
+        var input = filter.getDateTime(time)
+        if (curr[0] != input[0])
+            return input[0] + "年" + input[1] + "月" + input[2] + "日"
+        else if (curr[1] != input[1])
+            return input[1] + "月" + input[2] + "日"
+        else if (curr[2] != input[2]) {
+            if (curr[2] - 1 == input[2])
+                return "昨天" + input[3] + ":" + input[4]
+            else
+                return input[1] + "月" + input[2] + "日" + input[3] + ":" + input[4]
+        } else
+            return input[3] + ":" + input[4]
+    },
+    getType: function (type) {
+        switch (type) {
+            case 0:
+                return ['shopfill', 'cyan']
+            case 1:
+                return ['homefill', 'blue']
+            case 2:
+                return ['deliver_fill', 'red']
+            case 3:
+                return ['roundcheckfill', 'green']
+        }
 
-  },
-  formatWareId: function (id) {
-    if (id < 10)
-      return '000' + id
-    else if (id < 100 && id >= 10)
-      return '00' + id
-    else if (id < 1000 && id >= 100)
-      return '0' + id
-  }
+    },
+    formatWareId: function (id) {
+        if (id < 10)
+            return '000' + id
+        else if (id < 100 && id >= 10)
+            return '00' + id
+        else if (id < 1000 && id >= 100)
+            return '0' + id
+    }
 }
 
 // 导出对外暴露的属性
 module.exports = {
-  getDateTime: filter.getDateTime,
-  toFormatDate: filter.toFormatDate,
-  getType: filter.getType,
-  formatWareId: filter.formatWareId,
-  getLastTime:filter.getLastTime
+    getDateTime: filter.getDateTime,
+    toFormatDate: filter.toFormatDate,
+    getType: filter.getType,
+    formatWareId: filter.formatWareId,
+    getLastTime: filter.getLastTime
 }

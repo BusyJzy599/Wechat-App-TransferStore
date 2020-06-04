@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var touch_1 = require("../mixins/touch");
 var utils_1 = require("../common/utils");
@@ -17,9 +17,9 @@ component_1.VantComponent({
         unlinked: function () {
             this.children = this.children
                 .map(function (child, index) {
-                child.index = index;
-                return child;
-            });
+                    child.index = index;
+                    return child;
+                });
             this.updateTabs();
         }
     },
@@ -118,13 +118,17 @@ component_1.VantComponent({
         updateContainer: function () {
             var _this = this;
             this.setData({
-                container: function () { return _this.createSelectorQuery().select('.van-tabs'); }
+                container: function () {
+                    return _this.createSelectorQuery().select('.van-tabs');
+                }
             });
         },
         updateTabs: function () {
             var _a = this, _b = _a.children, children = _b === void 0 ? [] : _b, data = _a.data;
             this.setData({
-                tabs: children.map(function (child) { return child.data; }),
+                tabs: children.map(function (child) {
+                    return child.data;
+                }),
                 scrollable: this.children.length > data.swipeThreshold || !data.ellipsis
             });
             this.setCurrentIndexByName(this.getCurrentName() || data.active);
@@ -147,8 +151,7 @@ component_1.VantComponent({
             var child = this.children[index];
             if (child.data.disabled) {
                 this.trigger('disabled', child);
-            }
-            else {
+            } else {
                 this.setCurrentIndex(index);
                 wx.nextTick(function () {
                     _this.trigger('click');
@@ -158,7 +161,9 @@ component_1.VantComponent({
         // correct the index of active tab
         setCurrentIndexByName: function (name) {
             var _a = this.children, children = _a === void 0 ? [] : _a;
-            var matched = children.filter(function (child) { return child.getComputedName() === name; });
+            var matched = children.filter(function (child) {
+                return child.getComputedName() === name;
+            });
             if (matched.length) {
                 this.setCurrentIndex(matched[0].index);
             }
@@ -181,7 +186,7 @@ component_1.VantComponent({
                 return;
             }
             var shouldEmitChange = data.currentIndex !== null;
-            this.setData({ currentIndex: currentIndex });
+            this.setData({currentIndex: currentIndex});
             wx.nextTick(function () {
                 _this.setLine();
                 _this.scrollIntoView();
@@ -203,9 +208,12 @@ component_1.VantComponent({
             if (this.data.type !== 'line') {
                 return;
             }
-            var _a = this.data, color = _a.color, duration = _a.duration, currentIndex = _a.currentIndex, lineWidth = _a.lineWidth, lineHeight = _a.lineHeight;
+            var _a = this.data, color = _a.color, duration = _a.duration, currentIndex = _a.currentIndex,
+                lineWidth = _a.lineWidth, lineHeight = _a.lineHeight;
             this.getRect('.van-tab', true).then(function (rects) {
-                if (rects === void 0) { rects = []; }
+                if (rects === void 0) {
+                    rects = [];
+                }
                 var rect = rects[currentIndex];
                 if (rect == null) {
                     return;
@@ -216,7 +224,9 @@ component_1.VantComponent({
                     : '';
                 var left = rects
                     .slice(0, currentIndex)
-                    .reduce(function (prev, curr) { return prev + curr.width; }, 0);
+                    .reduce(function (prev, curr) {
+                        return prev + curr.width;
+                    }, 0);
                 left += (rect.width - width) / 2;
                 var transition = skipTransition
                     ? ''
@@ -241,7 +251,9 @@ component_1.VantComponent({
                 var tabRect = tabRects[currentIndex];
                 var offsetLeft = tabRects
                     .slice(0, currentIndex)
-                    .reduce(function (prev, curr) { return prev + curr.width; }, 0);
+                    .reduce(function (prev, curr) {
+                        return prev + curr.width;
+                    }, 0);
                 _this.setData({
                     scrollLeft: offsetLeft - (navRect.width - tabRect.width) / 2
                 });
@@ -270,8 +282,7 @@ component_1.VantComponent({
             if (direction === 'horizontal' && offsetX >= minSwipeDistance) {
                 if (deltaX > 0 && currentIndex !== 0) {
                     this.setCurrentIndex(currentIndex - 1);
-                }
-                else if (deltaX < 0 && currentIndex !== tabs.length - 1) {
+                } else if (deltaX < 0 && currentIndex !== tabs.length - 1) {
                     this.setCurrentIndex(currentIndex + 1);
                 }
             }

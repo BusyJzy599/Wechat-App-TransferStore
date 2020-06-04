@@ -1,6 +1,7 @@
 /* pages/seller/myTransfer/myTransfer.wxss */
 @import "/components/main.wxss";
 @import "/components/icon.wxss";
-.foot{
-  height: 10%;
+
+.foot {
+    height: 10%;
 }

@@ -1,11 +1,11 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.commonProps = {
     value: {
         type: String,
         observer: function (value) {
             if (value !== this.value) {
-                this.setData({ innerValue: value });
+                this.setData({innerValue: value});
                 this.value = value;
             }
         }

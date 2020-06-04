@@ -1,6 +1,6 @@
 "use strict";
 var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
+    __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
@@ -10,13 +10,14 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var shared_1 = require("../picker/shared");
 var COLUMNSPLACEHOLDERCODE = '000000';
 component_1.VantComponent({
     classes: ['active-class', 'toolbar-class', 'column-class'],
-    props: __assign(__assign({}, shared_1.pickerProps), { value: {
+    props: __assign(__assign({}, shared_1.pickerProps), {
+        value: {
             type: String,
             observer: function (value) {
                 this.code = value;
@@ -45,10 +46,11 @@ component_1.VantComponent({
                     }
                 });
             }
-        } }),
+        }
+    }),
     data: {
-        columns: [{ values: [] }, { values: [] }, { values: [] }],
-        displayColumns: [{ values: [] }, { values: [] }, { values: [] }],
+        columns: [{values: []}, {values: []}, {values: []}],
+        displayColumns: [{values: []}, {values: []}, {values: []}],
         typeToColumnsPlaceholder: {}
     },
     mounted: function () {
@@ -71,7 +73,7 @@ component_1.VantComponent({
             var index = event.detail.index;
             var value = event.detail.value;
             value = this.parseOutputValues(value);
-            this.emit('confirm', { value: value, index: index });
+            this.emit('confirm', {value: value, index: index});
         },
         emit: function (type, detail) {
             detail.values = detail.value;
@@ -116,16 +118,20 @@ component_1.VantComponent({
                 return result;
             }
             var list = this.getConfig(type);
-            result = Object.keys(list).map(function (code) { return ({
-                code: code,
-                name: list[code]
-            }); });
+            result = Object.keys(list).map(function (code) {
+                return ({
+                    code: code,
+                    name: list[code]
+                });
+            });
             if (code) {
                 // oversea code
                 if (code[0] === '9' && type === 'city') {
                     code = '9';
                 }
-                result = result.filter(function (item) { return item.code.indexOf(code) === 0; });
+                result = result.filter(function (item) {
+                    return item.code.indexOf(code) === 0;
+                });
             }
             if (typeToColumnsPlaceholder[type] && result.length) {
                 // set columns placeholder
@@ -159,11 +165,9 @@ component_1.VantComponent({
             if (!code) {
                 if (this.data.columnsPlaceholder.length) {
                     code = COLUMNSPLACEHOLDERCODE;
-                }
-                else if (Object.keys(county)[0]) {
+                } else if (Object.keys(county)[0]) {
                     code = Object.keys(county)[0];
-                }
-                else {
+                } else {
                     code = '';
                 }
             }
@@ -181,19 +185,23 @@ component_1.VantComponent({
             }
             stack.push(picker.setColumnValues(2, this.getList('county', code.slice(0, 4)), false));
             return Promise.all(stack)
-                .catch(function () { })
+                .catch(function () {
+                })
                 .then(function () {
-                return picker.setIndexes([
-                    _this.getIndex('province', code),
-                    _this.getIndex('city', code),
-                    _this.getIndex('county', code)
-                ]);
-            })
-                .catch(function () { });
+                    return picker.setIndexes([
+                        _this.getIndex('province', code),
+                        _this.getIndex('city', code),
+                        _this.getIndex('county', code)
+                    ]);
+                })
+                .catch(function () {
+                });
         },
         getValues: function () {
             var picker = this.getPicker();
-            return picker ? picker.getValues().filter(function (value) { return !!value; }) : [];
+            return picker ? picker.getValues().filter(function (value) {
+                return !!value;
+            }) : [];
         },
         getDetail: function () {
             var values = this.getValues();
@@ -207,13 +215,14 @@ component_1.VantComponent({
             if (!values.length) {
                 return area;
             }
-            var names = values.map(function (item) { return item.name; });
+            var names = values.map(function (item) {
+                return item.name;
+            });
             area.code = values[values.length - 1].code;
             if (area.code[0] === '9') {
                 area.country = names[1] || '';
                 area.province = names[2] || '';
-            }
-            else {
+            } else {
                 area.province = names[0] || '';
                 area.city = names[1] || '';
                 area.county = names[2] || '';

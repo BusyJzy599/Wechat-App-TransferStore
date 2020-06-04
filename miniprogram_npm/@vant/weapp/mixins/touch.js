@@ -1,6 +1,7 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var MIN_DISTANCE = 10;
+
 function getDirection(x, y) {
     if (x > y && x > MIN_DISTANCE) {
         return 'horizontal';
@@ -10,6 +11,7 @@ function getDirection(x, y) {
     }
     return '';
 }
+
 exports.touch = Behavior({
     methods: {
         resetTouchStatus: function () {

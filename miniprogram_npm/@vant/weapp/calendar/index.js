@@ -7,9 +7,9 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+    return (mod && mod.__esModule) ? mod : {"default": mod};
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var utils_1 = require("./utils");
 var toast_1 = __importDefault(require("../toast/toast"));
@@ -38,7 +38,7 @@ component_1.VantComponent({
         defaultDate: {
             type: [Number, Array],
             observer: function (val) {
-                this.setData({ currentDate: val });
+                this.setData({currentDate: val});
                 this.scrollIntoView();
             }
         },
@@ -120,7 +120,7 @@ component_1.VantComponent({
     },
     methods: {
         reset: function () {
-            this.setData({ currentDate: this.getInitialDate() });
+            this.setData({currentDate: this.getInitialDate()});
             this.scrollIntoView();
         },
         initRect: function () {
@@ -137,7 +137,7 @@ component_1.VantComponent({
             contentObserver.observe('.month', function (res) {
                 if (res.boundingClientRect.top <= res.relativeRect.top) {
                     // @ts-ignore
-                    _this.setData({ subtitle: utils_1.formatMonthTitle(res.dataset.date) });
+                    _this.setData({subtitle: utils_1.formatMonthTitle(res.dataset.date)});
                 }
             });
         },
@@ -158,7 +158,8 @@ component_1.VantComponent({
         scrollIntoView: function () {
             var _this = this;
             setTimeout(function () {
-                var _a = _this.data, currentDate = _a.currentDate, type = _a.type, show = _a.show, poppable = _a.poppable, minDate = _a.minDate, maxDate = _a.maxDate;
+                var _a = _this.data, currentDate = _a.currentDate, type = _a.type, show = _a.show,
+                    poppable = _a.poppable, minDate = _a.minDate, maxDate = _a.maxDate;
                 var targetDate = type === 'single' ? currentDate : currentDate[0];
                 var displayed = show || !poppable;
                 if (!targetDate || !displayed) {
@@ -167,7 +168,7 @@ component_1.VantComponent({
                 var months = utils_1.getMonths(minDate, maxDate);
                 months.some(function (month, index) {
                     if (utils_1.compareMonth(month, targetDate) === 0) {
-                        _this.setData({ scrollIntoView: "month" + index });
+                        _this.setData({scrollIntoView: "month" + index});
                         return true;
                     }
                     return false;
@@ -195,19 +196,15 @@ component_1.VantComponent({
                     var compareToStart = utils_1.compareDay(date, startDay);
                     if (compareToStart === 1) {
                         this.select([startDay, date], true);
-                    }
-                    else if (compareToStart === -1) {
+                    } else if (compareToStart === -1) {
                         this.select([date, null]);
-                    }
-                    else if (allowSameDay) {
+                    } else if (allowSameDay) {
                         this.select([date, date]);
                     }
-                }
-                else {
+                } else {
                     this.select([date, null]);
                 }
-            }
-            else if (type === 'multiple') {
+            } else if (type === 'multiple') {
                 var selectedIndex_1;
                 var selected = currentDate.some(function (dateItem, index) {
                     var equal = utils_1.compareDay(dateItem, date) === 0;
@@ -218,14 +215,12 @@ component_1.VantComponent({
                 });
                 if (selected) {
                     var cancelDate = currentDate.splice(selectedIndex_1, 1);
-                    this.setData({ currentDate: currentDate });
+                    this.setData({currentDate: currentDate});
                     this.unselect(cancelDate);
-                }
-                else {
+                } else {
                     this.select(__spreadArrays(currentDate, [date]));
                 }
-            }
-            else {
+            } else {
                 this.select(date, true);
             }
         },

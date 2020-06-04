@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var link_1 = require("../mixins/link");
 var component_1 = require("../common/component");
 var utils_1 = require("../common/utils");
@@ -30,7 +30,8 @@ component_1.VantComponent({
                 return;
             }
             var _a = this.parent, data = _a.data, children = _a.children;
-            var columnNum = data.columnNum, border = data.border, square = data.square, gutter = data.gutter, clickable = data.clickable, center = data.center;
+            var columnNum = data.columnNum, border = data.border, square = data.square, gutter = data.gutter,
+                clickable = data.clickable, center = data.center;
             var width = 100 / columnNum + "%";
             var styleWrapper = [];
             styleWrapper.push("width: " + width);

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var color_1 = require("../common/color");
 var page_scroll_1 = require("../mixins/page-scroll");
@@ -88,11 +88,11 @@ component_1.VantComponent({
                 return anchor
                     .getRect('.van-index-anchor-wrapper')
                     .then(function (rect) {
-                    Object.assign(anchor, {
-                        height: rect.height,
-                        top: rect.top + _this.scrollTop
+                        Object.assign(anchor, {
+                            height: rect.height,
+                            top: rect.top + _this.scrollTop
+                        });
                     });
-                });
             }));
         },
         setListRect: function () {
@@ -128,10 +128,12 @@ component_1.VantComponent({
         getAnchorRect: function (anchor) {
             return anchor
                 .getRect('.van-index-anchor-wrapper')
-                .then(function (rect) { return ({
-                height: rect.height,
-                top: rect.top
-            }); });
+                .then(function (rect) {
+                    return ({
+                        height: rect.height,
+                        top: rect.top
+                    });
+                });
         },
         getActiveAnchorIndex: function () {
             var _a = this, children = _a.children, scrollTop = _a.scrollTop;
@@ -151,7 +153,8 @@ component_1.VantComponent({
             if (!children.length) {
                 return;
             }
-            var _c = this.data, sticky = _c.sticky, stickyOffsetTop = _c.stickyOffsetTop, zIndex = _c.zIndex, highlightColor = _c.highlightColor;
+            var _c = this.data, sticky = _c.sticky, stickyOffsetTop = _c.stickyOffsetTop, zIndex = _c.zIndex,
+                highlightColor = _c.highlightColor;
             var active = this.getActiveAnchorIndex();
             this.setDiffData({
                 target: this,
@@ -181,8 +184,7 @@ component_1.VantComponent({
                                 wrapperStyle: wrapperStyle
                             }
                         });
-                    }
-                    else if (index === active - 1) {
+                    } else if (index === active - 1) {
                         var currentAnchor = children[index];
                         var currentOffsetTop = currentAnchor.top;
                         var targetOffsetTop = index === children.length - 1
@@ -198,8 +200,7 @@ component_1.VantComponent({
                                 anchorStyle: anchorStyle
                             }
                         });
-                    }
-                    else {
+                    } else {
                         _this.setDiffData({
                             target: item,
                             data: {
@@ -222,8 +223,7 @@ component_1.VantComponent({
             var index = Math.floor((touch.clientY - this.sidebar.top) / itemHeight);
             if (index < 0) {
                 index = 0;
-            }
-            else if (index > sidebarLength - 1) {
+            } else if (index > sidebarLength - 1) {
                 index = sidebarLength - 1;
             }
             this.scrollToAnchor(index);

@@ -1,6 +1,6 @@
 "use strict";
 var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
+    __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
@@ -10,7 +10,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var utils_1 = require("../common/utils");
 var defaultOptions = {
     type: 'text',
@@ -26,13 +26,16 @@ var defaultOptions = {
 };
 var queue = [];
 var currentOptions = __assign({}, defaultOptions);
+
 function parseOptions(message) {
-    return utils_1.isObj(message) ? message : { message: message };
+    return utils_1.isObj(message) ? message : {message: message};
 }
+
 function getContext() {
     var pages = getCurrentPages();
     return pages[pages.length - 1];
 }
+
 function Toast(toastOptions) {
     var options = __assign(__assign({}, currentOptions), parseOptions(toastOptions));
     var context = options.context || getContext();
@@ -44,7 +47,7 @@ function Toast(toastOptions) {
     delete options.context;
     delete options.selector;
     toast.clear = function () {
-        toast.setData({ show: false });
+        toast.setData({show: false});
         if (options.onClose) {
             options.onClose();
         }
@@ -55,14 +58,19 @@ function Toast(toastOptions) {
     if (options.duration > 0) {
         toast.timer = setTimeout(function () {
             toast.clear();
-            queue = queue.filter(function (item) { return item !== toast; });
+            queue = queue.filter(function (item) {
+                return item !== toast;
+            });
         }, options.duration);
     }
     return toast;
 }
-var createMethod = function (type) { return function (options) {
-    return Toast(__assign({ type: type }, parseOptions(options)));
-}; };
+
+var createMethod = function (type) {
+    return function (options) {
+        return Toast(__assign({type: type}, parseOptions(options)));
+    };
+};
 Toast.loading = createMethod('loading');
 Toast.success = createMethod('success');
 Toast.fail = createMethod('fail');

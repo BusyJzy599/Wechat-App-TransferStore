@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../../../common/component");
 var utils_1 = require("../../utils");
 component_1.VantComponent({
@@ -67,7 +67,7 @@ component_1.VantComponent({
                 }
                 days.push(config);
             }
-            this.setData({ days: days });
+            this.setData({days: days});
         },
         getMultipleDayType: function (day) {
             var currentDate = this.data.currentDate;
@@ -75,7 +75,9 @@ component_1.VantComponent({
                 return '';
             }
             var isSelected = function (date) {
-                return currentDate.some(function (item) { return utils_1.compareDay(item, date) === 0; });
+                return currentDate.some(function (item) {
+                    return utils_1.compareDay(item, date) === 0;
+                });
             };
             if (isSelected(day)) {
                 var prevDay = utils_1.getPrevDay(day);
@@ -120,7 +122,8 @@ component_1.VantComponent({
             }
         },
         getDayType: function (day) {
-            var _a = this.data, type = _a.type, minDate = _a.minDate, maxDate = _a.maxDate, currentDate = _a.currentDate;
+            var _a = this.data, type = _a.type, minDate = _a.minDate, maxDate = _a.maxDate,
+                currentDate = _a.currentDate;
             if (utils_1.compareDay(day, minDate) < 0 || utils_1.compareDay(day, maxDate) > 0) {
                 return 'disabled';
             }

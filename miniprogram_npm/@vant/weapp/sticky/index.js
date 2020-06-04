@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var page_scroll_1 = require("../mixins/page-scroll");
 var ROOT_ELEMENT = '.van-sticky';
@@ -57,27 +57,24 @@ component_1.VantComponent({
                             fixed: false,
                             transform: container.height - root.height
                         });
-                    }
-                    else if (offsetTop >= root.top) {
+                    } else if (offsetTop >= root.top) {
                         _this.setDataAfterDiff({
                             fixed: true,
                             height: root.height,
                             transform: 0
                         });
-                    }
-                    else {
-                        _this.setDataAfterDiff({ fixed: false, transform: 0 });
+                    } else {
+                        _this.setDataAfterDiff({fixed: false, transform: 0});
                     }
                 });
                 return;
             }
             this.getRect(ROOT_ELEMENT).then(function (root) {
                 if (offsetTop >= root.top) {
-                    _this.setDataAfterDiff({ fixed: true, height: root.height });
+                    _this.setDataAfterDiff({fixed: true, height: root.height});
                     _this.transform = 0;
-                }
-                else {
-                    _this.setDataAfterDiff({ fixed: false });
+                } else {
+                    _this.setDataAfterDiff({fixed: false});
                 }
             });
         },

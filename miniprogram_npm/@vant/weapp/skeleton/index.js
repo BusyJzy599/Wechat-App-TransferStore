@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 component_1.VantComponent({
     classes: ['avatar-class', 'title-class', 'row-class'],
@@ -8,7 +8,7 @@ component_1.VantComponent({
             type: Number,
             value: 0,
             observer: function (value) {
-                this.setData({ rowArray: Array.from({ length: value }) });
+                this.setData({rowArray: Array.from({length: value})});
             },
         },
         title: Boolean,
@@ -37,7 +37,7 @@ component_1.VantComponent({
             type: null,
             value: '100%',
             observer: function (val) {
-                this.setData({ isArray: val instanceof Array });
+                this.setData({isArray: val instanceof Array});
             }
         }
     },

@@ -1,90 +1,100 @@
 <!--index.wxml-->
 <scroll-view scroll-y>
-	<view class="top">
-		<image src="/pages/img/top.jpg" mode="heightFix" />
-		<text  wx:if="{{!hasUserInfo}}" class="cover-top">未登录</text>
-		<text  wx:else class="cover-top">您好,{{userInfo.nickName}}</text>
-	</view>
-	<view class="main">
-		<!--搜索-->
-		<view class="cu-bar search bg-white" style="background:rgba(114, 130, 138, 0)">
-			<view class="search-form round">
-				<text class="cuIcon-search"></text>
-				<input type="text" placeholder="搜索订单" confirm-type="search" style="border:none"></input>
-			</view>
-			<view class="action">
-				<text class="cuIcon-scan  text-blue" bindtap="scanSearch"></text>
-			</view>
-		</view>
-		<!--轮播-->
-		<view class="cu-bar bg-white">
-			<view class="action sub-title">
-				<text class="text-xl text-bold text-blue">推送消息</text>
-				<text class="text-ABC text-blue">recommend</text>
-			</view>
-		</view>
-		<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-			<swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
-				<view class="swiper-item">
-					<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-					<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-				</view>
-			</swiper-item>
-		</swiper>
-		<!--主界面-->
-		<view wx:if="{{hasUserInfo}}">
-			<van-row>
-				<van-col span="24">
-					<view class="cu-bar bg-white">
-						<view class="action sub-title">
-							<text class="text-xl text-bold text-blue">与我相关</text>
-							<text class="text-ABC text-blue">about</text>
-						</view>
-					</view>
-					<!--信息-->
-					<van-collapse value="{{ activeNames }}" bind:change="onCollapse">
-						<van-collapse-item wx:for="{{about}}" title="{{item.title}}" name="{{item.name}}" icon="{{item.icon1}}">
-							<view class="cu-list menu-avatar">
-								<button class="cu-item  radius shadow bg-white margin-bottom-xs" wx:for="{{item.data}}" wx:for-item="itemData" bindtap="checkOrderInfo" data-id="{{itemData.id}}" wx:for-index="i" wx:if="{{i<3}}">
-									<view class="cu-avatar lg" style="background-image:url({{itemData.goods.avatar}});"></view>
-									<view class="content">
-										<view class="text-{{item.icon2.color}}">{{item.content}}</view>
-										<view class="text-gray text-sm flex">
-											<text class="text-cut">
-												<text>{{itemData.goods.desc}}</text>
-											</text>
-										</view>
-									</view>
-									<view class="action">
-										<text class="cuIcon-{{item.icon2.name}} text-{{item.icon2.color}}"></text>
-										<view class="text-grey text-xs">{{filter.toFormatDate(itemData.change_time)}}</view>
-									</view>
-								</button>
-							</view>
-							<!--查看所有-->
-							<view class="cu-list menu solids-top margin-top" wx:if="{{item.data.length>=3}}">
-								<view class="cu-item arrow">
-									<view class="content">
-										<navigator class="content" hover-class="none" url="/pages/user/order/order?status={{item.data[0].status}}" open-type="navigate">
-											<text class="cuIcon-forwardfill text-blue"></text>
-											<text class="text-grey">查看所有</text>
-										</navigator>
-									</view>
-								</view>
-							</view>
-						</van-collapse-item>
+    <view class="top">
+        <image src="/pages/img/top.jpg" mode="heightFix"/>
+        <text wx:if="{{!hasUserInfo}}" class="cover-top">未登录</text>
+        <text wx:else class="cover-top">您好,{{userInfo.nickName}}</text>
+    </view>
+    <view class="main">
+        <!--搜索-->
+        <view class="cu-bar search bg-white" style="background:rgba(114, 130, 138, 0)">
+            <view class="search-form round">
+                <text class="cuIcon-search"></text>
+                <input type="text" placeholder="搜索订单" confirm-type="search" style="border:none"></input>
+            </view>
+            <view class="action">
+                <text class="cuIcon-scan  text-blue" bindtap="scanSearch"></text>
+            </view>
+        </view>
+        <!--轮播-->
+        <view class="cu-bar bg-white">
+            <view class="action sub-title">
+                <text class="text-xl text-bold text-blue">推送消息</text>
+                <text class="text-ABC text-blue">recommend</text>
+            </view>
+        </view>
+        <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true"
+                autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3"
+                indicator-active-color="#0081ff">
+            <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+                <view class="swiper-item">
+                    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+                    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
+                           objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+                </view>
+            </swiper-item>
+        </swiper>
+        <!--主界面-->
+        <view wx:if="{{hasUserInfo}}">
+            <van-row>
+                <van-col span="24">
+                    <view class="cu-bar bg-white">
+                        <view class="action sub-title">
+                            <text class="text-xl text-bold text-blue">与我相关</text>
+                            <text class="text-ABC text-blue">about</text>
+                        </view>
+                    </view>
+                    <!--信息-->
+                    <van-collapse value="{{ activeNames }}" bind:change="onCollapse">
+                        <van-collapse-item wx:for="{{about}}" title="{{item.title}}" name="{{item.name}}"
+                                           icon="{{item.icon1}}">
+                            <view class="cu-list menu-avatar">
+                                <button class="cu-item  radius shadow bg-white margin-bottom-xs" wx:for="{{item.data}}"
+                                        wx:for-item="itemData" bindtap="checkOrderInfo" data-id="{{itemData.id}}"
+                                        wx:for-index="i" wx:if="{{i<3}}" disabled="{{itemData.status==1}}">
+                                    <view class="cu-avatar lg"
+                                          style="background-image:url({{itemData.goods.avatar}});"></view>
+                                    <view class="content">
+                                        <view class="text-{{item.icon2.color}}">{{item.content}}</view>
+                                        <view class="text-gray text-sm flex">
+                                            <text class="text-cut">
+                                                <text>{{itemData.goods.desc}}</text>
+                                            </text>
+                                        </view>
+                                    </view>
+                                    <view class="action">
+                                        <text class="cuIcon-{{item.icon2.name}} text-{{item.icon2.color}}"></text>
+                                        <view class="text-grey text-xs">{{filter.toFormatDate(itemData.change_time)}}
+                                        </view>
+                                    </view>
+                                </button>
+                            </view>
+                            <!--查看所有-->
+                            <view class="cu-list menu solids-top margin-top" wx:if="{{item.data.length>=3}}">
+                                <view class="cu-item arrow">
+                                    <view class="content">
+                                        <navigator class="content" hover-class="none"
+                                                   url="/pages/user/order/order?status={{item.data[0].status}}"
+                                                   open-type="navigate">
+                                            <text class="cuIcon-forwardfill text-blue"></text>
+                                            <text class="text-grey">查看所有</text>
+                                        </navigator>
+                                    </view>
+                                </view>
+                            </view>
+                        </van-collapse-item>
 
-					</van-collapse>
-				</van-col>
-			</van-row>
-		</view>
-		<!--未登录-->
-		<view wx:else>
-			<view class="solid-bottom text-xsl padding">
-				<text class=" cuIcon-notice text-grey">请先登录!</text>
-			</view>
-		</view>
-	</view>
+                    </van-collapse>
+                </van-col>
+            </van-row>
+        </view>
+        <!--未登录-->
+        <view wx:else>
+            <view class="solid-bottom text-xsl padding">
+                <text class=" cuIcon-notice text-grey">请先登录!</text>
+            </view>
+        </view>
+    </view>
 </scroll-view>
-<!--微信js代码，视图层逻辑 -->
+        <!--微信js代码，视图层逻辑 -->
 <wxs module="filter" src="../../app.wxs"></wxs>

@@ -1,11 +1,13 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var utils_1 = require("../common/utils");
 var color_1 = require("../common/color");
+
 function format(rate) {
     return Math.min(Math.max(rate, 0), 100);
 }
+
 var PERIMETER = 2 * Math.PI;
 var BEGIN_ANGLE = -Math.PI / 2;
 var STEP = 1;
@@ -69,14 +71,19 @@ component_1.VantComponent({
             if (utils_1.isObj(color)) {
                 var LinearColor_1 = context.createLinearGradient(size, 0, 0, 0);
                 Object.keys(color)
-                    .sort(function (a, b) { return parseFloat(a) - parseFloat(b); })
-                    .map(function (key) { return LinearColor_1.addColorStop(parseFloat(key) / 100, color[key]); });
+                    .sort(function (a, b) {
+                        return parseFloat(a) - parseFloat(b);
+                    })
+                    .map(function (key) {
+                        return LinearColor_1.addColorStop(parseFloat(key) / 100, color[key]);
+                    });
                 hoverColor = LinearColor_1;
             }
-            this.setData({ hoverColor: hoverColor });
+            this.setData({hoverColor: hoverColor});
         },
         presetCanvas: function (context, strokeStyle, beginAngle, endAngle, fill) {
-            var _a = this.data, strokeWidth = _a.strokeWidth, lineCap = _a.lineCap, clockwise = _a.clockwise, size = _a.size;
+            var _a = this.data, strokeWidth = _a.strokeWidth, lineCap = _a.lineCap, clockwise = _a.clockwise,
+                size = _a.size;
             var position = size / 2;
             var radius = position - strokeWidth / 2;
             context.setStrokeStyle(strokeStyle);
@@ -128,13 +135,11 @@ component_1.VantComponent({
                 if (_this.currentValue !== value) {
                     if (_this.currentValue < value) {
                         _this.currentValue += STEP;
-                    }
-                    else {
+                    } else {
                         _this.currentValue -= STEP;
                     }
                     _this.drawCircle(_this.currentValue);
-                }
-                else {
+                } else {
                     _this.clearInterval();
                 }
             }, 1000 / speed);

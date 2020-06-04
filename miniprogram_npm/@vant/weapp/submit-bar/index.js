@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 component_1.VantComponent({
     classes: [
@@ -52,7 +52,7 @@ component_1.VantComponent({
             });
         },
         updateTip: function () {
-            this.setData({ hasTip: typeof this.data.tip === 'string' });
+            this.setData({hasTip: typeof this.data.tip === 'string'});
         },
         onSubmit: function (event) {
             this.$emit('submit', event.detail);

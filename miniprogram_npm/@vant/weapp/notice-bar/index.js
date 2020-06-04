@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var FONT_COLOR = '#ed6a0c';
 var BG_COLOR = '#fffbe8';
@@ -125,7 +125,7 @@ component_1.VantComponent({
         onClickIcon: function () {
             this.timer && clearTimeout(this.timer);
             this.timer = null;
-            this.setData({ show: false });
+            this.setData({show: false});
         },
         onClick: function (event) {
             this.$emit('click', event);

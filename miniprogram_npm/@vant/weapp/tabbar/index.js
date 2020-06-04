@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 component_1.VantComponent({
     relation: {
@@ -50,7 +50,9 @@ component_1.VantComponent({
             if (!Array.isArray(children) || !children.length) {
                 return Promise.resolve();
             }
-            return Promise.all(children.map(function (child) { return child.updateFromParent(); }));
+            return Promise.all(children.map(function (child) {
+                return child.updateFromParent();
+            }));
         },
         onChange: function (child) {
             var index = this.children.indexOf(child);

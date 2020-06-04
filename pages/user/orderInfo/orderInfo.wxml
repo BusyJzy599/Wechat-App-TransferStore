@@ -1,67 +1,77 @@
 <!--pages/user/orderInfo/orderInfo.wxml-->
-<!--微信js代码，视图层逻辑 -->
+        <!--微信js代码，视图层逻辑 -->
 <wxs module="filter" src="../../../app.wxs"></wxs>
 <cu-custom bgColor="bg-white" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">
-		<view class="cu-avatar" style="background-image:url({{orderInfo.goods.avatar}});"></view>
-		{{orderInfo.goods.status==2?'派送中':'已签收'}}
-	</view>
+    <view slot="backText">返回</view>
+    <view slot="content">
+        <view class="cu-avatar" style="background-image:url({{orderInfo.goods.avatar}});"></view>
+        {{orderInfo.goods.status==2?'派送中':'已签收'}}
+    </view>
 </cu-custom>
-<!--我的地图-->
+        <!--我的地图-->
 <view class="map-container">
-	<map id="myMap" class="myMap" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" markers="{{markers}}" polyline="{{polyline}}" bindcontroltap="controltap" bindmarkertap="markertap" bindregionchange="regionchange" bindcallouttap="showOrderInfo"></map>
+    <map id="myMap" class="myMap" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}"
+         markers="{{markers}}" polyline="{{polyline}}" bindcontroltap="controltap" bindmarkertap="markertap"
+         bindregionchange="regionchange" bindcallouttap="showOrderInfo"></map>
 </view>
-<!--相关消息-->
+        <!--相关消息-->
 <view class="order-foot">
-	<view class="radius shadow bg-white" wx:if="{{orderInfo.goods.status==3}}">
-		<view class="solid-bottom text-df padding">请您给{{orderInfo.ware.name}}评分:
-			<van-rate value="{{0}}" bind:change="openStars" style="margin-left:5%" />
-		</view>
-	</view>
-	<!--状态显示-->
-	<view class="bg-white padding  margin-top-xs solids-bottom ">
-		<view class="cu-steps steps-arrow">
-			<view class="cu-item {{index>basics?'':'text-'+filter.getType(item)[1]}}" wx:for="{{4}}" wx:key>
-				<text class="cuIcon-{{filter.getType(item)[0]}}"></text>
-			</view>
-		</view>
-	</view>
-	<!--时间轴-->
-	<view class="cu-timeline">
-		<view class="cu-item cur text-{{filter.getType(item.type)[1]}}  cuIcon-{{filter.getType(item.type)[0]}}" wx:for="{{orderInfo.logistics}}">
-			<view class="content bg-{{filter.getType(item.type)[1]}} shadow-blur">
-				<text>{{filter.toFormatDate(item.time)}}</text> {{item.content}}
-			</view>
-		</view>
-	</view>
-	<!--买家信息-->
-	<info-bar info="派送信息" />
-	<view class="padding-xl radius shadow bg-white">
-	<view class="text-left padding-xs "><text decode="{{true}}">姓名:&ensp;{{userOrderInfo.name}}</text> </view>
-  <view class="text-left padding-xs"><text decode="{{true}}">电话:&ensp;{{userOrderInfo.phone}}</text></view>
-  <view class="text-left padding-xs"><text decode="{{true}}">地址:&ensp;{{userOrderInfo.provincial}}{{userOrderInfo.address}}</text></view>
-	</view>
-	<!--卖家信息-->
-	<info-bar info="卖家信息" />
-	<view class="padding-xl radius shadow bg-white">
-	</view>
-	<!--中转仓信息-->
-	<info-bar info="仓库信息" />
-	<view class="padding-xl radius shadow bg-white">
-	</view>
+    <view class="radius shadow bg-white" wx:if="{{orderInfo.goods.status==3}}">
+        <view class="solid-bottom text-df padding">请您给{{orderInfo.ware.name}}评分:
+            <van-rate value="{{0}}" bind:change="openStars" style="margin-left:5%"/>
+        </view>
+    </view>
+    <!--状态显示-->
+    <view class="bg-white padding  margin-top-xs solids-bottom ">
+        <view class="cu-steps steps-arrow">
+            <view class="cu-item {{index>basics?'':'text-'+filter.getType(item)[1]}}" wx:for="{{4}}" wx:key>
+                <text class="cuIcon-{{filter.getType(item)[0]}}"></text>
+            </view>
+        </view>
+    </view>
+    <!--时间轴-->
+    <view class="cu-timeline">
+        <view class="cu-item cur text-{{filter.getType(item.type)[1]}}  cuIcon-{{filter.getType(item.type)[0]}}"
+              wx:for="{{orderInfo.logistics}}">
+            <view class="content bg-{{filter.getType(item.type)[1]}} shadow-blur">
+                <text>{{filter.toFormatDate(item.time)}}</text>
+                {{item.content}}
+            </view>
+        </view>
+    </view>
+    <!--买家信息-->
+    <info-bar info="派送信息"/>
+    <view class="padding-xl radius shadow bg-white">
+        <view class="text-left padding-xs ">
+            <text decode="{{true}}">姓名:&ensp;{{userOrderInfo.name}}</text>
+        </view>
+        <view class="text-left padding-xs">
+            <text decode="{{true}}">电话:&ensp;{{userOrderInfo.phone}}</text>
+        </view>
+        <view class="text-left padding-xs">
+            <text decode="{{true}}">地址:&ensp;{{userOrderInfo.provincial}}{{userOrderInfo.address}}</text>
+        </view>
+    </view>
+    <!--卖家信息-->
+    <info-bar info="卖家信息"/>
+    <view class="padding-xl radius shadow bg-white">
+    </view>
+    <!--中转仓信息-->
+    <info-bar info="仓库信息"/>
+    <view class="padding-xl radius shadow bg-white">
+    </view>
 </view>
-<!--信息显示-->
+        <!--信息显示-->
 <view class="cu-modal {{modalName=='info'?'show':''}}">
-	<view class="cu-dialog">
-		<view class="cu-bar bg-white justify-end">
-			<view class="content">{{modleTarget==0?'收货地址':'中转仓'}}</view>
-			<view class="action" bindtap="hideModal">
-				<text class="cuIcon-close text-red"></text>
-			</view>
-		</view>
-		<view class="padding-xl">
-			功能完善中...
-		</view>
-	</view>
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">{{modleTarget==0?'收货地址':'中转仓'}}</view>
+            <view class="action" bindtap="hideModal">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="padding-xl">
+            功能完善中...
+        </view>
+    </view>
 </view>

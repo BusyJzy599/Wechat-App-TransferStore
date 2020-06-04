@@ -1,43 +1,43 @@
 <scroll-view scroll-y="true">
-	<view class="top">
-		<image src="/pages/img/top.jpg" mode="heightFix" />
-	</view>
-	<view wx:if="{{hasUserInfo}}">
-		<view wx:if="{{isSeller}}">
-			<!--订单数据统计-->
-			<!--选择按钮-->
-			<view class="radius  shadow  bg-white margin-top-xl margin-lr-xl">
-				<van-grid column-num="2">
-					<van-grid-item icon="send-gift-o" text="我的仓库" id="myTransfer" bind:click="toShow" />
-					<van-grid-item icon="balance-list-o" id="myOrder" text="我的订单" bind:click="toShow" />
-				</van-grid>
-			</view>
-			<view class="cu-bar bg-white  margin-top">
-				<view class="action sub-title">
-					<text class="text-xl text-bold text-blue">全国中转仓分布图</text>
-					<text class="bg-gradual-blue" style="width:3rem"></text>
-				</view>
-			</view>
-			<!--图片-->
-			<view class="radius  shadow  bg-white margin-lr margin-top-xs">
-				<image style="width:100%" src="/pages/img/warehouse_location.png" mode="acceptFill"></image>
-			</view>
-			<!--导入订单数据-->
-			<button class="cn-btn bg-blue round lg shadow margin-top margin-lr" bindtap="showData">
-				<text class="cuIcon-rankfill text-white text-sl"></text>查看我的订单数据
-			</button>
-		</view>
-		<!--未成为商家-->
-		<view wx:else style="margin-top:40%">
-			<view class="solid-bottom text-xsl padding">
-				<text class=" cuIcon-notice text-grey">您还不是商家哦!</text>
-			</view>
-		</view>
-	</view>
-	<!--未登录-->
-	<view wx:else style="margin-top:40%">
-		<view class="solid-bottom text-xsl padding">
-			<text class=" cuIcon-notice text-grey">请先登录!</text>
-		</view>
-	</view>
+    <view class="top">
+        <image src="/pages/img/top.jpg" mode="heightFix"/>
+    </view>
+    <view wx:if="{{hasUserInfo}}">
+        <view wx:if="{{isSeller}}">
+            <!--订单数据统计-->
+            <!--选择按钮-->
+            <view class="radius  shadow  bg-white margin-top-xl margin-lr-xl">
+                <van-grid column-num="2">
+                    <van-grid-item icon="send-gift-o" text="我的仓库" id="myTransfer" bind:click="toShow"/>
+                    <van-grid-item icon="balance-list-o" id="myOrder" text="我的订单" bind:click="toShow"/>
+                </van-grid>
+            </view>
+            <view class="cu-bar bg-white  margin-top">
+                <view class="action sub-title">
+                    <text class="text-xl text-bold text-blue">全国中转仓分布图</text>
+                    <text class="bg-gradual-blue" style="width:3rem"></text>
+                </view>
+            </view>
+            <!--图片-->
+            <view class="radius  shadow  bg-white margin-lr margin-top-xs">
+                <image style="width:100%" src="/pages/img/warehouse_location.png" mode="acceptFill"></image>
+            </view>
+            <!--导入订单数据-->
+            <button class="cn-btn bg-blue round lg shadow margin-top margin-lr" bindtap="showData">
+                <text class="cuIcon-rankfill text-white text-sl"></text>查看我的订单数据
+            </button>
+        </view>
+        <!--未成为商家-->
+        <view wx:else style="margin-top:40%">
+            <view class="solid-bottom text-xsl padding">
+                <text class=" cuIcon-notice text-grey">您还不是商家哦!</text>
+            </view>
+        </view>
+    </view>
+    <!--未登录-->
+    <view wx:else style="margin-top:40%">
+        <view class="solid-bottom text-xsl padding">
+            <text class=" cuIcon-notice text-grey">请先登录!</text>
+        </view>
+    </view>
 </scroll-view>

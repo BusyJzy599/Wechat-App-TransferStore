@@ -2,20 +2,20 @@
 var utils = require('../wxs/utils.wxs');
 
 function inputStyle(autosize) {
-  if (autosize.constructor === 'Object') {
-    var style = '';
-    if (autosize.minHeight) {
-      style += 'min-height:' + utils.addUnit(autosize.minHeight) + ';';
+    if (autosize.constructor === 'Object') {
+        var style = '';
+        if (autosize.minHeight) {
+            style += 'min-height:' + utils.addUnit(autosize.minHeight) + ';';
+        }
+        if (autosize.maxHeight) {
+            style += 'max-height:' + utils.addUnit(autosize.maxHeight) + ';';
+        }
+        return style;
     }
-    if (autosize.maxHeight) {
-      style += 'max-height:' + utils.addUnit(autosize.maxHeight) + ';';
-    }
-    return style;
-  }
 
-  return '';
+    return '';
 }
 
 module.exports = {
-  inputStyle: inputStyle
+    inputStyle: inputStyle
 };

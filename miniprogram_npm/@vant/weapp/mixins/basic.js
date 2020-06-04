@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.basic = Behavior({
     methods: {
         $emit: function () {
@@ -11,7 +11,9 @@ exports.basic = Behavior({
         },
         set: function (data, callback) {
             this.setData(data, callback);
-            return new Promise(function (resolve) { return wx.nextTick(resolve); });
+            return new Promise(function (resolve) {
+                return wx.nextTick(resolve);
+            });
         },
         getRect: function (selector, all) {
             var _this = this;
@@ -19,13 +21,13 @@ exports.basic = Behavior({
                 wx.createSelectorQuery()
                     .in(_this)[all ? 'selectAll' : 'select'](selector)
                     .boundingClientRect(function (rect) {
-                    if (all && Array.isArray(rect) && rect.length) {
-                        resolve(rect);
-                    }
-                    if (!all && rect) {
-                        resolve(rect);
-                    }
-                })
+                        if (all && Array.isArray(rect) && rect.length) {
+                            resolve(rect);
+                        }
+                        if (!all && rect) {
+                            resolve(rect);
+                        }
+                    })
                     .exec();
             });
         }

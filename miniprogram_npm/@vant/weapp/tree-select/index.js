@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 component_1.VantComponent({
     classes: [
@@ -53,14 +53,14 @@ component_1.VantComponent({
             var index = event.detail;
             var item = this.data.items[index];
             if (!item.disabled) {
-                this.$emit('click-nav', { index: index });
+                this.$emit('click-nav', {index: index});
             }
         },
         // 更新子项列表
         updateSubItems: function () {
             var _a = this.data, items = _a.items, mainActiveIndex = _a.mainActiveIndex;
             var _b = (items[mainActiveIndex] || {}).children, children = _b === void 0 ? [] : _b;
-            return this.set({ subItems: children });
+            return this.set({subItems: children});
         }
     }
 });

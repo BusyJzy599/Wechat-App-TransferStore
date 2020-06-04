@@ -1,55 +1,65 @@
 <!--pages/chat/chat.wxml-->
-<!--微信js代码，视图层逻辑 -->
+        <!--微信js代码，视图层逻辑 -->
 <wxs module="filter" src="../../app.wxs"></wxs>
 <scroll-view scroll-y style="height:100%">
-	<view class="top">
-		<view class="user-top">
-			<view class="avatar-top">
-				<view class="cu-avatar xl round margin-left" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg);">
-				</view>
-				123456
-			</view>
-		</view>
-		<image src="/pages/img/top.jpg" mode="heightFix"></image>
-	</view>
-	<!--搜索-->
-	<view class="cu-bar search bg-white" wx:if="{{hasUserInfo}}">
-		<view class="search-form round">
-			<text class="cuIcon-search"></text>
-			<input type="text" placeholder="搜索消息" confirm-type="search" bindinput="searchChat" style="border:none"></input>
-		</view>
-	</view>
-	<view class="chat-main" wx:if="{{hasUserInfo}}">
-		<view class="padding-xl radius shadow-warp bg-white  margin-left margin-right">
-			<view class="cu-bar bg-white solid-bottom margin-top">
-				<view class="action">
-					<text class="cuIcon-title text-orange "></text> 消息列表
-				</view>
-			</view>
-			<view class="cu-list menu-avatar">
-				<view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" style="background:{{index==selectInfor?itemColor:'white'}}" wx:for="{{comments}}" wx:if="{{item.isShow}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-id="{{item.id}}">
-					<view class="cu-avatar round lg" style="background-image:url({{item.avatar}});">
-						<view class="cu-tag badge" wx:if="{{!item.readed}}"></view>
-					</view>
-					<view class="content">
-						<view class="text-grey">{{item.name}}</view>
-						<view class="text-gray text-sm text-cut paddingradius">{{item.comment[item.comment.length-1].content}}</view>
-					</view>
-					<view class="action">
-						<view class="text-grey text-xs">{{filter.toFormatDate(item.comment[item.comment.length-1].time)}}</view>
-					</view>
-					<view class="move">
-						<view class="bg-grey" bindtap="readedInfo">已读</view>
-						<view class="bg-red" bindtap="deleteInfo">删除</view>
-					</view>
-				</view>
-			</view>
-		</view>
-	</view>
-	<!--未登录-->
-	<view wx:else style="margin-top:40%">
-		<view class="solid-bottom text-xsl padding">
-			<text class=" cuIcon-notice text-grey">请先登录!</text>
-		</view>
-	</view>
+    <view class="top">
+        <view class="user-top">
+            <view class="avatar-top">
+                <view class="cu-avatar xl round margin-left"
+                      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg);">
+                </view>
+                123456
+            </view>
+        </view>
+        <image src="/pages/img/top.jpg" mode="heightFix"></image>
+    </view>
+    <!--搜索-->
+    <view class="cu-bar search bg-white" wx:if="{{hasUserInfo}}">
+        <view class="search-form round">
+            <text class="cuIcon-search"></text>
+            <input type="text" placeholder="搜索消息" confirm-type="search" bindinput="searchChat"
+                   style="border:none"></input>
+        </view>
+    </view>
+    <view class="chat-main" wx:if="{{hasUserInfo}}">
+        <view class="padding-xl radius shadow-warp bg-white  margin-left margin-right">
+            <view class="cu-bar bg-white solid-bottom margin-top">
+                <view class="action">
+                    <text class="cuIcon-title text-orange "></text>
+                    消息列表
+                </view>
+            </view>
+            <view class="cu-list menu-avatar">
+                <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}"
+                      style="background:{{index==selectInfor?itemColor:'white'}}" wx:for="{{comments}}"
+                      wx:if="{{item.isShow}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove"
+                      bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-id="{{item.id}}">
+                    <view class="cu-avatar round lg" style="background-image:url({{item.avatar}});">
+                        <view class="cu-tag badge" wx:if="{{!item.readed}}"></view>
+                    </view>
+                    <view class="content">
+                        <view class="text-grey">{{item.name}}</view>
+                        <view class="text-gray text-sm text-cut paddingradius">
+                            {{item.comment[item.comment.length-1].content}}
+                        </view>
+                    </view>
+                    <view class="action">
+                        <view class="text-grey text-xs">
+                            {{filter.toFormatDate(item.comment[item.comment.length-1].time)}}
+                        </view>
+                    </view>
+                    <view class="move">
+                        <view class="bg-grey" bindtap="readedInfo">已读</view>
+                        <view class="bg-red" bindtap="deleteInfo">删除</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--未登录-->
+    <view wx:else style="margin-top:40%">
+        <view class="solid-bottom text-xsl padding">
+            <text class=" cuIcon-notice text-grey">请先登录!</text>
+        </view>
+    </view>
 </scroll-view>

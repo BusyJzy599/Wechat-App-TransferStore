@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 var component_1 = require("../common/component");
 var touch_1 = require("../mixins/touch");
 var utils_1 = require("../common/utils");
@@ -87,7 +87,7 @@ component_1.VantComponent({
                 barStyle: "\n          width: " + width + ";\n          height: " + utils_1.addUnit(barHeight) + ";\n          " + (drag ? 'transition: none;' : '') + "\n        ",
             });
             if (drag) {
-                this.$emit('drag', { value: value });
+                this.$emit('drag', {value: value});
             }
             if (end) {
                 this.$emit('change', value);
