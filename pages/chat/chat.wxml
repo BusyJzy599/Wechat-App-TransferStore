@@ -57,7 +57,7 @@
         </view>
     </view>
     <!--未登录-->
-    <view wx:else style="margin-top:40%">
+    <view wx:else style="margin-top:82%">
         <view class="solid-bottom text-xsl padding">
             <text class=" cuIcon-notice text-grey">请先登录!</text>
         </view>

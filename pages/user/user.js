@@ -20,7 +20,7 @@ Component({
         textareaValue: '',
     },
     attached() {
-        this.setData({isSeller: app.globalData.isSeller})
+        this.setData({ isSeller: app.globalData.isSeller })
         app.pageGetUserInfo(this)
     },
     /**
@@ -29,36 +29,12 @@ Component({
     methods: {
         //认证商家
         identify(e) {
-            var that = this
-            wx.request({
-                url: 'http://localhost:8887/user/seller', //服务器地址
-                menthod: "get",
-                header: {
-                    'content-type': 'application/json'
-                },
-                data: {
-                    'userId': app.globalData.userId,
-                },
-                success: function (res) {
-                    console.log(res.data)
-                    if (res.data==true) {
-                        app.getSellerInfo()
-                        that.setData({isSeller: app.globalData.isSeller})
-                    }else{
-                        wx: wx.showToast({
-                            title: '认证失败',
-                            duration: 404,
-                        })
-                    }
-                },
-                fail: function (res) {
-                    wx: wx.showToast({
-                        title: '认证失败',
-                        duration: 404,
-                    })
-                }
-            })
-            this.setData({isSeller: app.globalData.isSeller})
+            console.log("--------------")
+            app.globalData.userId = 4
+            app.globalData.isSeller = true
+            app.userDataInfo(app.globalData.userId)
+            app.getSellerInfo(app.globalData.userId)
+            this.setData({ isSeller: app.globalData.isSeller })
             if (this.data.isSeller) {
                 wx: wx.showToast({
                     title: '认证成功',

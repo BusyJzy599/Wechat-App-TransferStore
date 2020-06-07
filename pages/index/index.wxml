@@ -48,6 +48,7 @@
                     <van-collapse value="{{ activeNames }}" bind:change="onCollapse">
                         <van-collapse-item wx:for="{{about}}" title="{{item.title}}" name="{{item.name}}"
                                            icon="{{item.icon1}}">
+                                           <view class="text-grey cuIcon-warn" wx:if="{{item.data.length==0}}">暂无订单信息~</view>
                             <view class="cu-list menu-avatar">
                                 <button class="cu-item  radius shadow bg-white margin-bottom-xs" wx:for="{{item.data}}"
                                         wx:for-item="itemData" bindtap="checkOrderInfo" data-id="{{itemData.id}}"
@@ -87,6 +88,7 @@
                     </van-collapse>
                 </van-col>
             </van-row>
+        
         </view>
         <!--未登录-->
         <view wx:else>

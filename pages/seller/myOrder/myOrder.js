@@ -18,6 +18,12 @@ Page({
         TabCur: 0,
         scrollLeft: 0,
         activeNames: [],
+        orderInfo: []
+    },
+    localSend() {
+        wx.showToast({
+            title: '请尽快发货',
+        })
     },
     //确认派单
     sendOrder() {
@@ -40,14 +46,14 @@ Page({
                 app.globalData.userMore[1][i].ware = wareId
                 app.globalData.userMore[1][i].change_time = Date.parse(new Date())
                 app.globalData.userMore[1][i].logistics.push({
-                    type: 2,
+                    type: 1,
                     content: '中转仓收到商家1号配货信息，准备派送',
                     time: Date.parse(new Date())
                 })
             }
         }
         this.hideModal()
-        this.setData({orderInfo: app.getOrder()[this.data.TabCur],})
+        this.setData({ orderInfo: app.getOrder()[this.data.TabCur], })
     },
     onChange(event) {
         console.log(event.detail)
@@ -64,7 +70,7 @@ Page({
                 orderInfo: app.getOrder()[id],
             })
         } else {
-            that.setData({activeNames: [],})
+            that.setData({ activeNames: [], })
             setTimeout(function () {
                 that.setData({
                     TabCur: id,
@@ -77,10 +83,10 @@ Page({
         this.setData({
             orderInfo: app.getOrder()[this.data.TabCur],
             aboutInfo: [
-                {name: '买家地址', type: 'dest', info: 'address'},
-                {name: '买家信息', type: 'dest', info: 'name'},
-                {name: '仓库地址', type: 'ware', info: 'address'},
-                {name: '仓库电话', type: 'ware', info: 'phone'}
+                { name: '买家地址', type: 'dest', info: 'address' },
+                { name: '买家信息', type: 'dest', info: 'name' },
+                { name: '仓库地址', type: 'ware', info: 'address' },
+                { name: '仓库电话', type: 'ware', info: 'phone' }
             ]
         })
     },
@@ -106,7 +112,7 @@ Page({
                 out = x
             }
         }
-        var info = {ware: out, info: app.getWareHouseInfo(out.id)}
+        var info = { ware: out, info: app.getWareHouseInfo(out.id) }
         for (var n in out.ware) {
             if (out.ware[n].id == goods)
                 num = out.ware[n].number

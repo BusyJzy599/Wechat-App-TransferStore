@@ -30,12 +30,12 @@
         <!--未成为商家-->
         <view wx:else style="margin-top:40%">
             <view class="solid-bottom text-xsl padding">
-                <text class=" cuIcon-notice text-grey">您还不是商家哦!</text>
+                <text class=" cuIcon-notice text-grey">暂无权限!</text>
             </view>
         </view>
     </view>
     <!--未登录-->
-    <view wx:else style="margin-top:40%">
+    <view wx:else style="margin-top:60%">
         <view class="solid-bottom text-xsl padding">
             <text class=" cuIcon-notice text-grey">请先登录!</text>
         </view>

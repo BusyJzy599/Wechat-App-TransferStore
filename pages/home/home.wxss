@@ -1,4 +1,6 @@
 /* pages/home/home.wxss */
+@import "/components/main.wxss";
+@import "/components/icon.wxss";
 page {
     height: 100%;
 }

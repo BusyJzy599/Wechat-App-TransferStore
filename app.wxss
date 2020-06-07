@@ -27,5 +27,8 @@ page {
 .van-cell {
     border-radius: 20rpx;
 }
+scroll-view{
+    -webkit-overflow-scrolling: touch
+}
 
   

@@ -55,7 +55,7 @@
                     </button>
                 </view>
                 <view class=" padding-xs">
-                    <button class="cu-btn bg-grey shadow">本地派出</button>
+                    <button class="cu-btn bg-grey shadow"  bindtap="localSend">本地派出</button>
                 </view>
             </view>
         </view>

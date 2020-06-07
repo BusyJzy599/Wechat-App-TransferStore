@@ -1,10 +1,32 @@
 <!--pages/home/home.wxml-->
 <view class="main-home">
-    <index id="index" wx:if="{{activeTab == 'index'}}">首页</index>
-    <seller id="seller" wx:if="{{activeTab == 'seller'}}">商家服务</seller>
-    <chat id="chat" panels="{{panels}}" wx:if="{{activeTab == 'chat'}}">消息</chat>
-    <my id="my" wx:if="{{activeTab == 'my'}}">我的</my>
-    <index-tabbar active="{{activeTab}}" panels="{{panels}}" bind:changeTab="onTabChange"></index-tabbar>
+	<van-popup show="{{ show }}" bind:close="onClose" round closeable>
+		<view class="padding" style="width:600rpx">
+			<view class="cu-bar bg-white margin-righ">
+				<view class="action sub-title">
+					<text class="text-xl text-bold text-blue">温馨提示</text>
+					<text class="text-ABC text-blue">notice</text>
+				</view>
+			</view>
+			<view class="cu-item margin-bottom">
+				<view class="content">
+					<text class="text-grey">设计初衷:对未来生活方式进行猜想与铺垫 </text>
+					<text class="text-grey">数据来源:模拟数据以及爬虫数据</text>
+				</view>
+			</view>
+			<text class="solids-bottom">操作步骤:</text>
+			<view class="bg-white">
+				<view class="cu-steps">
+					<view class="cu-item {{index>num?'':'text-olive'}}" wx:for="{{numList}}" wx:key>
+						<text class="num" data-index="{{index + 1}}"></text> {{item.name}}
+					</view>
+				</view>
+			</view>
+		</view>
+	</van-popup>
+	<index id="index" wx:if="{{activeTab == 'index'}}">首页</index>
+	<seller id="seller" wx:if="{{activeTab == 'seller'}}">商家服务</seller>
+	<chat id="chat" panels="{{panels}}" wx:if="{{activeTab == 'chat'}}">消息</chat>
+	<my id="my" wx:if="{{activeTab == 'my'}}">我的</my>
+	<index-tabbar active="{{activeTab}}" panels="{{panels}}" bind:changeTab="onTabChange"></index-tabbar>
 </view>
- 
-

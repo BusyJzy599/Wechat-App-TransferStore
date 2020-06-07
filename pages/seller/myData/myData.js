@@ -253,8 +253,15 @@ Page({
                 day_out = getGoodsData(days)
                 sort_out = getGoodsData(sort)
                 console.log(day_out)
-                wx.hideLoading();
             },
+            fail:function(res){
+                wx: wx.showToast({
+                    title: '获取信息失败',
+                    icon: 'none',
+                    duration: 2000,
+                })
+            },
+            wx:wx.hideLoading()
         })
         //加载图标
         this.setData({

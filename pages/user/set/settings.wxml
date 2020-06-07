@@ -4,13 +4,13 @@
 	<view slot="content">设置</view>
 </cu-custom>
 <view class="cu-list menu card-menu margin-top">
-	<view class="cu-item {{item.margin?'margin-bottom':''}}" wx:for="{{sets}}">
+	<view class="cu-item {{item.margin?'margin-bottom':''}}" wx:for="{{sets}}" wx:key>
 		<view class="content padding-tb-sm">
 			<view>
 				<text class="cuIcon-{{item.icon}} text-{{item.color}} margin-right-xs"></text> {{item.content}}</view>
 		</view>
 		<view class="action">
-			<switch bindchange="switchSex"></switch>
+			<switch bindchange="switchSex" data-id="{{index}}" bindchange="onChange" checked="{{item.checked}}"></switch>
 		</view>
 	</view>
 </view>

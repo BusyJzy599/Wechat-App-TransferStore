@@ -8,22 +8,24 @@ Page({
     data: {
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
-
+        sets: [{ content: '消息通知', icon: 'noticefill', color: 'blue', checked: false },
+        { content: '权限设置', icon: 'repairfill', color: 'orange', checked: false },
+        { content: '隐私', icon: 'attentionfill', color: 'grey', margin: true, checked: false },
+        { content: '关于', icon: 'questionfill', color: 'olive', margin: true, checked: false },]
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.setData({
-            sets: [
-                { content: '消息通知', icon: 'noticefill', color: 'blue' },
-                { content: '权限设置', icon: 'repairfill', color: 'orange' },
-                { content: '隐私', icon: 'attentionfill', color: 'grey', margin: true },
-                { content: '关于', icon: 'questionfill', color: 'olive', margin: true },
-            ]
-        })
-    },
 
+    },
+    onChange(e) {
+        var id = e.currentTarget.dataset.id
+        var newSet = this.data.sets
+        newSet[id].checked = e.detail.value;
+        this.setData({ sets: newSet })
+        console.log(this.data.sets)
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -49,7 +51,8 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-
+        var set = this.data.sets
+        this.setData({ sets: set })
     },
 
     /**

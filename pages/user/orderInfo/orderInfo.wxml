@@ -5,7 +5,7 @@
     <view slot="backText">返回</view>
     <view slot="content">
         <view class="cu-avatar" style="background-image:url({{orderInfo.goods.avatar}});"></view>
-        {{orderInfo.goods.status==2?'派送中':'已签收'}}
+        {{orderInfo.goods.name}}
     </view>
 </cu-custom>
         <!--我的地图-->
@@ -49,16 +49,26 @@
             <text decode="{{true}}">电话:&ensp;{{userOrderInfo.phone}}</text>
         </view>
         <view class="text-left padding-xs">
-            <text decode="{{true}}">地址:&ensp;{{userOrderInfo.provincial}}{{userOrderInfo.address}}</text>
+            <text decode="{{true}}">地址:&ensp;{{userOrderInfo.address}}</text>
         </view>
     </view>
     <!--卖家信息-->
     <info-bar info="卖家信息"/>
     <view class="padding-xl radius shadow bg-white">
+      <view class="text-grey">暂无</view>
     </view>
     <!--中转仓信息-->
     <info-bar info="仓库信息"/>
     <view class="padding-xl radius shadow bg-white">
+     <view class="text-left padding-xs ">
+            <text decode="{{true}}">名称:&ensp;{{wareInfo.name}}</text>
+        </view>
+        <view class="text-left padding-xs">
+            <text decode="{{true}}">电话:&ensp;{{wareInfo.phone}}</text>
+        </view>
+        <view class="text-left padding-xs">
+            <text decode="{{true}}">地址:&ensp;{{wareInfo.address}}</text>
+        </view>
     </view>
 </view>
         <!--信息显示-->

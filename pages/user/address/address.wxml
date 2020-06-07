@@ -18,7 +18,7 @@
                     </view>
                 </view>
                 <view class="text-gray text-sm">
-                    {{item.provincial}} {{item.address}}
+                    {{item.address}}
                 </view>
             </view>
             <view class="action">

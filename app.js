@@ -1,7 +1,7 @@
 //app.js
 App({
     //获取商家信息
-    getSellerInfo() {
+    getSellerInfo(id) {
         var that = this
         wx: wx.showLoading()
         wx.request({
@@ -11,7 +11,7 @@ App({
                 'content-type': 'application/json'
             },
             data: {
-                'sellerId': this.globalData.userId,
+                'sellerId': id,
             },
             success: function (res) {
                 if (res.data != "") {
@@ -20,6 +20,26 @@ App({
                     that.globalData.myWareHouse = res.data
                     that.globalData.isSeller = true
                 }
+                wx: wx.hideLoading()
+            }
+        })
+    },
+    userDataInfo(id){
+        var that=this
+        wx.request({
+            url: 'http://localhost:8887/init/user',
+            menthod: "get",
+            header: {
+                'content-type': 'application/json'
+            },
+            data: {
+                'userId': id,
+            },
+            success: function (res) {
+                that.globalData.myAddress = res.data[0]
+                that.globalData.userMore[1] = res.data[1]
+                that.globalData.myGoods = res.data[2]
+                console.log( that.globalData.userMore[1])
                 wx: wx.hideLoading()
             }
         })
@@ -50,30 +70,16 @@ App({
                         title: '登录成功',
                         duration: 2000,
                     })
-                    wx.request({
-                        url: 'http://localhost:8887/init/user',
-                        menthod: "get",
-                        header: {
-                            'content-type': 'application/json'
-                        },
-                        data: {
-                            'userId': that.globalData.userId,
-                        },
-                        success: function (res) {
-                            that.globalData.myAddress = res.data[0]
-                            that.globalData.userMore[1] = res.data[1]
-                            that.globalData.myGoods = res.data[2]
-                            console.log(res.data)
-                            wx: wx.hideLoading()
-                        }
-                    })
-                    that.getSellerInfo()
-                } else {
-                    wx: wx.showToast({
-                        title: '获取信息失败',
-                        duration: 2000,
-                    })
+                    that.getSellerInfo(that.globalData.userId)
                 }
+            },
+            fail:function(res){
+                wx.hideLoading()
+                wx: wx.showToast({
+                    title: '获取信息失败',
+                    icon: 'none',
+                    duration: 2000,
+                })
             }
         })
 
@@ -189,6 +195,7 @@ App({
                             this.globalData.userInfo = res.userInfo
                             //后端接受
                             this.userLogin(this.globalData.userInfo.nickName, this.globalData.userInfo.avatarUrl)
+                            this.userDataInfo(this.globalData.userId)
                             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                             // 所以此处加入 callback 以防止这种情况
                             if (this.userInfoReadyCallback) {
@@ -262,6 +269,7 @@ App({
     globalData: {
         userInfo: null,
         userId: 0,
+        notice:true,
         isSeller: false,
         gdkey: '31733dc142b32381bf0d05dcc49430da',
         panels: [{ name: 'index', icon: 'wap-home', label: '首页' },
@@ -271,7 +279,7 @@ App({
         /*仓库信息*/
         wareHouse: {
             city: [],
-            ware: [[],[]]
+            ware: [[]]
         },
         /*商家服务仓库信息*/
         myWareHouse: [],
@@ -283,31 +291,31 @@ App({
             /*消息列表*/
             [
                 {
-                    id: 1, name: '小李', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg',
+                    id: 1, name: '商家1', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21001.jpg',
                     comment: [
-                        { type: 0, content: '测试1', time: 1589020756320, link: '' },
-                        { type: 1, content: '收到测试1', time: 1589020756320, link: '' },
-                        { type: 0, content: '测试001', time: 1589020756320, link: '' },
+                        { type: 0, content: '您的快递已在派件', time: 1589020756320, link: '' },
                     ],
                     readed: false, isShow: true
                 },
                 {
-                    id: 2, name: '小张', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg',
+                    id: 2, name: '商家2', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21002.jpg',
                     comment: [
-                        { type: 0, content: '测试2', time: 1589020756320, link: '' },
-                        { type: 1, content: '收到测试3', time: 1589020756320, link: '' },
-                        { type: 0, content: '测试002', time: 1589020756320, link: '' },
+                        { type: 0, content: '您的订单已支付成功', time: 1589020756320, link: '' },
+                        { type: 0, content: '亲~', time: 1589020756320, link: '' },
+                        { type: 1, content: 'OK', time: 1589020756320, link: '' },
+                        { type: 1, content: '中转仓真是快啊', time: 1589020756320, link: '' },
                     ],
-                    readed: false, isShow: true
+                    readed: true, isShow: true
                 },
                 {
-                    id: 3, name: '小明', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg',
+                    id: 3, name: '商家3', avatar: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21003.jpg',
                     comment: [
-                        { type: 0, content: '测试3', time: 1589020756320, link: '' },
-                        { type: 1, content: '收到测试5', time: 1589020756320, link: '' },
-                        { type: 0, content: '测试003', time: 1589020756320, link: '' },
+                        { type: 1, content: '在不在', time: 1589020756320, link: '' },
+                        { type: 1, content: '什么时候发货啊', time: 1589020756320, link: '' },
+                        { type: 1, content: '中转仓这么快捷', time: 1589020756320, link: '' },
+                        { type: 1, content: '你们也要与时俱进啊', time: 1589020756320, link: '' },
                     ],
-                    readed: false, isShow: true
+                    readed: true, isShow: true
                 }
             ],
             /*订单列表*/

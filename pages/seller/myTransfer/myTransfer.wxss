@@ -5,3 +5,6 @@
 .foot {
     height: 10%;
 }
+input{
+    border: none;
+}

@@ -55,6 +55,7 @@ Page({
         var that = this;
         this.setData({orderInfo: app.getOrderInfo(options.orderId)})
         var userOrderInfo = this.data.orderInfo.dest
+        console.log(userOrderInfo)
         if (this.data.orderInfo != {}) {
             var destination = this.data.orderInfo.dest.location.split(',')
             var warehouse = this.data.orderInfo.ware.location.split(',')
@@ -147,7 +148,8 @@ Page({
                     latitude: mylatitude,
                     scale: myscale,
                     basics: that.data.orderInfo.status,
-                    userOrderInfo: userOrderInfo
+                    userOrderInfo: userOrderInfo,
+                    wareInfo:that.data.orderInfo.ware
                 })
             },
             fail: function (data) {

@@ -6,7 +6,7 @@
     <van-row>
         <van-col span="">
             <view wx:if="{{!hasUserInfo}}" class="cu-avatar xl round margin-left"
-                  style="background-image:url('/pages/img/default.jpg')"></view>
+                  style="background-image:url('http://localhost:8887/img/default.jpg')"></view>
             <view wx:else class="cu-avatar xl round margin-left" style="background-image:url({{userInfo.avatarUrl}}">
                 <view class="cu-tag badge {{userInfo.gender==1?'cuIcon-male bg-blue':'cuIcon-female bg-pink'}}"></view>
             </view>

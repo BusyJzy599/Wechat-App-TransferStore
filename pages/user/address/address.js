@@ -15,7 +15,7 @@ Page({
         region: ['重庆市', '重庆市', '沙坪坝区'],
         deleteShow: false,
         deleteActions: [
-            {name: '确认删除?', color: 'red'}
+            { name: '确认删除?', color: 'red' }
         ]
     },
     RegionChange: function (e) {
@@ -45,6 +45,10 @@ Page({
                     addresses: this.data.addresses,
                     selector: 0
                 })
+                wx.showToast({
+                    title: '仅删除本地数据(数据保护)',
+                    icon: 'none'
+                })
             }
         }
     },
@@ -64,19 +68,35 @@ Page({
             console.log("输入为空")
             return
         }
-        var timestamp = Date.parse(new Date()) / 1000;
         var newAddress = {
-            id: timestamp,
             name: e.detail.value.name,
             phone: e.detail.value.phone,
-            provincial: this.data.region.join(','),
-            address: e.detail.value.address,
+            address: this.data.region.join(',') + ',' + e.detail.value.address,
             location: '',
             type: e.detail.value.type
         }
-        app.globalData.myAddress.push(newAddress)
-        this.setData({
-            addresses: app.globalData.myAddress
+        wx: wx.request({
+            url: 'http://localhost:8887/address/add',
+            data: newAddress,
+            header: {
+                'content-type': 'application/json'
+            },
+            method: 'GET',
+            success: (result) => {
+                wx.showToast({
+                    title: '添加成功',
+                })
+                app.globalData.myAddress.push(newAddress)
+                this.setData({
+                    addresses: app.globalData.myAddress
+                })
+            },
+            fail: (res) => {
+                wx.showToast({
+                    title: '添加失败',
+                    icon: 'none'
+                })
+            }
         })
         this.hideModal()
     },

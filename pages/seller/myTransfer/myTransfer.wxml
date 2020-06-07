@@ -1,97 +1,128 @@
 <!--pages/seller/myTransfer/myTransfer.wxml-->
 <cu-custom bgColor="bg-white" isBack="{{true}}">
-    <view slot="backText">返回</view>
-    <view slot="content">我的仓库</view>
+	<view slot="backText">返回</view>
+	<view slot="content">我的仓库</view>
 </cu-custom>
 <scroll-view scroll-y>
-    <view class="cu-card case card">
-        <!--卡片-->
-        <view class="cu-item shadow  radius bg-white" wx:for="{{wareHouses}}">
-            <view class="cu-list menu-avatar">
-                <!--名称-->
-                <view class="text-cut padding solids-bottom">{{item.ware.name}}</view>
-                <view class="padding solids-bottom">
-                    <!--容量-->
-                    <view class="text-shadow text-sm text-gray">仓库容量:</view>
-                    <view class="cu-progress  radius striped active">
-                        <view class="bg-purple" style="width:{{loading?item.ware.wareSize+'%':''}};">
-                            {{item.ware.wareSize}}%
-                        </view>
-                    </view>
-                    <view class="text-shadow text-sm text-gray margin-top">我的容量:</view>
-                    <view class="cu-progress  radius striped active">
-                        <view class="bg-cyan" style="width:{{loading?item.index.mySize+'%':''}};">
-                            {{item.index.mySize}}%
-                        </view>
-                    </view>
-                    <!--商品余量-->
-                    <view class="text-shadow text-sm text-gray margin-top">商品余量:</view>
-                    <view class="cu-capsule radius margin-top-sm" wx:for="{{item.index.ware}}" wx:for-item="itemData">
-                        <view class="cu-tag bg-blue ">{{itemData.info.name}}</view>
-                        <view class="cu-tag line-blue">{{itemData.number}}</view>
-                    </view>
-                </view>
-                <!--仓库信息-->
-                <view class="cu-item solids-bottom">
-                    <view class="cu-avatar round lg"
-                          style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
-                    <view class="content">
-                        <view class="text-gray text-sm justify-between">编号:{{filter.formatWareId(item.ware.id)}}</view>
-                        <view class="text-gray text-sm justify-between text-cut">地址:{{item.ware.address}}</view>
-                        <view class="text-gray text-sm justify-between">电话:{{item.ware.phone}}</view>
-                    </view>
-                </view>
-                <!--租赁信息-->
-                <view class="padding solids-bottom">
-                    <view class="text-grey flex margin-bottom-sm">到期时间:{{filter.getLastTime( item.index.time)}}
-                        <view class="cu-tag line-red action  margin-left" bindtap="">续费</view>
-                    </view>
-                    <view class="text-grey flex">租赁容量:{{item.index.myAllSize}}
-                        <view class="cu-tag line-green action   margin-left-xl" bindtap="">扩容</view>
-                    </view>
-                </view>
-                <!--管理仓库-->
-                <view class="padding">
-                    <button class="cu-btn bg-olive shadow-blur" bindtap="showModal" data-target="addStock"
-                            data-id="{{item.id}}">增加库存
-                    </button>
-                </view>
-            </view>
-        </view>
-    </view>
-    <view style="height:200rpx"></view>
-    <!--增加库存窗口-->
-    <view class="cu-modal {{modalName=='addStock'?'show':''}}">
-        <view class="cu-dialog">
-            <view class="cu-bar bg-white justify-end solids-bottom">
-                <view class="content">增加库存</view>
-                <view class="action" bindtap="hideModal">
-                    <text class="cuIcon-close text-red"></text>
-                </view>
-            </view>
-            <view class="bg-white">
-                <form>
-                    <view class="flex margin-left cu-bar " wx:for="{{chooseWare}}">
-                        <checkbox class="round" checked="{{true}}" bindtap="isChecked"
-                                  data-target="{{item.id}}"></checkbox>
-                        {{item.name}}
-                        <view class="action">
-                            <van-stepper name="num-{{item.id}}" value="{{ 1 }}"/>
-                        </view>
-                    </view>
-                </form>
-            </view>
-            <view class="cu-bar bg-white justify-end">
-                <view class="action">
-                    <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
-                    <button class="cu-btn bg-green margin-left" bindtap="">确定</button>
-                </view>
-            </view>
-        </view>
-    </view>
+	<view class="cu-card case card">
+		<!--卡片-->
+		<view class="cu-item shadow  radius bg-white" wx:for="{{wareHouses}}">
+			<view class="cu-list menu-avatar">
+				<!--名称-->
+				<view class="text-cut padding solids-bottom">{{item.ware.name}}</view>
+				<view class="padding solids-bottom">
+					<!--容量-->
+					<view class="text-shadow text-sm text-gray">仓库容量:</view>
+					<view class="cu-progress  radius striped active">
+						<view class="bg-purple" style="width:{{loading?item.ware.wareSize+'%':''}};">
+							{{item.ware.wareSize}}%
+						</view>
+					</view>
+					<view class="text-shadow text-sm text-gray margin-top">我的容量:</view>
+					<view class="cu-progress  radius striped active">
+						<view class="bg-cyan" style="width:{{loading?item.index.mySize+'%':''}};">
+							{{item.index.mySize}}%
+						</view>
+					</view>
+					<!--商品余量-->
+					<view class="text-shadow text-sm text-gray margin-top">商品余量:</view>
+					<view class="cu-capsule radius margin-top-sm" wx:for="{{item.index.ware}}" wx:for-item="itemData">
+						<view class="cu-tag bg-blue ">{{itemData.info.name}}</view>
+						<view class="cu-tag line-blue">{{itemData.number}}</view>
+					</view>
+				</view>
+				<!--仓库信息-->
+				<view class="cu-item solids-bottom">
+					<view class="cu-avatar round lg" style="background-image:url(http://localhost:8887/img/ware_default.png);"></view>
+					<view class="content">
+						<view class="text-gray text-sm justify-between">编号:{{filter.formatWareId(item.ware.id)}}</view>
+						<view class="text-gray text-sm justify-between text-cut">地址:{{item.ware.address}}</view>
+						<view class="text-gray text-sm justify-between">电话:{{item.ware.phone}}</view>
+					</view>
+				</view>
+				<!--租赁信息-->
+				<view class="padding solids-bottom">
+					<view class="text-grey flex margin-bottom-sm">到期时间:{{filter.getLastTime( item.index.time)}} </view>
+					<view class="text-grey flex">租赁容量:{{item.index.myAllSize}}</view>
+				</view>
+				<!--管理仓库-->
+				<view class="padding">
+					<button class="cu-btn bg-olive shadow-blur margin-right" bindtap="showModal" data-target="addStock" data-id="{{item.id}}">增加库存
+					</button>
+					<button class="cu-btn bg-orange shadow-blur  margin-right" bindtap="showModal" data-target="waiting">续费
+					</button>
+					<button class="cu-btn bg-blue shadow-blur" bindtap="showModal" data-target="waiting">扩容
+					</button>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view style="height:200rpx"></view>
+	<!--开发中-->
+	<view class="cu-modal {{modalName=='waiting'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end solids-bottom">
+				<view class="content">开发中</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-red"></text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!--增加库存窗口-->
+	<view class="cu-modal {{modalName=='addStock'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end solids-bottom">
+				<view class="content">增加库存</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close text-red"></text>
+				</view>
+			</view>
+			<!--库存增加-->
+			<form bindsubmit="formSubmit" id="formAddress">
+				<radio-group name="type" class="block" bindchange="choose">
+					<view class="cu-form-group">
+						<view class="title">选择货源</view>
+						<view>
+							<radio class=" margin-left-sm" value="0" checked></radio>本地发货
+							<radio class=" margin-left-sm" value="1"></radio>仓库调配
+						</view>
+					</view>
+					<view class="cu-form-group" wx:if="{{choose==1}}">
+						<view class="title">选择仓库</view>
+						<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+							<view class="picker">
+								{{picker[index]}}
+							</view>
+						</picker>
+					</view>
+					<view class="cu-form-group">
+						<view class="title">
+							<text class="cuIcon-titles text-green"></text>
+							<text class="text-bold">选择货物</text>
+						</view>
+                          <button bindtap="addGood" class="cu-btn"> <text class="cuIcon-add"></text></button>
+					</view>
+					<view class="cu-form-group" wx:for="{{add}}" wx:key >
+						<view class="cu-form-group">
+                            <input placeholder="货物名称" style="border:none;text-align:left"></input>
+                            <van-stepper value="{{ 1 }}" bind:change=""/>
+							<text class="cuIcon-close text-red margin-left" bindtap="deleteGood" data-key="{{index}}"></text>
+						</view>
+					</view>
+				</radio-group>
+			</form>
+			<view class="cu-bar bg-white justify-end">
+				<view class="action">
+					<button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+					<button class="cu-btn bg-green margin-left" bindtap="makeSure">确定</button>
+				</view>
+			</view>
+		</view>
+	</view>
 </scroll-view>
-        <!--租赁仓库-->
+<!--租赁仓库-->
 <view class="cu-bar btn-group foot bg-white">
-    <navigator class="cu-btn bg-green shadow-blur lg" url="./hire/hire">租赁仓库</navigator>
+	<navigator class="cu-btn bg-green shadow-blur lg" url="./hire/hire">租赁仓库</navigator>
 </view>
 <wxs module="filter" src="../../../app.wxs"></wxs>

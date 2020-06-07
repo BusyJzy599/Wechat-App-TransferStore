@@ -7,10 +7,25 @@ Page({
      */
     data: {
         activeTab: 'index',
+        show: app.globalData.notice,
         panels: [],
         userInfo: {},
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        numList: [{
+            name: '登录'
+          }, {
+            name: '认证'
+          }, {
+            name: '体验'
+          }, {
+            name: '反馈'
+          }, ],
+          num:3
+    },
+    onClose() {
+        this.setData({ show: false });
+        app.globalData.notice=false
     },
     onTabChange(event) {
         this.setData({

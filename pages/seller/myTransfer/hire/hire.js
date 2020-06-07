@@ -18,7 +18,7 @@ function getWareInfo(array) {
     return [city, ware]
 }
 
-function getLineOption() {
+function getLineOption(citys, datas) {
     return {
         backgroundColor: "#ffffff",
         color: ["#67E0E3"],
@@ -30,7 +30,7 @@ function getLineOption() {
             {
                 type: 'category',
                 axisTick: { show: false },
-                data: ['上海', '北京', '重庆', '江苏', '河南'],
+                data: citys,
                 axisLine: {
                     lineStyle: {
                         color: '#999'
@@ -64,7 +64,7 @@ function getLineOption() {
                         position: 'top'
                     }
                 },
-                data: [300, 270, 240, 212, 184, 165, 145],
+                data: datas,
             }
         ]
 
@@ -84,29 +84,18 @@ Page({
         getWareName(app.globalData.wareHouse.ware[0])],
         multiIndex: [0, 0],
         option1: [
-            { text: '3x4', value: '3x4' },
-            { text: '6x4', value: '6x4' },
-            { text: '12x4', value: '12x4' },
+            { text: '100', value: '100' },
+            { text: '200', value: '200' },
+            { text: '400', value: '400' },
         ],
         option2: [
             { text: '半年', value: 365 / 2 * 24 * 3600 * 1000 },
             { text: '1年', value: 365 * 24 * 3600 * 1000 },
             { text: '3年', value: 365 * 3 * 24 * 3600 * 1000 },
         ],
-        value1: '3x4',
+        value1: '100',
         value2: 365 / 2 * 24 * 3600 * 1000,
-        ecLine: {
-            onInit: function (canvas, width, height, dpr) {
-                const lineChart = echarts.init(canvas, null, {
-                    width: width,
-                    height: height,
-                    devicePixelRatio: dpr // new
-                });
-                canvas.setChart(lineChart);
-                lineChart.setOption(getLineOption());
-                return lineChart;
-            }
-        },
+
     },
     //修改价格
     changePrice() {
@@ -146,18 +135,20 @@ Page({
             var size = this.selectComponent('#size').data.value
             var newWare = { id: w.id, mySize: 0, myAllSize: size, ware: [], time: time }
             app.globalData.myWareHouse.push(newWare)
-            wx:wx.showLoading()
+            wx: wx.showLoading()
             //申请新的仓库
             wx: wx.request({
                 url: 'http://localhost:8887/seller/hire',
                 data: {
                     'sellerId': app.globalData.userId,
                     'wareId': w.id,
+                    'size': 400,
+                    'time': time
                 },
                 header: {
                     'content-type': 'application/json'
                 },
-                success: (result) => { 
+                success: (result) => {
                     wx.hideLoading()
                 },
             })
@@ -185,7 +176,6 @@ Page({
                 multiArray: [app.globalData.wareHouse.city, getWareName(app.globalData.wareHouse.ware[e.detail.value])]
             })
         }
-        ;
     },
     showData(e) {
         wx.navigateTo({
@@ -197,13 +187,48 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var citys, datas
+        var that = this
+        wx: wx.showLoading({
+            title: '加载数据中',
+        })
+        wx: wx.request({
+            url: 'http://localhost:8887/seller/analyse',
+            header: { 'content-type': 'application/json' },
+            success: (result) => {
+               /* citys = result.data.city
+                datas = result.data.num*/
+                citys=['重庆','四川','湖北','北京','江苏']
+                that.setData({
+                    ecLine: {
+                        onInit: function (canvas, width, height, dpr) {
+                            const lineChart = echarts.init(canvas, null, {
+                                width: width,
+                                height: height,
+                                devicePixelRatio: dpr // new
+                            });
+                            canvas.setChart(lineChart);
+                            lineChart.setOption(getLineOption(citys, datas));
+                            return lineChart;
+                        }
+                    },
+                })
+            },
+            fail:function(res){
+               
+                wx: wx.showToast({
+                    title: '获取信息失败',
+                    icon: 'none',
+                    duration: 2000,
+                })
+            },
+           wx: wx.hideLoading()
+        })
         this.setData({
             multiArray: [app.globalData.wareHouse.city,
             getWareName(app.globalData.wareHouse.ware[0])],
             multiIndex: [0, 0],
         })
-        console.log("加载")
-        console.log(this.data.multiArray)
     },
 
     /**
